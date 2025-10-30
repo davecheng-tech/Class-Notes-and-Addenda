@@ -1,2 +1,4 @@
+theme: jekyll-theme-primer
+markdown: GFM
 title: ""
-logo: ""
+show_downloads: false

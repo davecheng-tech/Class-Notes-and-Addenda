@@ -58,7 +58,7 @@ float startY = 0;
 
 Then draw your entire pattern *relative* to those. This is how we "move the canvas" without rewriting code.
 
-## 💡 Why Do This?
+## Why Do This?
 
 - Because **code is never finished**. Not even for professional developers.  
 - You will always revisit and improve things.  

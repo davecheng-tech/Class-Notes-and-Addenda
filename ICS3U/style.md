@@ -1,10 +1,8 @@
 # Becoming More Stylish in Code (Yes, *You*)
 
-Your code already works. That’s great.  
-Now we level up: we make the code **clear**.
+Your code already works. That’s great.  Now we level up: we make the code **clear**.
 
-Clear code shows your thinking. It communicates **intent** — meaning:
-someone should be able to read your code and *understand what you were trying to do* without asking you.
+Clear code shows your thinking. It communicates **intent**. Someone should be able to read your code and *understand what you were trying to do* without asking you.
 
 We are now moving from:
 
@@ -58,15 +56,15 @@ double total = price * 1.13;
 
 #### ✅ Named constant communicates *intent*
 ```java
-final double TAX_RATE = 1.13;
+double TAX_RATE = 1.13;
 double total = price * TAX_RATE;
 ```
-Note that the convention for constants is an `ALL_CAPS` variable name.
+Note that the convention for constants is an `ALL_CAPS` variable name. You might've seen this already with the Math class (e.g. `Math.PI`) or in Processing examples with constants like `PI` and `TWO_PI`.
 
 
 ## Repetition Is a Signal
 
-If you type the same number 3+ times, that number wants a name.
+If you type the same number 3 or more times, that number wants a name.
 
 ### ❌ Repeated numbers everywhere
 ```java
@@ -121,8 +119,6 @@ Clear code is:
 - easier to fix
 - easier to reuse
 - easier for others to learn from
-- a sign that **you understand your own solution**
+- a sign that you understand your own solution
 
-Your future self (and your teammates in Grade 11/12) will thank you. Aim to write code that looks like you care about it.
-
-Not fancy, not perfect. Just *thoughtful*.
+Your future self (and your teammates in Grade 11/12) will thank you. Aim to write code that looks like you care about it. Not fancy, not perfect. Just *thoughtful*.

@@ -189,16 +189,15 @@ if (age < 0) {
 }
 ```
 
-**Technique:** Reject invalid cases early, then handle the normal path.
-
+Reject invalid cases early, then handle the logic in a predictable, clean pattern.
 
 <br>
 
 ### 7) Layout & Formatting
 
-- **Indent with 2 or 4 spaces** consistently (VS Code can format on save).
+- **Indent with 4 spaces** consistently (VS Code can format on save).
 - **Brace style:** pick one and stick to it.
-- **Whitespace:** add blank lines between logical sections.
+- **Whitespace:** add space around operators, blank lines between logical sections.
 - **Line length:** prefer readable lines under ~100 chars.
 
 ```java
@@ -211,11 +210,11 @@ int choice = readInt("Choose: ");
 System.out.println();
 
 if (choice == 1) {
-  System.out.println("Coffee selected.");
+    System.out.println("Coffee selected.");
 } else if (choice == 2) {
-  System.out.println("Tea selected.");
+    System.out.println("Tea selected.");
 } else {
-  System.out.println("Invalid.");
+    System.out.println("Invalid.");
 }
 ```
 
@@ -241,13 +240,13 @@ i = i + 1;
 
 Prefer code that reads well without comments; add a brief note only where necessary.
 
-
+<br>
 
 ### 9) Stepwise Improvement: A Refactoring Walkthrough
 
-We’ll improve a student submission that draws rows of boxes in Processing.
+We’ll improve an example that draws rows of boxes in Processing:
 
-#### Version A (works, but repeated)
+#### Version A (works, but repetitive)
 ```java
 size(400, 200);
 
@@ -260,16 +259,20 @@ rect(260, 20, 40, 40);
 
 **Issues:** Repetition, magic numbers, hard to scale.
 
+<br>
+
 #### Version B (loop introduced)
 ```java
 size(400, 200);
 
 for (int i = 0; i < 5; i++) {
-  rect(20 + i * 60, 20, 40, 40);
+    rect(20 + i * 60, 20, 40, 40);
 }
 ```
 
 **Better:** Loop eliminates repetition, but still some unexplained numbers.
+
+<br>
 
 #### Version C (named values; easier to change)
 ```java
@@ -282,9 +285,9 @@ int marginLeft = 20;
 int marginTop = 20;
 
 for (int i = 0; i < boxes; i++) {
-  int x = marginLeft + i * spacing;
-  int y = marginTop;
-  rect(x, y, boxSize, boxSize);
+    int x = marginLeft + i * spacing;
+    int y = marginTop;
+    rect(x, y, boxSize, boxSize);
 }
 ```
 
@@ -302,9 +305,9 @@ int sum = 0;
 
 int n = readInt("Enter number (-1 to stop): ");
 while (n != -1) {
-  sum += n;
-  count++;
-  n = readInt("Enter number (-1 to stop): ");
+    sum += n;
+    count++;
+    n = readInt("Enter number (-1 to stop): ");
 }
 
 System.out.println("Average = " + (count == 0 ? 0 : (double) sum / count));

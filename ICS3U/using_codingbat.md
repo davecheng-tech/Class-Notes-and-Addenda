@@ -122,3 +122,4 @@ All the logic is contained within a single `return` statement. Not the clearest 
 | `System.out.println(true);` | Printing is not returning | Use `return true;` |
 | `int cigars = 0;` | Re-declares the variable and erases the given value | Use the original variable |
 | Multiple `return` statements unreachable | Code after `return` never runs | Ensure `return` ends the method |
+

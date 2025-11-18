@@ -10,6 +10,8 @@ Consider the Processing program below. When run, it randomly selects one of thre
 - Ukraine (two horizontal bars, blue over yellow), or
 - Canada (vertical red/white/red bars, simplified red maple leaf in the middle).
 
+![flags](/.media/image-method_decomposition-01.png)
+
 ### Original Version
 
 ```java
@@ -341,7 +343,18 @@ At this point, the program has been refactored into small, focused methods:
 
 Because the earlier refactor separated concerns so cleanly, it becomes very easy to **swap in a more accurate maple leaf shape** without touching any of the surrounding logic. The random choice code, the Canadian stripes, and the overall layout stay the same; only the *implementation detail* of `drawMapleLeaf(...)` changes.
 
-Here is the final version, using the traced coordinates and a scale factor to draw a realistic maple leaf centred on the flag:
+Here is the final version with a proper maple leaf design using coordinates traced off an existing flag image. The method can place the flag anywhere on the canvas and uses a scale factor to adjust size:
+
+![flags](/.media/image-method_decomposition-02.png)
+
+And the code, changes on L57, now:
+
+```
+drawMapleLeaf(width / 2, height / 2, 0.35f);
+```
+
+and the method definition on L75 onward:
+
 
 ```java
 import processing.core.PApplet;

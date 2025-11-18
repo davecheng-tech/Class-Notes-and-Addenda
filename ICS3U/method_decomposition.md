@@ -432,8 +432,8 @@ public class Sketch extends PApplet {
     }
 
     /**
-     * Draws an accurate maple leaf centered at (cx, cy),
-     * using a scale factor relative to the original traced coordinates.
+     * Draws a better maple leaf centered at (cx, cy) and using a scale factor relative
+     * to the original traced from image found at https://tinyurl.com/4h2mnhb2
      *
      * @param cx    center x-position
      * @param cy    center y-position

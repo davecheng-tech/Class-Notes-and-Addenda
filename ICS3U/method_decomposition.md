@@ -464,11 +464,6 @@ public class Sketch extends PApplet {
 
         endShape(CLOSE);
     }
-
-    @Override
-    public void draw() {
-        // No animation
-    }
 }
 ```
 

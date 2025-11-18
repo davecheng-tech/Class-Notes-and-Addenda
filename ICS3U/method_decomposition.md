@@ -2,17 +2,19 @@
 
 When programs grow in size, writing everything in one giant block of code becomes messy, repetitive, and hard to understand.  
 
-Good programmers break large tasks into *smaller, meaningful methods* that do one job each. This is called **method decomposition**.
+Good programmers break large tasks into smaller, meaningful methods with limited scope — often just doing one job each. This is called **method decomposition**.
+
+## Example: Random Flag Program
 
 Consider the Processing program below. When run, it randomly selects one of three country flags to display: 
 
-- Poland (two horizontal bars, white over red), 
-- Ukraine (two horizontal bars, blue over yellow), or
-- Canada (vertical red/white/red bars, simplified red maple leaf in the middle).
+- Poland (two horizontal bars, white over red)
+- Ukraine (two horizontal bars, blue over yellow)
+- Canada(-ish) (vertical red bars, simplified maple leaf)
 
 ![flags](/.media/image-method_decomposition-01.png)
 
-### Original Version
+And the code:
 
 ```java
 import processing.core.PApplet;
@@ -56,7 +58,7 @@ public class Sketch extends PApplet {
             fill(255);
             rect(width / 4, 0, width / 2, height);
 
-            // Simplified maple leaf shape
+            // Simplified star shape in place of maple leaf
             fill(255, 0, 0);
             beginShape();
             vertex(width / 2, 80);
@@ -84,14 +86,12 @@ A few important observations:
   - `choice == 1` → draw the Ukrainian flag  
   - `choice == 2` → draw the Canadian flag  
 
-- All the drawing logic for **all three flags** is jammed into one big `if / else if / else` block inside `setup()`.
+- All the drawing logic is jammed into one big `if / else if / else` block inside `setup()`.
 
-This kind of long, tangled block is often called **spaghetti code**:
+This kind of code is technically functional, but messy, tangled, and hard to follow — like a pile of spaghetti. Hence, the nickname **spaghetti code**:
 
-- It's hard to scan and understand quickly.  
-- If you want to change one flag, you have to hunt through the whole block.  
 - There is repetition (e.g., repeated `fill()` and `rect()` patterns).  
-- The maple leaf is hard-coded with a bunch of magic numbers inside `setup()`.
+- The maple leaf is hard-coded with a bunch of [magic numbers](https://davecheng-tech.github.io/Class-Notes-and-Addenda/ICS3U/style#magic-numbers-vs-meaning) inside `setup()`.  
 
 A natural next step is to split this logic into separate methods.
 
@@ -150,7 +150,7 @@ public class Sketch extends PApplet {
     }
 
     /**
-     * Draws the Canadian flag with a simple leaf shape.
+     * Draws the Canadian flag with a simple star shape.
      */
     private void drawCanadaFlag() {
         // Red side bars
@@ -162,7 +162,7 @@ public class Sketch extends PApplet {
         fill(255);
         rect(width / 4, 0, width / 2, height);
 
-        // Simplified maple leaf shape
+        // Simplified star shape in place of maple leaf
         fill(255, 0, 0);
         beginShape();
         vertex(width / 2, 80);
@@ -192,7 +192,7 @@ This version is already easier to work with:
 However:
 
 - The Poland and Ukraine methods are almost identical. There is a lot of *repeated code*.
-- The Canada method still has spaghetti: stripes and maple leaf drawing are all tangled together.  
+- The Canada method still has spaghetti: stripes and maple leaf drawing are all tangled together in the same method.  
 - The maple leaf is still a lump of [magic numbers](https://davecheng-tech.github.io/Class-Notes-and-Addenda/ICS3U/style#magic-numbers-vs-meaning) inside a long method.
 
 We can do better.
@@ -208,7 +208,7 @@ In this version, we:
 - Create a **general-purpose method** to draw any two‑colour horizontal flag (useful for Poland, Ukraine, and many more).
 - Break the Canadian flag into **two separate methods**:
   - one for drawing the red/white/red background stripes  
-  - one for drawing the maple leaf (now in its own method with parameters for position, so it can be reused or moved easily)
+  - one for drawing the maple leaf  
 - Demonstrate **method composition**, i.e., larger tasks calling smaller helper methods.
 
 We also include Javadocs to properly document each method’s purpose.
@@ -289,7 +289,7 @@ public class Sketch extends PApplet {
     }
 
     /**
-     * Draws a stylized maple leaf shape of fixed size and position.
+     * Draws a stylized maple leaf shape (actually just a star).
      */
     private void drawMapleLeaf() {
         fill(255, 0, 0);
@@ -315,7 +315,7 @@ This version is far more modular and maintainable:
 
 - **Clear method decomposition**  
   - Each method does one well‑defined job.
-  - `setup()` simply chooses a flag and calls a method — clean and readable.
+  - `setup()` simply chooses a flag and calls a method. It's clean and readable.
 
 - **Reduced repetition**  
   - Poland and Ukraine are now handled by the same general-purpose `drawBicolorHorizontalFlag(...)`.
@@ -341,19 +341,19 @@ At this point, the program has been refactored into small, focused methods:
 - `drawCanadaStripes()` draws the red–white–red background.
 - `drawMapleLeaf(...)` draws the leaf at a fixed position and size.
 
-Because the earlier refactor separated concerns so cleanly, it becomes very easy to **swap in a more accurate maple leaf shape** without touching any of the surrounding logic. The random choice code, the Canadian stripes, and the overall layout stay the same; only the *implementation detail* of `drawMapleLeaf(...)` changes.
+Because the earlier refactor separated concerns so cleanly, it becomes very easy to **swap in a more accurate maple leaf shape** without touching any of the surrounding logic. The random choice code, the Canadian stripes, and the overall layout stay the same; only the implementation detail of `drawMapleLeaf(...)` changes.
 
-Here is the final version with a proper maple leaf design using coordinates traced off an existing flag image. The method can place the flag anywhere on the canvas and uses a scale factor to adjust size:
+Here is the final version with a proper maple leaf design using coordinates traced off an existing flag photo. The method can place the flag anywhere on the canvas and uses a scale factor to adjust size:
 
 ![flags](/.media/image-method_decomposition-02.png)
 
-And the code, changes on L57, now:
+The code uses a new `drawMapleLeaf()` method (defined at the end) and only one other change on L57, calling the new `drawMapleLeaf()` method with parameters:
 
 ```
 drawMapleLeaf(width / 2, height / 2, 0.35f);
 ```
 
-and the method definition on L75 onward:
+And in its entirety:
 
 
 ```java
@@ -413,7 +413,7 @@ public class Sketch extends PApplet {
      */
     private void drawCanadaFlag() {
         drawCanadaStripes();
-        drawMapleLeaf(width / 2, height / 2, 0.35f);
+        drawMapleLeaf(width / 2, height / 2, 0.35f);  
     }
 
     /**
@@ -480,4 +480,4 @@ public class Sketch extends PApplet {
 }
 ```
 
-In other words, **good method decomposition made this upgrade almost trivial**: instead of rewriting the whole program, we only had to improve one well‑named helper method and leave the rest of the design untouched.
+ In the end, **good method decomposition made this upgrade almost trivial**. Instead of rewriting the whole program, we only had to improve one well‑named helper method and leave the rest of the design untouched.

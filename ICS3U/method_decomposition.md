@@ -58,15 +58,15 @@ public class Sketch extends PApplet {
             fill(255, 0, 0);
             beginShape();
             vertex(width / 2, 80);
-            vertex(width / 2 - 20, 130);
-            vertex(width / 2 - 60, 130);
-            vertex(width / 2 - 30, 160);
-            vertex(width / 2 - 50, 200);
-            vertex(width / 2, 180);
-            vertex(width / 2 + 50, 200);
-            vertex(width / 2 + 30, 160);
-            vertex(width / 2 + 60, 130);
-            vertex(width / 2 + 20, 130);
+            vertex(width / 2 - 20, 160);
+            vertex(width / 2 - 60, 160);
+            vertex(width / 2 - 30, 220);
+            vertex(width / 2 - 50, 320);
+            vertex(width / 2,      260);
+            vertex(width / 2 + 50, 320);
+            vertex(width / 2 + 30, 220);
+            vertex(width / 2 + 60, 160);
+            vertex(width / 2 + 20, 160);
             endShape(CLOSE);
         }
     }
@@ -164,15 +164,15 @@ public class Sketch extends PApplet {
         fill(255, 0, 0);
         beginShape();
         vertex(width / 2, 80);
-        vertex(width / 2 - 20, 130);
-        vertex(width / 2 - 60, 130);
-        vertex(width / 2 - 30, 160);
-        vertex(width / 2 - 50, 200);
-        vertex(width / 2, 180);
-        vertex(width / 2 + 50, 200);
-        vertex(width / 2 + 30, 160);
-        vertex(width / 2 + 60, 130);
-        vertex(width / 2 + 20, 130);
+        vertex(width / 2 - 20, 160);
+        vertex(width / 2 - 60, 160);
+        vertex(width / 2 - 30, 220);
+        vertex(width / 2 - 50, 320);
+        vertex(width / 2,      260);
+        vertex(width / 2 + 50, 320);
+        vertex(width / 2 + 30, 220);
+        vertex(width / 2 + 60, 160);
+        vertex(width / 2 + 20, 160);
         endShape(CLOSE);
     }
 }
@@ -293,15 +293,15 @@ public class Sketch extends PApplet {
         fill(255, 0, 0);
         beginShape();
         vertex(width / 2, 80);
-        vertex(width / 2 - 20, 130);
-        vertex(width / 2 - 60, 130);
-        vertex(width / 2 - 30, 160);
-        vertex(width / 2 - 50, 200);
-        vertex(width / 2, 180);
-        vertex(width / 2 + 50, 200);
-        vertex(width / 2 + 30, 160);
-        vertex(width / 2 + 60, 130);
-        vertex(width / 2 + 20, 130);
+        vertex(width / 2 - 20, 160);
+        vertex(width / 2 - 60, 160);
+        vertex(width / 2 - 30, 220);
+        vertex(width / 2 - 50, 320);
+        vertex(width / 2,      260);
+        vertex(width / 2 + 50, 320);
+        vertex(width / 2 + 30, 220);
+        vertex(width / 2 + 60, 160);
+        vertex(width / 2 + 20, 160);
         endShape(CLOSE);
     }
 }

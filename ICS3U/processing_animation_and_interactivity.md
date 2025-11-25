@@ -1,0 +1,188 @@
+# Processing Lesson: Animation & Interactivity
+
+This reference document provides a complete guide to all skills required for the **Animation and Interactivity** assignment in ICS3U.  
+
+## 1. The Processing Program Structure
+
+Processing programs use the following general structure:
+
+```java
+import processing.core.PApplet;
+
+public class Sketch extends PApplet {
+    public static void main(String[] args) {
+        PApplet.main("Sketch");
+    }
+
+    public void settings() {
+        size(600, 600);  // Canvas size
+    }
+
+    public void setup() {
+        background(120, 197, 227);  // Runs once at the start
+    }
+
+    @Override
+    public void draw() {
+        // Runs ~60 times per second
+        fill(242, 19, 224);
+        circle(300, 300, 200);
+    }
+}
+```
+- `settings()` runs first, before the window is created.
+- `setup()` runs once at the beginning, drawing elements.
+- `draw()` runs ~60 times per second, repeatedly drawing elements.
+
+### frameRate()
+
+You can control the frame speed:
+
+```java
+void setup() {
+  frameRate(60);
+}
+```
+
+### loop() and noLoop()
+
+- `noLoop()` stops the animation.
+- `loop()` restarts it.
+
+## 2. Basic Animation
+
+Animation happens when you change a variable a tiny bit each frame.  
+
+Recall that `draw()` is a continuous loop. By defining the ball variables as global (i.e., outside of any method) they are not only accessible to all methods, but their values are not reset everytime `draw()` loops again. 
+
+```java
+float ballX = 100;
+float ballY = 300;
+float dx = 3;
+
+void draw() {
+  background(255);
+
+  ballX = ballX + dx;
+
+  ellipse(ballX, ballY, 40, 40);
+}
+```
+
+## 3. Edge Detection
+
+Detect when the ball hits the borders. This clean bit of code checks both left and right extremities and negates the "speed" of the ball, thereby making it reverse direction.
+
+```java
+if (ballX > width || ballX < 0) {
+  dx = -dx;
+}
+```
+
+## 4. Mouse Input
+
+### mouseX and mouseY
+
+These built-in variables report the coordinates of the mouse when hovering over the sketch window. They are updated every `draw()` frame refresh.
+
+```java
+ellipse(mouseX, mouseY, 40, 40);
+```
+
+### mousePressed variable
+
+Boolean value reporting `true` if any mouse button is pressed. Remains `true` as long as the button is held down.
+
+```java
+if (mousePressed) {
+  fill(255, 0, 0);
+} else {
+  fill(0);
+}
+```
+
+### mousePressed() event function
+A predefined, built-in method that is called whenever the mouse button is pressed. This happens independently of the `draw()` loop.
+
+```java
+void mousePressed() {
+  System.out.println("Mouse clicked at: " + mouseX + ", " + mouseY);
+}
+```
+
+## 5. Keyboard Input
+Similar to `mousePressed()`, we have `keyPressed()` as a built-in method called whenever a key is pressed. Within this method, we can use the built-in variables `key` and `keyCode` to check what was pressed and respond accordingly.
+
+### key and keyCode
+
+```java
+void keyPressed() {
+  if (key == 'a') {
+    println("A pressed");
+  }
+  if (keyCode == UP) {
+    println("Up arrow");
+  }
+}
+```
+
+## 6. Instructions On Screen
+Use Processing's `text()` method to display text on-screen. Refer to the [documentation](https://processing.org/reference/text_.html) for additional methods to style your text.
+
+```java
+fill(0);
+textSize(16);
+text("Press A to change colour. Click to move ball.", 20, 20);
+```
+
+## 7. Images (Sprites)
+The `image()` method behaves quite similarly to other methods such as `ellipse()`. They can be used to place an image anywhere on the screen with coordinate values.
+
+### Loading an image
+
+```java
+PImage mySpriteName;
+
+void setup() {
+  size(800, 600);
+  mySpriteName = loadImage("mySprite.png");
+}
+```
+
+### Drawing an image
+
+```java
+image(mySpriteName, ballX, ballY);
+```
+
+### Resizing an image
+The `PImage` class contains several useful functions that let you manipulate images. For example, the `resize()` method resizes an image. (See [documentation](https://processing.org/reference/PImage_resize_.html) for additional uses.) 
+
+Here’s an example that resizes the image to 200 pixels wide whenever the user clicks the mouse:
+
+```java
+PImage mySpriteName;
+
+void setup() {
+  size(800, 600);
+  mySpriteName = loadImage("mySprite.png");
+}
+
+void mousePressed() {
+  mySpriteName.resize(200, 0);  // height = 0 keeps proportions
+}
+
+void draw() {
+  image(mySpriteName, mouseX, mouseY);
+}
+```
+
+## 8. Useful Links
+
+- Images: https://happycoding.io/tutorials/processing/images  
+- Animation: https://happycoding.io/tutorials/processing/animation  
+- Input: https://happycoding.io/tutorials/processing/input  
+- Free Image Assets: https://www.kenney.nl/assets
+
+
+

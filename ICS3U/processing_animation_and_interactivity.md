@@ -39,7 +39,7 @@ public class Sketch extends PApplet {
 
     @Override
     public void draw() {
-        // Runs ~60 times per second
+        // Runs in a loop approx. 60 times per second
         background(120, 197, 227);  // Re-draw background to erase previous frame
         fill(242, 19, 224);
         circle(300, 300, 200);

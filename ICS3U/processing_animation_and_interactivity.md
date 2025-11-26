@@ -9,25 +9,49 @@ Processing programs use the following general structure:
 ```java
 import processing.core.PApplet;
 
+/**
+ * Template for programs with Processing graphics output.
+ * @author Your Name
+ */
 public class Sketch extends PApplet {
+
+    // ----------------------------------------------------
+    // Declare global variables here
+    // ----------------------------------------------------
+    // Example:
+    // int sunX = 100;
+    // int speed = 3;
+
+
     public static void main(String[] args) {
         PApplet.main("Sketch");
     }
 
+    @Override
     public void settings() {
         size(600, 600);  // Canvas size
     }
 
+    @Override
     public void setup() {
-        background(120, 197, 227);  // Runs once at the start
+        // Runs once at the start
     }
 
     @Override
     public void draw() {
         // Runs ~60 times per second
+        background(120, 197, 227);  // Re-draw background to erase previous frame
         fill(242, 19, 224);
         circle(300, 300, 200);
     }
+
+    // ----------------------------------------------------
+    // Write additional helper methods below
+    // ----------------------------------------------------
+    // Example:
+    // private void drawBall() { }
+    // private void moveBall() { }
+
 }
 ```
 - `settings()` runs first, before the window is created.

@@ -63,7 +63,7 @@ public class Sketch extends PApplet {
 You can control the frame speed:
 
 ```java
-void setup() {
+public void setup() {
   frameRate(60);
 }
 ```
@@ -84,7 +84,7 @@ float ballX = 100;
 float ballY = 300;
 float dx = 3;
 
-void draw() {
+public void draw() {
   background(255);
 
   ballX = ballX + dx;
@@ -129,7 +129,7 @@ if (mousePressed) {
 A predefined, built-in method that is called whenever the mouse button is pressed. This happens independently of the `draw()` loop.
 
 ```java
-void mousePressed() {
+public void mousePressed() {
   System.out.println("Mouse clicked at: " + mouseX + ", " + mouseY);
 }
 ```
@@ -140,7 +140,7 @@ Similar to `mousePressed()`, we have `keyPressed()` as a built-in method called 
 ### key and keyCode
 
 ```java
-void keyPressed() {
+public void keyPressed() {
   if (key == 'a') {
     println("A pressed");
   }
@@ -167,7 +167,7 @@ The `image()` method behaves quite similarly to other methods such as `ellipse()
 ```java
 PImage mySpriteName;
 
-void setup() {
+public void setup() {
   size(800, 600);
   mySpriteName = loadImage("mySprite.png");
 }
@@ -187,16 +187,16 @@ Here’s an example that resizes the image to 200 pixels wide whenever the user 
 ```java
 PImage mySpriteName;
 
-void setup() {
+public void setup() {
   size(800, 600);
   mySpriteName = loadImage("mySprite.png");
 }
 
-void mousePressed() {
+public void mousePressed() {
   mySpriteName.resize(200, 0);  // height = 0 keeps proportions
 }
 
-void draw() {
+public void draw() {
   image(mySpriteName, mouseX, mouseY);
 }
 ```

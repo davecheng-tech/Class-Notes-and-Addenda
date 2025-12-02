@@ -95,22 +95,3 @@ A ternary is acceptable when:
 4. A beginner can read it without slowing down.
 
 When in doubt, use an if/else.
-
-## 4. GOOD VS. BAD IN A LOOP
-
-### Good
-
-```java
-for (int i = 0; i < temps.length; i++) {
-    int safe = (temps[i] < 0) ? 0 : temps[i];
-    corrected[i] = safe;
-}
-```
-
-### Bad
-
-```java
-corrected[i] = (temps[i] < 0) ? 0 :
-               (temps[i] > 100) ? temps[i] - 10 :
-               (temps[i] == 42) ? 999 : temps[i];
-```

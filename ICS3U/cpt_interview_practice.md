@@ -1,6 +1,6 @@
 # ICS3U CPT – Code Walkthrough & Peer Interview Practice
 
-While the time to make changes to your application is over, the remaining classes are still valuable. Today you will use your finished codebase as a study object to practice explaining, reasoning about, and defending the design and implementation decisions already present. This directly mirrors the technical interview, where understanding, ownership, and correct use of ICS3U concepts matter more than adding new features. This directly prepares you for the **technical interview**, which assesses ownership, understanding, and authenticity.
+While the time to make changes to your application is over, the remaining classes are still valuable. Today you will use your finished codebase as a study object to practice explaining, reasoning about, and defending the design and implementation decisions already present. This activity directly mirrors the technical interview, where understanding, ownership, and correct use of ICS3U concepts matter more than adding new features. 
 
 ## Activity Overview
 

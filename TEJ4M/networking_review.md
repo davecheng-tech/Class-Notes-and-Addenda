@@ -72,4 +72,79 @@ Whenever data is transmitted:
 
 Understanding how these responsibilities are divided is essential. In the next section, we will introduce the TCP/IP model, which provides a layered way to reason about how networks function. 
 
+<br>
 
+## 2. The TCP/IP Model (How to Think in Layers)
+
+### Why We Use a Layered Model
+
+Networking systems are complex. Many different tasks must occur for data to move successfully from one device to another: signals must be transmitted, devices must be addressed, data must be routed, and applications must interpret the information correctly.
+
+Rather than treating networking as a single monolithic process, engineers divide responsibilities into layers. Each layer has a specific role, and each layer depends on the layer below it while serving the layer above it. This separation allows systems to be designed, implemented, and troubleshot in a structured way.
+
+The model used throughout this course is the **TCP/IP model**, which consists of four layers.
+
+### The Four Layers of the TCP/IP Model
+
+From lowest to highest, the TCP/IP model consists of:
+
+1. Physical/Link
+2. Internet
+3. Transport
+4. Application
+
+Each layer answers a different question:
+- How does data physically move?
+- How do devices find each other?
+- How is data delivered reliably (or quickly)?
+- What is the data actually used for?
+
+### An Analogy: Roads, Vehicles, and Rules
+
+A useful way to understand the TCP/IP model is to compare it to a road transportation system.
+
+- **Physical/Link layer** is the road infrastructure itself: roads, lanes, intersections, and traffic lights. It defines how movement is physically possible.
+- **Internet layer** is the addressing and routing system: street addresses, city names, and GPS directions that determine where vehicles need to go.
+- **Transport layer** is the type of vehicle and delivery method: a courier truck, a motorcycle, or a convoy. Some deliveries prioritize speed, others prioritize reliability.
+- **Application layer** is the purpose of the trip: delivering a package, transporting passengers, or providing a service.
+
+Each layer operates independently. A delivery truck does not need to know how asphalt is poured, and a road does not care what is being transported.
+
+### Physical/Link Layer
+
+The Physical/Link layer is responsible for moving raw data between directly connected devices. It includes physical media such as Ethernet cables, fibre optic cables, and wireless radio signals, as well as the rules that govern how devices share those media.
+
+At this layer, devices are identified using hardware addresses (**MAC addresses**). Communication is limited to the local network segment. This layer does not understand IP addresses, applications, or data meaning.
+
+### Internet Layer
+
+The Internet layer is responsible for logical addressing and routing. It determines whether data should remain within the local network or be forwarded to another network.
+
+This is where IP addresses are used. The Internet layer does not guarantee delivery or correctness; it focuses on moving packets toward their destination using routers.
+
+### Transport Layer
+
+The Transport layer manages communication between applications running on different devices. It controls how data is broken into pieces, sent, and reassembled.
+
+Two major transport approaches are used:
+- **TCP**, which prioritizes reliability, ordering, and error recovery.
+- **UDP**, which prioritizes speed and low overhead.
+
+In the transportation analogy, TCP is like a tracked delivery service that confirms every package arrives intact, while UDP is like sending loose flyers to all homes in a neighbourhood where speed matters more than certainty.
+
+### Application Layer
+
+The Application layer is where network services live. This layer defines how applications format data and how users interact with networked systems.
+
+Examples include web browsing, email, file sharing, and remote access. Encryption, session handling, and data formatting are handled here as part of the application itself.
+
+### Why Layers Matter
+
+Using a layered model allows engineers and technicians to reason about problems systematically. When something fails, it is possible to ask which layer is responsible rather than guessing randomly.
+
+For example:
+- If there is no signal, the problem is likely at the Physical/Link layer.
+- If a device has no valid IP address, the problem is at the Internet layer.
+- If data arrives but applications fail, the issue is likely at the Transport or Application layer.
+
+Thinking in layers is essential for understanding, designing, and troubleshooting networks.

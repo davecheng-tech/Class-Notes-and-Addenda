@@ -148,3 +148,90 @@ For example:
 - If data arrives but applications fail, the issue is likely at the Transport or Application layer.
 
 Thinking in layers is essential for understanding, designing, and troubleshooting networks.
+
+<br>
+
+
+## 3. Devices on a Network (Switches, Routers, APs, Modems)
+
+### Why Network Devices Matter
+
+Networks are not simply collections of end devices connected by cables or wireless signals. Specialized network devices exist to manage how data moves, where it goes, and who is allowed to communicate.
+
+Understanding what each device does, and more importantly which TCP/IP layer it operates at, is essential. Many networking errors come from confusing the roles of switches and routers or assuming all network devices perform the same function.
+
+### Switches (Local Traffic Managers)
+
+A switch operates at the **Physical/Link layer** of the TCP/IP model. Its primary job is to move data within a local network.
+
+A switch examines **MAC addresses**, not IP addresses. When a device sends data on a local network, the switch determines which physical port leads to the destination device and forwards the data only to that port.
+
+Key characteristics of switches:
+- Connect devices within the same local network (LAN)
+- Use MAC addresses to make forwarding decisions
+- Do not route traffic between different networks
+- Reduce unnecessary network traffic compared to older hub-based designs
+
+If all devices involved are on the same LAN, a router is not required. The switch alone can deliver the data.
+
+### Routers (Network Boundary Devices)
+
+A router operates at the **Internet layer** of the TCP/IP model. Its role is to move data between different networks.
+
+Routers make decisions based on **IP addresses**, not MAC addresses. When data needs to leave the local network, the router determines the next network hop and forwards the packet accordingly.
+
+Key characteristics of routers:
+- Connect different networks together
+- Use IP addresses to make forwarding decisions
+- Act as the default gateway for devices on a LAN
+- Separate broadcast domains
+
+Every device that communicates beyond its local network relies on a router, even if the user is unaware of it.
+
+### Reinforcing the Layer Distinction (Switch vs Router)
+
+A useful rule of thumb:
+- If communication stays inside the local network, the **switch** is responsible.
+- If communication leaves the local network, the **router** is involved.
+
+Switches do not understand IP routes, and routers do not manage individual physical ports for end devices. Confusing these roles leads to incorrect assumptions about how data moves through a network.
+
+### Wireless Access Points (Bridging Wired and Wireless)
+
+A wireless access point (AP) operates primarily at the **Physical/Link layer**. Its job is to allow wireless devices to connect to a wired network.
+
+An access point does not assign IP addresses or decide where traffic should go. It simply acts as a bridge between wireless devices and the wired LAN.
+
+Key characteristics of access points:
+- Provide wireless connectivity (802.11)
+- Bridge wireless clients onto a wired LAN
+- Do not perform routing on their own
+
+Many consumer devices marketed as "wireless routers" are actually combinations of a router, switch, and access point in a single enclosure.
+
+### Modems (Network Translators)
+
+A modem connects a local network to an Internet Service Provider (ISP). Its role is to translate between the signalling used by the ISP and the signalling used inside the local network.
+
+Modems typically operate at the **Physical/Link layer**, handling modulation and demodulation of signals. 
+
+The term modem originates from its role in **mo**dulating and **dem**odulating an electrical signal.
+
+Key characteristics of modems:
+- Interface between the ISP and the local network
+- Do not route traffic internally
+- Often paired with a router for Internet access
+
+In many modern installations, the modem and router are combined into a single device, which can obscure their distinct roles.
+
+
+### Putting It All Together
+
+A typical home or school network includes:
+- End devices connected to a **switch** (wired or wireless)
+- A **router** that connects the local network to other networks
+- An **access point** that provides wireless connectivity
+- A **modem** that connects the network to the ISP
+
+Each device exists for a specific reason and operates at a specific layer. 
+

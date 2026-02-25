@@ -56,3 +56,13 @@ After the machine reboots into Lubuntu:
 
 1. Connect to **YCBYOD**.
 2. Open **Firefox** and confirm you can browse the web.
+
+## Step 10 — Shut down properly
+
+Do not just close the lid and assume the machine is off. By default, Lubuntu does not sleep on lid close — it will keep running.
+
+To shut down: press the **power key** (top-right corner of the keyboard) to initiate the shutdown sequence.
+
+Before putting the machine away, confirm the **blue power light** on the front edge of the notebook is off.
+
+> We will cover running services in *clamshell mode* (lid closed, machine still running) another time. For now, always shut down fully before storage.

@@ -1,6 +1,6 @@
 # Networking Review
 
-## Table of Contents
+In this review of computer networking, we will cover:
 
 - What a Network Is (and Is Not)
 - The TCP/IP Model (How to Think in Layers)
@@ -235,7 +235,6 @@ A typical home or school network includes:
 
 Each device exists for a specific reason and operates at a specific layer. 
 
-
 <br>
 
 ## 4. IP Addresses, MAC Addresses, and Why Both Exist
@@ -300,8 +299,6 @@ Understanding the separation between MAC addresses and IP addresses explains:
 - Why switches and routers perform different roles
 - Why ARP is necessary
 - Why devices can change networks but still function
-
-This distinction is foundational. In the next section, we will examine how devices automatically discover IP addresses and map IP addresses to MAC addresses using ARP and DHCP.
 
 <br>
 
@@ -390,8 +387,6 @@ Understanding DHCP, DNS, and ARP explains many common networking issues, includi
 - Devices that connect but cannot reach the Internet
 - Situations where some websites load and others do not
 - Problems caused by incorrect gateways or DNS servers
-
-These mechanisms are foundational. In the next section, we will examine how data is transported reliably or quickly using TCP and UDP.
 
 <br>
 
@@ -549,8 +544,6 @@ Understanding wireless behaviour explains:
 - Why adding more devices can slow a network
 - Why wired connections are still preferred for critical systems
 
-In the next section, we will examine what happens when networking problems occur and how basic diagnostic tools are used to identify where failures happen.
-
 <br>
 
 ## 8. What Happens When Something Breaks (Basic Diagnostics)
@@ -629,8 +622,6 @@ Effective diagnostics combine:
 - Targeted use of diagnostic tools
 
 Most networking problems are not mysterious. They follow predictable patterns tied to how networks are designed.
-
-### Final Perspective
 
 Understanding how networks work is not about memorizing commands or configurations. It is about reasoning clearly about systems.
 

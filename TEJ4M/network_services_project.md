@@ -71,13 +71,18 @@ SSH is a secure remote login service that lets you administer a Linux machine fr
 
 - [Install](https://documentation.ubuntu.com/server/how-to/security/openssh-server/) SSH with `sudo apt install openssh-server`.
 - Edit the default configuration at `/etc/ssh/sshd_config` and do the following:
-    - Change default port from 22 to 2222.
+    - Change default port from 22 to 2222
     - Disable root login 
 - Restart the `ssh` server with these two commands (as described in the header of the configuration file you edited above):
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart ssh.socket
+```
+- Log into your server remotely (e.g., from one of the lab iMac computers) using `ssh` with the added switch for the non-standard port number:
+
+```
+ssh your-username@<your-server-ip> -p 2222
 ```
 - **Estimated Difficulty:** 1/5 (Straightforward).
 

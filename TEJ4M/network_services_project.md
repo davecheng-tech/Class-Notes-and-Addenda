@@ -102,20 +102,28 @@ These demonstrate understanding of networking beyond the local subnet.
 **DNS Sinkhole / Ad-Blocker — Pi-hole**\
 Pi-hole is a local DNS server that provides network-wide ad blocking and domain filtering by intercepting and controlling DNS queries from client devices.
 
-- Configure a client to use your server as its ONLY DNS server
-- Demonstrate blocked ads or domains
+- [Install](https://docs.pi-hole.net/main/basic-install/) Pi-hole with the `curl` command.
+- IMPORTANT: Static vs Dynamic IP - During setup process, ignore warning about necessity for static IP address. (Your Lubuntu machine is most likely getting a dynamic IP address from the router via DHCP.) While you don't typically want a DNS server's IP address changing, this installation is only a proof-of-concept test deployment, so we can live with it.
+- IMPORTANT: Careful if you already have a web server listening on port 80. By default, Pi-hole's admin interface installs on port 80 and falls back to port 8080 if in use. If both are unavailable at install time, it is possible to manually set admin web portal port (see [documentation](https://docs.pi-hole.net/main/prerequisites/)).
+- Once setup, configure a client to use your server as its ONLY DNS server.
+- Demonstrate blocked ads or domains (e.g. screenshot of a webpage using a normal DNS server vs. using Pi-hole DNS server)
 
 **Mesh VPN — Tailscale**\
 Tailscale is a VPN overlay network that creates secure, private connectivity between devices across the Internet.
 
-- Access your server from a phone using cellular data (not school Wi-Fi)
-- Alternately, you can leave your server at home and access it from school
+- Begin by signing up for a free account. (You might have to use a personal Google or Apple ID in lieu of your school account, which may be blocked.) You can use the [admin console](https://login.tailscale.com/admin/machines) to keep track of your "tailnet" as you bring machines into your VPN.
+- [Install](https://tailscale.com/docs/install/linux)  Tailscale client on your server. [Install](https://tailscale.com/download) a client on a second device (e.g., mobile phone, laptop) which will be used outside of your LAN.
+- Access your server from a device outside of your LAN.
+    - For example, if the server is on school Wi-Fi, you can access it with a mobile phone on cellular data.
+    - If the server is on a home LAN, you can leave the machine at home for the day and access it from school.
 
 **NAT Gateway — Port Forwarding (Home Network)**\
 Port forwarding is a router configuration that maps incoming Internet traffic to a specific device and port on your home network.
 
-- Configure your home router to forward external traffic to your server
-- Demonstrate external access
+- Configure your home router to forward external traffic to your server. 
+- For example, if you have nginx running a web server on the machine at port 80, you can set your router's incoming port 8081 to forward traffic to the internal machine (IP + port).
+- Be careful about making changes to your home router's configuration. This level of tinkering is often not officially supported by Internet service providers.
+- Demonstrate external access with a mobile device on cellular data, or another network entirely (e.g. school Wi-Fi).
 
 ## Required Workflow (Per Service)
 

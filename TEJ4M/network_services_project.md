@@ -1,4 +1,4 @@
-# Network Services  Project
+# Network Services Project
 
 **Course:** TEJ4M - Computer Engineering (Grade 12)\
 **Unit:** Networking\

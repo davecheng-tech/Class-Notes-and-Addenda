@@ -120,10 +120,19 @@ Tailscale is a VPN overlay network that creates secure, private connectivity bet
 **NAT Gateway — Port Forwarding (Home Network)**\
 Port forwarding is a router configuration that maps incoming Internet traffic to a specific device and port on your home network.
 
-- Configure your home router to forward external traffic to your server. 
+- Configure your home router to forward external traffic to your server.
 - For example, if you have nginx running a web server on the machine at port 80, you can set your router's incoming port 8081 to forward traffic to the internal machine (IP + port).
 - Be careful about making changes to your home router's configuration. This level of tinkering is often not officially supported by Internet service providers.
 - Demonstrate external access with a mobile device on cellular data, or another network entirely (e.g. school Wi-Fi).
+- Pairs well with **Dynamic DNS** — together they give your server a stable, named public presence on the Internet.
+
+**Dynamic DNS — DuckDNS**\
+Dynamic DNS (DDNS) maps a persistent hostname to your public IP address, automatically updating when it changes. This makes a home server reliably reachable by name even when an ISP assigns a new IP.
+
+- Sign up at [DuckDNS](https://www.duckdns.org) and register a free subdomain (e.g., `yourname.duckdns.org`)
+- Install and configure the [DuckDNS update client](https://www.duckdns.org/install.jsp) so the hostname stays synchronized with your current public IP
+- Demonstrate that the hostname resolves correctly from outside your LAN — for example, using `nslookup yourname.duckdns.org` or `dig yourname.duckdns.org` from a phone on cellular data
+- Pairs well with **NAT Gateway (Port Forwarding)** — together they let your server be reached by a stable hostname from anywhere on the Internet.
 
 ## Required Workflow (Per Service)
 

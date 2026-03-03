@@ -29,20 +29,22 @@ These establish core server functionality on a LAN and are the easiest to instal
 **Web Server — Nginx (HTTP)**\
 Nginx is a web server that delivers webpages and other web content to clients over HTTP.
 
-- Install nginx
-- Configure the server to present a custom welcome page that clearly identifies the server machine (at minimum, include the server name)
+- [Install](https://ubuntu.com/tutorials/install-and-configure-nginx#1-overview) nginx with `sudo apt install nginx`
+- [Configure](https://ubuntu.com/tutorials/install-and-configure-nginx#3-creating-our-own-website) the server to present a custom welcome page that clearly identifies the server machine (at minimum, include the server name).
+- You can start by replacing the default web page with your own `index.html` in `/var/www/html`
 
 **Remote Access — SSH (Secure Shell)**\
 SSH is a secure remote login service that lets you administer a Linux machine from another computer over the network.
 
+- [Install](https://documentation.ubuntu.com/server/how-to/security/openssh-server/) SSH with `sudo apt install openssh-server`
 - Change default port from 22 to 2222
-- Disable root login in `sshd_config`
+- Disable root login in `/etc/ssh/sshd_config`
 
 **Time Service — NTP (Chrony or systemd-timesyncd)**\
 NTP is a time synchronization service that keeps computers accurate by syncing their clocks to a trusted time source.
 
-- Install and enable NTP service
-- Demonstrate another device syncing time from your server
+- Install and enable NTP service on the server (e.g. [Chrony](https://documentation.ubuntu.com/server/how-to/networking/serve-ntp-with-chrony/))
+- Demonstrate another device syncing time or reading time from your server (e.g., `sntp` command)
 
 ### Tier 2: Resource Sharing (Intermediate)
 
@@ -51,26 +53,30 @@ These provide shared resources or user-facing services on the network.
 **File Sharing — Samba (SMB/CIFS)**\
 Samba is a file-sharing service that lets other devices access shared folders on your Linux server as network drives.
 
+- [Install and configure](https://ubuntu.com/tutorials/install-and-configure-samba#1-overview) Samba with `sudo apt install samba`
 - Create network-accessible folders on the server and populate them with some documents or data to share
-- One Public share (read-only)
-- One Private share (password required)
+- Create at least one private share (require password and user authentication, must set up Samba user account)
 - Connect to the folder from a network client machine running Windows (File Explorer), macOS (Finder), iOS (Files), Android (Android Samba Client, CX File Explorer)
 
 **File Sync — Syncthing (P2P Sync)**\
 Syncthing is a peer-to-peer file synchronization service that keeps a folder identical across multiple devices.
 
-- Sync a folder between server and another device
-- Must use the Web GUI
+- [Install](https://docs.syncthing.net/intro/getting-started.html) Syncthing on the server with `sudo apt install syncthing`. 
+- Start the Syncthing service (user mode, `systemctl --user start syncthing`) and open the Web GUI in a browser at http://127.0.0.1:8384
+- Install Syncthing on a second device and connect both by interchanging their Device IDs in the Web GUI
+- Verify that a configured folder is automatically synchronized between the two devices
 
 **Print Server — CUPS (IPP)**\
 CUPS is a print server that shares a printer on the network so other devices can print through your Linux server.
 
+- [Install](https://documentation.ubuntu.com/server/how-to/networking/cups-print-server/) the CUPS server with `sudo apt install cups`
 - Share a USB printer (connected to the server) on the network
 - Printer must be usable from another device
 
 **Media Server — MiniDLNA (ReadyMedia)**\
 MiniDLNA is a lightweight media server that shares music and video on a LAN using DLNA/UPnP so clients can stream content.
 
+- [Install](https://minidlna.com) MiniDLNA with `sudo apt install minidlna`
 - Host at least one media file
 - Demonstrate playback from another device (e.g., VLC on a phone, or a smart TV with native DLNA support)
 

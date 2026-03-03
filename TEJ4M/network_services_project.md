@@ -70,8 +70,15 @@ Nginx is a web server that delivers webpages and other web content to clients ov
 SSH is a secure remote login service that lets you administer a Linux machine from another computer over the network.
 
 - [Install](https://documentation.ubuntu.com/server/how-to/security/openssh-server/) SSH with `sudo apt install openssh-server`.
-- Change default port from 22 to 2222.
-- Disable root login in `/etc/ssh/sshd_config`.
+- Edit the default configuration at `/etc/ssh/sshd_config` and do the following:
+    - Change default port from 22 to 2222.
+    - Disable root login 
+- Restart the `ssh` server with these two commands (as described in the header of the configuration file you edited above):
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart ssh.socket
+```
 - **Estimated Difficulty:** 1/5 (Straightforward).
 
 #### Time Service: NTP (Chrony or systemd-timesyncd)

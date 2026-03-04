@@ -205,11 +205,11 @@ Tailscale is a VPN overlay network that creates secure, private connectivity bet
     - If the server is on school Wi-Fi, you can access it with a mobile phone on cellular data.
     - If the server is on a home LAN, you can leave the machine at home for the day and access it from school.
 - Each machine on your tailnet is assigned a unique IP address in the `100.x.x.x` range — use this address to reach that machine over the VPN from any other tailnet device, regardless of where it is.
-- **Troubleshooting — DNS stops working on the server after installing Tailscale:** By default, Tailscale rewrites `/etc/resolv.conf` to route DNS queries through its own interface (`tailscale0`). This can break outbound DNS on your Lubuntu server — for example, browsing to `google.com` from the server hangs, even though VPN connectivity itself works fine (a device on the outside can still reach your nginx). To fix this, restart Tailscale with DNS acceptance disabled:
-    ```
-    sudo tailscale up --accept-dns=false
-    ```
-    This tells Tailscale to leave the server's original DNS configuration (from DHCP via `wlan0`) untouched. Since the goal of the VPN here is just to let outside devices reach your server — not to route the server's own traffic through the tailnet — this is the right setting.
+> **Note:** If DNS stops working on the server after installing Tailscale — by default, Tailscale rewrites `/etc/resolv.conf` to route DNS queries through its own interface (`tailscale0`). This can break outbound DNS on your Lubuntu server (e.g. `google.com` hangs) even though VPN connectivity itself works fine. Fix it by restarting Tailscale with DNS acceptance disabled:
+> ```
+> sudo tailscale up --accept-dns=false
+> ```
+> This leaves the server's original DNS configuration (from DHCP via `wlan0`) untouched. Since the goal here is just to let outside devices reach your server — not to route the server's own traffic through the tailnet — this is the right setting.
 - **Estimated Difficulty:** 3/5 (Moderate).
 
 #### NAT Gateway: Port Forwarding (Home Network)

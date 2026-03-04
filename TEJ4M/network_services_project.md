@@ -31,7 +31,8 @@ To earn the highest achievement level, you must demonstrate one competency that 
 
 Choose a **minimum of four (4)** services from the menu below.
 
-**Level 4+ requirement:** At least one service must come from Tier 3.
+> [!IMPORTANT]
+> **Level 4+ requirement:** At least one service must come from Tier 3.
 
 **Tier 1: Foundation Services**
 - [Web Server: Nginx (HTTP)](#web-server-nginx-http)
@@ -81,7 +82,8 @@ sudo systemctl daemon-reload
 sudo systemctl restart ssh.socket
 ```
 
-> **Note:** Restarting most Linux services is usually simpler than this. For example, many services can be restarted with a single command like `sudo systemctl restart nginx`. OpenSSH on Lubuntu is configured a bit differently, so restarting it is a little more complex than the typical service restart.
+> [!NOTE]
+> Restarting most Linux services is usually simpler than this. For example, many services can be restarted with a single command like `sudo systemctl restart nginx`. OpenSSH on Lubuntu is configured a bit differently, so restarting it is a little more complex than the typical service restart.
 
 - Log into your server remotely (e.g., from one of the lab iMac computers) using `ssh` with the added switch for the non-standard port number:
 
@@ -89,7 +91,8 @@ sudo systemctl restart ssh.socket
 ssh your-username@<your-server-ip> -p 2222
 ```
 - End your remote session by pressing Ctrl+D or entering `logout` at the prompt.
-> **Note:** This configuration above makes SSH slightly more secure (e.g., by using a non-standard port). This is especially useful if a machine is exposed to the public internet. You may switch the port back to the default 22 after you've gathered the required screenshots and documentation if using a non-standard port becomes inconvenient.
+> [!TIP]
+> This configuration makes SSH slightly more secure (e.g., by using a non-standard port). This is especially useful if a machine is exposed to the public internet. You may switch the port back to the default 22 after you've gathered the required screenshots and documentation if using a non-standard port becomes inconvenient.
 
 - **Estimated Difficulty:** 2/5 (Easy).
 
@@ -184,9 +187,11 @@ Pi-hole is a local DNS server that provides network-wide ad blocking and domain 
 
 - [Install](https://docs.pi-hole.net/main/basic-install/) Pi-hole with the `curl` command.
 
-> **Note:** Your Lubuntu machine is most likely getting a dynamic IP address from DHCP. During setup, ignore the warning about needing a static IP address. This is a proof-of-concept deployment, so a changing IP is acceptable.
+> [!TIP]
+> Your Lubuntu machine is most likely getting a dynamic IP address from DHCP. During setup, ignore the warning about needing a static IP address. This is a proof-of-concept deployment, so a changing IP is acceptable.
 
-> **Note:** Pi-hole's admin interface installs on port 80 by default, falling back to port 8080 if port 80 is in use. If you are already running a web server, be aware of this conflict. If both ports are unavailable, you can manually configure the admin portal port (see [documentation](https://docs.pi-hole.net/main/prerequisites/)).
+> [!WARNING]
+> Pi-hole's admin interface installs on port 80 by default, falling back to port 8080 if port 80 is in use. If you are already running a web server, be aware of this conflict. If both ports are unavailable, you can manually configure the admin portal port (see [documentation](https://docs.pi-hole.net/main/prerequisites/)).
 
 - Check the operational status of your Pi-hole server with `pihole status` at the command line, or the web admin interface at `http://<your-server-ip>/admin`. The web interface password is shown in the console installation log; alternatively, you can reset it on the command line with `pihole setpassword`.
 - In the web admin interface, enable the DNS server to be used by other machines on the network by setting **System** > **Settings** > **DNS** > **Expert** > **Interface Settings** > **Permit all origins**
@@ -205,7 +210,8 @@ Tailscale is a VPN overlay network that creates secure, private connectivity bet
     - If the server is on school Wi-Fi, you can access it with a mobile phone on cellular data.
     - If the server is on a home LAN, you can leave the machine at home for the day and access it from school.
 - Each machine on your tailnet is assigned a unique IP address in the `100.x.x.x` range — use this address to reach that machine over the VPN from any other tailnet device, regardless of where it is.
-> **Note:** If DNS stops working on the server after installing Tailscale — by default, Tailscale rewrites `/etc/resolv.conf` to route DNS queries through its own interface (`tailscale0`). This can break outbound DNS on your Lubuntu server (e.g. `google.com` hangs) even though VPN connectivity itself works fine. Fix it by restarting Tailscale with DNS acceptance disabled:
+> [!WARNING]
+> If DNS stops working on the server after installing Tailscale — by default, Tailscale rewrites `/etc/resolv.conf` to route DNS queries through its own interface (`tailscale0`). This can break outbound DNS on your Lubuntu server (e.g. `google.com` hangs) even though VPN connectivity itself works fine. Fix it by restarting Tailscale with DNS acceptance disabled:
 > ```
 > sudo tailscale up --accept-dns=false
 > ```
@@ -221,7 +227,8 @@ Port forwarding is a router configuration that maps incoming Internet traffic to
 - Demonstrate external access with a mobile device on cellular data, or another network entirely (e.g. school Wi-Fi).
 - Pairs well with **Dynamic DNS**. Together they give your server a stable, named public presence on the Internet.
 
-> **Note:** Be careful when modifying your home router's configuration. This level of tinkering is often not officially supported by service providers and could disrupt your home Internet if misconfigured.
+> [!CAUTION]
+> Be careful when modifying your home router's configuration. This level of tinkering is often not officially supported by service providers and could disrupt your home Internet if misconfigured.
 
 - **Estimated Difficulty:** 4/5 (Challenging).
 
@@ -229,7 +236,8 @@ Port forwarding is a router configuration that maps incoming Internet traffic to
 
 Dynamic DNS (DDNS) maps a persistent hostname to your public IP address, automatically updating when it changes. This makes a home server reliably reachable by name even when an ISP assigns a new IP.
 
-- **Requires NAT Gateway (Port Forwarding).** A DNS hostname pointing to your public IP is only useful if that IP has services exposed through your router.
+> [!IMPORTANT]
+> **Requires NAT Gateway (Port Forwarding).** A DNS hostname pointing to your public IP is only useful if that IP has services exposed through your router.
 - Sign up at [DuckDNS](https://www.duckdns.org) and register a free subdomain (e.g., `yourname.duckdns.org`).
 - Install and configure the [DuckDNS update client](https://www.duckdns.org/install.jsp) so the hostname stays synchronized with your current public IP.
 - Demonstrate that the hostname resolves correctly from outside your LAN, for example using `nslookup yourname.duckdns.org` or `dig yourname.duckdns.org` from a phone on cellular data.
@@ -357,7 +365,8 @@ nmcli device wifi list
 nmcli device wifi connect "NetworkName" password "mypassword"
 ```
 
-> **Note:** The Wi-Fi adapter on your machine is `wlp1s0`. The commands above will use it automatically. Once connected, verify your IP address with `ip -br addr`.
+> [!NOTE]
+> The Wi-Fi adapter on your machine is `wlp1s0`. The commands above will use it automatically. Once connected, verify your IP address with `ip -br addr`.
 
 ## Assessment Rubric
 

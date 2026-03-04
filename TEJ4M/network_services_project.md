@@ -219,6 +219,7 @@ Pi-hole is a local DNS server that provides network-wide ad blocking and domain 
 - In the web admin interface, enable the DNS server to be used by other machines on the network by setting **System** > **Settings** > **DNS** > **Expert** > **Interface Settings** > **Permit all origins**
 - Once the Pi-hole DNS server is up, configure a client to use your server as its ONLY DNS server.
 - Demonstrate blocked ads or domains (e.g., screenshot of a webpage using a normal DNS server vs. using Pi-hole DNS server). You can also use an existing website [ad stress test](https://fuzzthepiguy.tech/adtest/).
+- You can also demonstrate functionality with `dig @<pi-hole-ip-address>` terminal commands to query your Pi-hole DNS server. Domains like `google.com` should return a real IP, but well-known ad-serving domains like `doubleclick.net` should resolve to a sinkhole IP such as `0.0.0.0`.
 - **Estimated Difficulty:** 3/5 (Moderate).
 
 ---

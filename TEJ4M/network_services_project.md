@@ -202,6 +202,7 @@ Tailscale is a VPN overlay network that creates secure, private connectivity bet
 - Access your server from a device outside of your LAN, for example:
     - If the server is on school Wi-Fi, you can access it with a mobile phone on cellular data.
     - If the server is on a home LAN, you can leave the machine at home for the day and access it from school.
+- Each machine on your tailnet is assigned a unique IP address in the `100.x.x.x` range — use this address to reach that machine over the VPN from any other tailnet device, regardless of where it is.
 - **Estimated Difficulty:** 3/5 (Moderate).
 
 #### NAT Gateway: Port Forwarding (Home Network)

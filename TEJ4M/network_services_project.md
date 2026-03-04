@@ -58,8 +58,6 @@ Choose a **minimum of four (4)** services from the menu below.
 
 These establish core server functionality on a LAN and are the easiest to install and verify.
 
----
-
 #### Web Server: Nginx (HTTP)
 
 Nginx is a web server that delivers webpages and other web content to clients over HTTP.
@@ -113,8 +111,6 @@ NTP is a time synchronization service that keeps computers accurate by syncing t
 ### Tier 2: Resource Sharing (Intermediate)
 
 These provide shared resources or user-facing services on the network.
-
----
 
 #### File Sharing: Samba (SMB/CIFS)
 
@@ -200,8 +196,6 @@ This option lets you propose another client-server network service that can run 
 ### Tier 3: Internet Layer Competencies (Advanced)
 
 These demonstrate understanding of networking beyond the local subnet.
-
----
 
 #### DNS Sinkhole / Ad-Blocker: Pi-hole
 

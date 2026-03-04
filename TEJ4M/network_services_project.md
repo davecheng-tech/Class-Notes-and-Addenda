@@ -188,7 +188,8 @@ Pi-hole is a local DNS server that provides network-wide ad blocking and domain 
 
 > **Note:** Pi-hole's admin interface installs on port 80 by default, falling back to port 8080 if port 80 is in use. If you are already running a web server, be aware of this conflict. If both ports are unavailable, you can manually configure the admin portal port (see [documentation](https://docs.pi-hole.net/main/prerequisites/)).
 
-- Once set up, configure a client to use your server as its ONLY DNS server.
+- Check the operational status of your Pi-hole server with `pihole status` at the command line, or the web admin interface at `http://<your-server-ip>/admin`. The web interface password is shown in the console installation log; alternatively, you can reset it on the command line with `pihole setpassword`.
+- Once the Pi-hole DNS server is running, configure a client to use your server as its ONLY DNS server.
 - Demonstrate blocked ads or domains (e.g., screenshot of a webpage using a normal DNS server vs. using Pi-hole DNS server).
 - **Estimated Difficulty:** 3/5 (Moderate).
 

@@ -340,6 +340,18 @@ Check service status:
 systemctl status [service]
 ```
 
+Connect to Wi-Fi (if working from home):
+
+```
+nmcli device wifi list
+```
+
+```
+nmcli device wifi connect "NetworkName" password "mypassword"
+```
+
+> **Note:** The Wi-Fi adapter on your machine is `wlp1s0`. The commands above will use it automatically. Once connected, verify your IP address with `ip -br addr`.
+
 ## Assessment Rubric
 
 This project will be evaluated based on both the successful deployment of network services and your demonstrated understanding of how they function within the TCP/IP model.

@@ -63,7 +63,7 @@ Nginx is a web server that delivers webpages and other web content to clients ov
 - [Install](https://ubuntu.com/tutorials/install-and-configure-nginx#1-overview) nginx with `sudo apt install nginx`.
 - [Configure](https://ubuntu.com/tutorials/install-and-configure-nginx#3-creating-our-own-website) the server to present a custom welcome page that clearly identifies the server machine (at minimum, include the server name).
 - You can start by replacing the default web page with your own `index.html` in `/var/www/html`.
-- **Estimated Difficulty:** 2/5 (Easy).
+- **Estimated Difficulty:** 1/5 (Straightforward).
 
 #### Remote Access: SSH (Secure Shell)
 
@@ -72,19 +72,25 @@ SSH is a secure remote login service that lets you administer a Linux machine fr
 - [Install](https://documentation.ubuntu.com/server/how-to/security/openssh-server/) SSH with `sudo apt install openssh-server`.
 - Edit the default configuration at `/etc/ssh/sshd_config` and do the following:
     - Change default port from 22 to 2222
-    - Disable root login 
+    - Disable root login
 - Restart the `ssh` server with these two commands (as described in the header of the configuration file you edited above):
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart ssh.socket
 ```
+
+> **Note:** Restarting most Linux services is usually simpler than this. For example, many services can be restarted with a single command like `sudo systemctl restart nginx`. OpenSSH on Lubuntu is configured a bit differently, so restarting it is a little more complex than the typical service restart.
+
 - Log into your server remotely (e.g., from one of the lab iMac computers) using `ssh` with the added switch for the non-standard port number:
 
 ```
 ssh your-username@<your-server-ip> -p 2222
 ```
-- **Estimated Difficulty:** 1/5 (Straightforward).
+- End your remote session by pressing Ctrl+D or entering `logout` at the prompt.
+> **Note:** This configuration above makes SSH slightly more secure (e.g., by using a non-standard port). This is especially useful if a machine is exposed to the public internet. You may switch the port back to the default 22 after you've gathered the required screenshots and documentation if using a non-standard port becomes inconvenient.
+
+- **Estimated Difficulty:** 2/5 (Easy).
 
 #### Time Service: NTP (Chrony or systemd-timesyncd)
 

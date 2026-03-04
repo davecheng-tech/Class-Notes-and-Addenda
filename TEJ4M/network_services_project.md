@@ -54,6 +54,8 @@ Choose a **minimum of four (4)** services from the menu below.
 - [NAT Gateway: Port Forwarding (Home Network)](#nat-gateway-port-forwarding-home-network)
 - [Dynamic DNS: DuckDNS](#dynamic-dns-duckdns)
 
+---
+
 ### Tier 1: Foundation Services (Standard)
 
 These establish core server functionality on a LAN and are the easiest to install and verify.
@@ -107,6 +109,8 @@ NTP is a time synchronization service that keeps computers accurate by syncing t
 - Install and enable NTP service on the server (e.g. [Chrony](https://documentation.ubuntu.com/server/how-to/networking/serve-ntp-with-chrony/)).
 - Demonstrate another device syncing time or reading time from your server (e.g., `sntp` command).
 - **Estimated Difficulty:** 2/5 (Easy).
+
+---
 
 ### Tier 2: Resource Sharing (Intermediate)
 
@@ -192,6 +196,8 @@ This option lets you propose another client-server network service that can run 
 - Must be client-server style and network-accessible from another device on the LAN.
 - You must demonstrate that it operates correctly and document how you configured it.
 - **Estimated Difficulty:** Varies.
+
+---
 
 ### Tier 3: Internet Layer Competencies (Advanced)
 

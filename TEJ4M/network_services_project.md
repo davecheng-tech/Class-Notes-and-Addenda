@@ -58,6 +58,8 @@ Choose a **minimum of four (4)** services from the menu below.
 
 These establish core server functionality on a LAN and are the easiest to install and verify.
 
+---
+
 #### Web Server: Nginx (HTTP)
 
 Nginx is a web server that delivers webpages and other web content to clients over HTTP.
@@ -66,6 +68,8 @@ Nginx is a web server that delivers webpages and other web content to clients ov
 - [Configure](https://ubuntu.com/tutorials/install-and-configure-nginx#3-creating-our-own-website) the server to present a custom welcome page that clearly identifies the server machine (at minimum, include the server name).
 - You can start by replacing the default web page with your own `index.html` in `/var/www/html`.
 - **Estimated Difficulty:** 1/5 (Straightforward).
+
+---
 
 #### Remote Access: SSH (Secure Shell)
 
@@ -96,6 +100,8 @@ ssh your-username@<your-server-ip> -p 2222
 
 - **Estimated Difficulty:** 2/5 (Easy).
 
+---
+
 #### Time Service: NTP (Chrony or systemd-timesyncd)
 
 NTP is a time synchronization service that keeps computers accurate by syncing their clocks to a trusted time source.
@@ -108,6 +114,8 @@ NTP is a time synchronization service that keeps computers accurate by syncing t
 
 These provide shared resources or user-facing services on the network.
 
+---
+
 #### File Sharing: Samba (SMB/CIFS)
 
 Samba is a file-sharing service that lets other devices access shared folders on your Linux server as network drives.
@@ -117,6 +125,8 @@ Samba is a file-sharing service that lets other devices access shared folders on
 - Create at least one private share (require password and user authentication, must set up Samba user account).
 - Connect to the folder from a network client machine running Windows (File Explorer), macOS (Finder), iOS (Files), Android (Android Samba Client, CX File Explorer).
 - **Estimated Difficulty:** 3/5 (Moderate).
+
+---
 
 #### File Sync: Syncthing (P2P Sync)
 
@@ -128,6 +138,8 @@ Syncthing is a peer-to-peer file synchronization service that keeps a folder ide
 - Verify that a configured folder is automatically synchronized between the two devices.
 - **Estimated Difficulty:** 4/5 (Challenging).
 
+---
+
 #### Print Server: CUPS (IPP)
 
 CUPS is a print server that shares a printer on the network so other devices can print through your Linux server.
@@ -136,6 +148,8 @@ CUPS is a print server that shares a printer on the network so other devices can
 - Share a USB printer (connected to the server) on the network.
 - Add the shared printer on a client device (via Printers settings on Windows or macOS) and print a test page.
 - **Estimated Difficulty:** 4/5 (Challenging).
+
+---
 
 #### Music Server: Navidrome (Web Music Player)
 
@@ -147,6 +161,8 @@ Navidrome is a self-hosted music streaming server with a built-in web interface 
 - Browse your library and demonstrate playback in the browser.
 - **Estimated Difficulty:** 3/5 (Moderate).
 
+---
+
 #### Media Server: MiniDLNA (ReadyMedia)
 
 MiniDLNA is a lightweight media server that shares music and video on a LAN using DLNA/UPnP so clients can stream content.
@@ -157,6 +173,8 @@ MiniDLNA is a lightweight media server that shares music and video on a LAN usin
 - If your smart TV (or other DLNA player) doesn't automatically detect the presence of the media server, you can force a VLC client to connect to it explicitly at `upnp://<server-ip>:8200` for testing.
 - **Estimated Difficulty:** 3/5 (Moderate).
 
+---
+
 #### Game Server: Minetest (Open-Source Sandbox)
 
 Minetest is a lightweight open-source sandbox game that can run as a multiplayer server on a LAN.
@@ -166,6 +184,8 @@ Minetest is a lightweight open-source sandbox game that can run as a multiplayer
 - Configure server properties (server name, game mode, maximum players, etc.).
 - Connect to the server from another device using the Minetest client (`sudo apt install minetest` on Linux, or download from [minetest.net](https://www.minetest.net)) and verify that multiplayer works.
 - **Estimated Difficulty:** 3/5 (Moderate).
+
+---
 
 #### Service of Your Choice
 
@@ -180,6 +200,8 @@ This option lets you propose another client-server network service that can run 
 ### Tier 3: Internet Layer Competencies (Advanced)
 
 These demonstrate understanding of networking beyond the local subnet.
+
+---
 
 #### DNS Sinkhole / Ad-Blocker: Pi-hole
 
@@ -198,6 +220,8 @@ Pi-hole is a local DNS server that provides network-wide ad blocking and domain 
 - Once the Pi-hole DNS server is up, configure a client to use your server as its ONLY DNS server.
 - Demonstrate blocked ads or domains (e.g., screenshot of a webpage using a normal DNS server vs. using Pi-hole DNS server). You can also use an existing website [ad stress test](https://fuzzthepiguy.tech/adtest/).
 - **Estimated Difficulty:** 3/5 (Moderate).
+
+---
 
 #### Mesh VPN: Tailscale
 
@@ -218,6 +242,8 @@ Tailscale is a VPN overlay network that creates secure, private connectivity bet
 > This leaves the server's original DNS configuration (from DHCP via `wlan0`) untouched. Since the goal here is just to let outside devices reach your server — not to route the server's own traffic through the tailnet — this is the right setting.
 - **Estimated Difficulty:** 3/5 (Moderate).
 
+---
+
 #### NAT Gateway: Port Forwarding (Home Network)
 
 Port forwarding is a router configuration that maps incoming Internet traffic to a specific device and port on your home network.
@@ -231,6 +257,8 @@ Port forwarding is a router configuration that maps incoming Internet traffic to
 > Be careful when modifying your home router's configuration. This level of tinkering is often not officially supported by service providers and could disrupt your home Internet if misconfigured.
 
 - **Estimated Difficulty:** 4/5 (Challenging).
+
+---
 
 #### Dynamic DNS: DuckDNS
 

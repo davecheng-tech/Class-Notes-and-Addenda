@@ -42,6 +42,7 @@ Choose a **minimum of four (4)** services from the menu below.
 - [File Sharing: Samba (SMB/CIFS)](#file-sharing-samba-smbcifs)
 - [File Sync: Syncthing (P2P Sync)](#file-sync-syncthing-p2p-sync)
 - [Print Server: CUPS (IPP)](#print-server-cups-ipp)
+- [Music Server: Navidrome (Web Music Player)](#music-server-navidrome-web-music-player)
 - [Media Server: MiniDLNA (ReadyMedia)](#media-server-minidlna-readymedia)
 - [Game Server: Minetest (Open-Source Sandbox)](#game-server-minetest-open-source-sandbox)
 - [Service of Your Choice](#service-of-your-choice)
@@ -132,6 +133,16 @@ CUPS is a print server that shares a printer on the network so other devices can
 - Share a USB printer (connected to the server) on the network.
 - Add the shared printer on a client device (via Printers settings on Windows or macOS) and print a test page.
 - **Estimated Difficulty:** 4/5 (Challenging).
+
+#### Music Server: Navidrome (Web Music Player)
+
+Navidrome is a self-hosted music streaming server with a built-in web interface and Subsonic API support, letting you browse and stream your music collection from any browser or compatible mobile app.
+
+- It is not available directly via `apt` — follow the [Quick Start](https://www.navidrome.org/docs/installation/linux/) guide to obtain and install a release package from its GitHub page.
+- Add at least a few music files to the configured music folder.
+- Access the Navidrome web UI from another device on the LAN and log in.
+- Browse your library and demonstrate playback in the browser.
+- **Estimated Difficulty:** 3/5 (Moderate).
 
 #### Media Server: MiniDLNA (ReadyMedia)
 

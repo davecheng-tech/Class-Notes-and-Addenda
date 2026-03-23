@@ -175,7 +175,7 @@ Key fields to understand:
 | `Thread(s) per core` | Logical threads per core (Intel Hyper-Threading = 2; this Celeron = 1) |
 | `Vendor ID` | `GenuineIntel` or `AuthenticAMD` for x86; ARM chips show the implementer code |
 
-> **On macOS:** `sysctl -n machdep.cpu.brand_string` prints the CPU model name; `sysctl -a | grep machdep.cpu` gives a fuller dump.
+> **On macOS:** `sysctl -n machdep.cpu.brand_string` prints the CPU model name; `sysctl -a | grep machdep.cpu` gives a fuller dump.  
 > **On Windows:** `wmic cpu get name,NumberOfCores,NumberOfLogicalProcessors` in Command Prompt, or `Get-WmiObject Win32_Processor` in PowerShell.
 
 ---
@@ -207,7 +207,7 @@ Swap:          3.9Gi          0B       3.9Gi
 > [!NOTE]
 > The `available` value is more useful than `free` in practice. Linux aggressively uses spare RAM for caching, which makes `free` appear low even on an idle machine.
 
-> **On macOS:** `vm_stat` shows raw memory page counts; `top -l 1 | grep PhysMem` gives a more readable one-line summary.
+> **On macOS:** `vm_stat` shows raw memory page counts; `top -l 1 | grep PhysMem` gives a more readable one-line summary.  
 > **On Windows:** `wmic OS get FreePhysicalMemory,TotalVisibleMemorySize` in Command Prompt, or `Get-WmiObject Win32_OperatingSystem` in PowerShell.
 
 ---
@@ -241,7 +241,7 @@ The C720 machines have a single SSD (`sda`) divided into three partitions: an EF
 > [!TIP]
 > `lsblk` is the first command to run when troubleshooting storage. It shows you exactly what devices exist and how they are partitioned, without modifying anything.
 
-> **On macOS:** `diskutil list` shows all disks and their partition layout.
+> **On macOS:** `diskutil list` shows all disks and their partition layout.  
 > **On Windows:** `wmic diskdrive list brief` in Command Prompt, or `Get-Disk` in PowerShell.
 
 <br>

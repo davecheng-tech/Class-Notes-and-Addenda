@@ -117,7 +117,7 @@ The classic example: running a Nintendo Entertainment System emulator on your la
 
 ## 5. Reading Your Machine from the Terminal
 
-The following commands let you inspect your machine's hardware directly. These are useful for understanding what you are working with before installing software, debugging compatibility issues, or documenting a system.
+The following commands let you inspect your machine's hardware directly from the Linux terminal. These are useful for understanding what you are working with before installing software, debugging compatibility issues, or documenting a system. These commands are Linux-specific and will not work on macOS or Windows as written — though each has an equivalent if you are curious enough to look.
 
 ### `uname -m`: Architecture
 
@@ -133,6 +133,9 @@ x86_64
 ```
 
 On an Apple Silicon Mac you would see `arm64`. On a Raspberry Pi or Android device running Linux you would see `aarch64`.
+
+> **On macOS:** `uname -m` works identically — it is a standard Unix command, not Linux-specific.
+> **On Windows:** `$env:PROCESSOR_ARCHITECTURE` in PowerShell returns similar information.
 
 ---
 
@@ -172,6 +175,9 @@ Key fields to understand:
 | `Thread(s) per core` | Logical threads per core (Intel Hyper-Threading = 2; this Celeron = 1) |
 | `Vendor ID` | `GenuineIntel` or `AuthenticAMD` for x86; ARM chips show the implementer code |
 
+> **On macOS:** `sysctl -n machdep.cpu.brand_string` prints the CPU model name; `sysctl -a | grep machdep.cpu` gives a fuller dump.
+> **On Windows:** `wmic cpu get name,NumberOfCores,NumberOfLogicalProcessors` in Command Prompt, or `Get-WmiObject Win32_Processor` in PowerShell.
+
 ---
 
 ### `free -h`: Memory
@@ -200,6 +206,9 @@ Swap:          3.9Gi          0B       3.9Gi
 
 > [!NOTE]
 > The `available` value is more useful than `free` in practice. Linux aggressively uses spare RAM for caching, which makes `free` appear low even on an idle machine.
+
+> **On macOS:** `vm_stat` shows raw memory page counts; `top -l 1 | grep PhysMem` gives a more readable one-line summary.
+> **On Windows:** `wmic OS get FreePhysicalMemory,TotalVisibleMemorySize` in Command Prompt, or `Get-WmiObject Win32_OperatingSystem` in PowerShell.
 
 ---
 
@@ -231,6 +240,9 @@ The C720 machines have a single SSD (`sda`) divided into three partitions: an EF
 
 > [!TIP]
 > `lsblk` is the first command to run when troubleshooting storage. It shows you exactly what devices exist and how they are partitioned, without modifying anything.
+
+> **On macOS:** `diskutil list` shows all disks and their partition layout.
+> **On Windows:** `wmic diskdrive list brief` in Command Prompt, or `Get-Disk` in PowerShell.
 
 <br>
 

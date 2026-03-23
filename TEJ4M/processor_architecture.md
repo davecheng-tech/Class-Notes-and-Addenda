@@ -134,7 +134,7 @@ x86_64
 
 On an Apple Silicon Mac you would see `arm64`. On a Raspberry Pi or Android device running Linux you would see `aarch64`.
 
-> **On macOS:** `uname -m` works identically — it is a standard Unix command, not Linux-specific.
+> **On macOS:** `uname -m` works identically — it is a standard Unix command, not Linux-specific.  
 > **On Windows:** `$env:PROCESSOR_ARCHITECTURE` in PowerShell returns similar information.
 
 ---

@@ -59,7 +59,7 @@ The table below shows common devices, their processors, and the architecture the
 
 | Device | Processor | Architecture | Notes |
 |---|---|---|---|
-| Acer C720 Chromebook (our machines) | Intel Celeron 2955U | x86-64 | Haswell microarchitecture, released 2013 |
+| Acer C720 Chromebook (our machines) | Intel Celeron 2957U | x86-64 | Haswell microarchitecture, released 2013 |
 | Desktop PC / most Windows laptops | Intel Core or AMD Ryzen | x86-64 | Consumer x86-64 |
 | MacBook / iMac (2020 and later) | Apple M1, M2, M3, M4 | ARM64 (AArch64) | Apple Silicon; ARM with desktop-class performance |
 | MacBook / iMac (pre-2020) | Intel Core | x86-64 | Apple used Intel before the ARM transition |
@@ -149,19 +149,19 @@ lscpu
 
 **Partial output on our Chromebooks:**
 ```
-Architecture:            x86_64
-  CPU op-mode(s):        32-bit, 64-bit
-  Address sizes:         39 bits physical, 48 bits virtual
-  Byte Order:            Little Endian
-CPU(s):                  2
-  On-line CPU(s) list:   0,1
-Vendor ID:               GenuineIntel
-  Model name:            Intel(R) Celeron(R) CPU 2955U @ 1.40GHz
-    CPU family:          6
-    Model:               69
-    Thread(s) per core:  1
-    Core(s) per socket:  2
-    Socket(s):           1
+Architecture:             x86_64
+  CPU op-mode(s):         32-bit, 64-bit
+  Address sizes:          39 bits physical, 48 bits virtual
+  Byte Order:             Little Endian
+CPU(s):                   2
+  On-line CPU(s) list:    0,1
+Vendor ID:                GenuineIntel
+  Model name:             Intel(R) Celeron(R) 2957U @ 1.40GHz
+    CPU family:           6
+    Model:                69
+    Thread(s) per core:   1
+    Core(s) per socket:   2
+    Socket(s):            1
 ```
 
 Key fields to understand:
@@ -223,11 +223,13 @@ lsblk
 **Output on our Chromebooks:**
 ```
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-sda      8:0    0  29.8G  0 disk
-├─sda1   8:1    0   512M  0 part /boot/efi
-├─sda2   8:2    0     1G  0 part /boot
-└─sda3   8:3    0  28.3G  0 part /
+sda      8:0    0  14.9G  0 disk
+├─sda1   8:1    0   300M  0 part /boot/efi
+└─sda2   8:2    0  14.6G  0 part /
 ```
+
+> [!NOTE]
+> `lsblk` may also show several `loop` devices (for snap packages like Firefox). These are virtual block devices managed by the system and can be ignored.
 
 | Column | Meaning |
 |---|---|
@@ -236,7 +238,7 @@ sda      8:0    0  29.8G  0 disk
 | `TYPE` | `disk` = physical device; `part` = partition |
 | `MOUNTPOINTS` | Where in the filesystem this device is accessible |
 
-The C720 machines have a single SSD (`sda`) divided into three partitions: an EFI boot partition, a `/boot` partition for the kernel, and the root filesystem (`/`) where the OS lives.
+The C720 machines have a single 16 GB SSD (`sda`) divided into two partitions: an EFI boot partition and the root filesystem (`/`) where the OS and all your files live.
 
 > [!TIP]
 > `lsblk` is the first command to run when troubleshooting storage. It shows you exactly what devices exist and how they are partitioned, without modifying anything.

@@ -52,11 +52,11 @@ ls /
 ```
 
 ```
-bin   dev  home  lib32  libx32  mnt  proc  run   snap  sys  usr
-boot  etc  lib   lib64  media   opt  root  sbin  srv   tmp  var
+bin   dev  home  lib64       media  opt   root  sbin  srv       sys  usr
+boot  etc  lib   lost+found  mnt    proc  run   snap  swapfile  tmp  var
 ```
 
-Some of these directories (`lib`, `lib32`, `lib64`, `libx32`) exist because our machines run a 64-bit OS that also supports 32-bit software. You do not need to memorize all of them. Focus on the ones described below.
+Some of these directories (like `lib`, `lib64`) exist because our machines run a 64-bit OS. Others (`snap`, `lost+found`, `swapfile`) are system-managed and not something you interact with directly. You do not need to memorize all of them. Focus on the ones described below.
 
 <br>
 
@@ -128,17 +128,19 @@ The contents are typically cleared on reboot. Any user can write to `/tmp`, whic
 
 `/boot` contains the files needed to start the operating system: the Linux kernel, the initial RAM disk, and the bootloader configuration.
 
-**On our Chromebooks, `lsblk` shows this as a separate partition:**
+**On our Chromebooks, `lsblk` shows the disk layout:**
 
 ```
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-sda      8:0    0  29.8G  0 disk
-├─sda1   8:1    0   512M  0 part /boot/efi
-├─sda2   8:2    0     1G  0 part /boot
-└─sda3   8:3    0  28.3G  0 part /
+sda      8:0    0  14.9G  0 disk
+├─sda1   8:1    0   300M  0 part /boot/efi
+└─sda2   8:2    0  14.6G  0 part /
 ```
 
-The boot partition (`sda2`) is separate from the root filesystem (`sda3`) so that the bootloader can find the kernel before the full filesystem is available.
+The EFI boot partition (`sda1`) is separate from the root filesystem (`sda2`). The boot partition contains the bootloader; the root partition (`/`) is where the OS and all your files live.
+
+> [!NOTE]
+> `lsblk` may also show several `loop` devices — these are snap packages (like Firefox) mounted as virtual block devices. They are managed by the system and can be ignored.
 
 ### `/opt` — Optional Software
 

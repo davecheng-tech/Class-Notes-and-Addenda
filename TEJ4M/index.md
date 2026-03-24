@@ -27,7 +27,7 @@ Concepts: Processor architecture (x86-64, ARM), Linux filesystem hierarchy, perm
 | 1 | [Processor Architecture](unit-2-linux/processor_architecture) | Notes |
 | 2 | [Filesystem Hierarchy](unit-2-linux/filesystem_hierarchy) | Notes |
 | 3 | [Permissions and Ownership](unit-2-linux/permissions_and_ownership) | Notes |
-| 4 | Processes and Services | Notes |
+| 4 | [Processes and Services](unit-2-linux/processes_and_services) | Notes |
 | 5 | Pipes and Redirection | Notes |
 | 6 | Troubleshooting Exercise | Exercise |
 | 7 | Package Management | Notes |

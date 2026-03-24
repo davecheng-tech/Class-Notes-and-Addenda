@@ -28,7 +28,7 @@ Concepts: Processor architecture (x86-64, ARM), Linux filesystem hierarchy, perm
 | 2 | [Filesystem Hierarchy](unit-2-linux/filesystem_hierarchy) | Notes |
 | 3 | [Permissions and Ownership](unit-2-linux/permissions_and_ownership) | Notes |
 | 4 | [Processes and Services](unit-2-linux/processes_and_services) | Notes |
-| 5 | Pipes and Redirection | Notes |
+| 5 | [Pipes and Redirection](unit-2-linux/pipes_and_redirection) | Notes |
 | 6 | Troubleshooting Exercise | Exercise |
 | 7 | Package Management | Notes |
 | 8 | Capstone: Emulator Project | Assignment |

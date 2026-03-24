@@ -49,15 +49,21 @@ Students who finish early or want more can explore additional platforms (e.g., Z
 ## Files to Produce
 
 ### Student-facing (in `unit-2-linux/`)
-- [x] `processor_architecture.md` — already written
-- [ ] `filesystem_hierarchy.md`
-- [ ] `permissions_and_ownership.md`
-- [ ] `processes_and_services.md`
-- [ ] `pipes_and_redirection.md`
-- [ ] `package_management.md`
-- [ ] `troubleshooting_exercise.md`
-- [ ] `capstone_emulator_project.md`
+- [x] `processor_architecture.md`
+- [x] `filesystem_hierarchy.md` — FHS, key directories, scavenger hunt (10 questions)
+- [x] `permissions_and_ownership.md` — multi-user model, chmod, chown, sudo, permissions puzzle (8 tasks)
+- [x] `processes_and_services.md` — ps, top, fg/bg, signals, kill, systemctl, pstree, process detective (13 tasks)
+- [x] `pipes_and_redirection.md` — stdin/stdout/stderr, redirection, pipes, grep, pipeline challenges (10 questions)
+- [x] `package_management.md` — how apt works, dpkg, PATH, manual install walkthrough (btop), independent exercise (micro)
+- [ ] `troubleshooting_exercise.md` — student instructions for period 6 scripted scenario
+- [ ] `capstone_emulator_project.md` — emulator install + README.md deliverable, rubric, emulator menu
 
 ### Teacher-facing (in `_planning/`)
 - [x] `unit-2-overview.md` — this file
 - [ ] `troubleshooting_setup.sh` — setup script for period 6 exercise
+
+### Open items for next session
+- Test btop/micro manual install walkthrough on C720 (package_management.md exercise)
+- Write troubleshooting exercise + setup script
+- Write capstone assignment description with rubric
+- Decide: should troubleshooting exercise sandbox simulate a broken service (Samba-like) or something more generic?

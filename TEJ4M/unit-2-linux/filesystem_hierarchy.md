@@ -246,7 +246,7 @@ Answer each question by running a command on your Lubuntu machine. Record the co
 
 7. Run `ls -la /bin`. What do you notice about this directory? What does the output tell you about the relationship between `/bin` and `/usr/bin`?
 
-8. Find the configuration file for the hostname of your machine. It is a single-line file in `/etc/`. What is the file called, and what does it contain?
+8. Find the configuration file for the hostname of your machine. It is a single-line file in `/etc/`. What is the file called, and what does it contain? (The hostname is the name you chose for your computer during the Lubuntu installation.)
 
 9. Look inside `/tmp/` with `ls -la /tmp/`. What is in there? Based on the names, what kinds of programs are using `/tmp` for temporary storage?
 

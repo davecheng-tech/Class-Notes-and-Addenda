@@ -191,8 +191,8 @@ free -h
 **Output on our Chromebooks:**
 ```
                total        used        free      shared  buff/cache   available
-Mem:           3.7Gi       1.1Gi       1.8Gi        45Mi       820Mi       2.5Gi
-Swap:          3.9Gi          0B       3.9Gi
+Mem:           3.7Gi       892Mi       2.2Gi        47Mi       917Mi       2.8Gi
+Swap:          511Mi          0B       511Mi
 ```
 
 | Column | Meaning |

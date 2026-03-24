@@ -10,11 +10,11 @@ Concepts: TCP/IP model, network devices, IP and MAC addressing, ARP, DNS, DHCP, 
 
 | # | Topic | Type |
 |---|-------|------|
-| — | [Installing Linux (Lubuntu) on a Chromebook](unit-1-networking/chromebook_lubuntu_install) | Setup guide |
-| — | [Terminal Reference](unit-1-networking/terminal_reference) | Reference |
-| — | [Terminal Reference — CLI, Networking, and Linux](unit-1-networking/terminal_linux_reference) | Reference |
-| 1 | [Networking Review](unit-1-networking/networking_review) | Notes |
-| 2 | [Network Services Project](unit-1-networking/network_services_project) | Assignment |
+| — | [Installing Linux (Lubuntu) on a Chromebook](unit-1-networking/chromebook_lubuntu_install.md) | Setup guide |
+| — | [Terminal Reference](unit-1-networking/terminal_reference.md) | Reference |
+| — | [Terminal Reference — CLI, Networking, and Linux](unit-1-networking/terminal_linux_reference.md) | Reference |
+| 1 | [Networking Review](unit-1-networking/networking_review.md) | Notes |
+| 2 | [Network Services Project](unit-1-networking/network_services_project.md) | Assignment |
 
 ---
 
@@ -24,11 +24,11 @@ Concepts: Processor architecture (x86-64, ARM), Linux filesystem hierarchy, perm
 
 | # | Topic | Type |
 |---|-------|------|
-| 1 | [Processor Architecture](unit-2-linux/processor_architecture) | Notes |
-| 2 | [Filesystem Hierarchy](unit-2-linux/filesystem_hierarchy) | Notes |
-| 3 | [Permissions and Ownership](unit-2-linux/permissions_and_ownership) | Notes |
-| 4 | [Processes and Services](unit-2-linux/processes_and_services) | Notes |
-| 5 | [Pipes and Redirection](unit-2-linux/pipes_and_redirection) | Notes |
+| 1 | [Processor Architecture](unit-2-linux/processor_architecture.md) | Notes |
+| 2 | [Filesystem Hierarchy](unit-2-linux/filesystem_hierarchy.md) | Notes |
+| 3 | [Permissions and Ownership](unit-2-linux/permissions_and_ownership.md) | Notes |
+| 4 | [Processes and Services](unit-2-linux/processes_and_services.md) | Notes |
+| 5 | [Pipes and Redirection](unit-2-linux/pipes_and_redirection.md) | Notes |
 | 6 | Troubleshooting Exercise | Exercise |
 | 7 | Package Management | Notes |
 | 8 | Capstone: Emulator Project | Assignment |

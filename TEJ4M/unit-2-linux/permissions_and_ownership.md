@@ -107,11 +107,11 @@ The permission string is 10 characters:
 
 ```
 - r w x r - x r - -
-│ └─┬─┘   └─┬─┘   └─┬─┘
-│   │       │       └── others (everyone else)
-│   │       └────────── group
-│   └────────────────── user (owner)
-└────────────────────── file type: - (file), d (directory), l (symlink)
+│ └─┬─┘ └─┬─┘ └─┬─┘
+│   │     │     └── others (everyone else)
+│   │     └──────── group
+│   └────────────── user (owner)
+└────────────────── file type: - (file), d (directory), l (symlink)
 ```
 
 Each set of three characters represents:

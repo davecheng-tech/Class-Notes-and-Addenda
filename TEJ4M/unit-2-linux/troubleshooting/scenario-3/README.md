@@ -6,15 +6,15 @@ The RetroGames service has a configuration file at `/etc/retrogames/retrogames.c
 
 A `verify.sh` script is included in this folder. It checks whether the configuration is valid and reports what passes and what fails. Run it to see where you stand:
 
-```bash
-bash verify.sh
+```
+./verify.sh
 ```
 
 Right now, everything fails.
 
 ## Your Goal
 
-Get `bash verify.sh` to report **all checks passed**.
+Get `./verify.sh` to report **all checks passed**.
 
 ---
 
@@ -28,44 +28,44 @@ Get `bash verify.sh` to report **all checks passed**.
 
 ## Your Job
 
-Find all three problems. Fix them. Run `verify.sh` after each fix.
+Find all three problems. Fix them. Run `./verify.sh` after each fix.
 
 ---
 
 ## Hints
 
 **Reading file metadata (permissions and ownership):**
-```bash
+```
 ls -l /path/to/file
 ```
 
 **Changing file ownership:**
-```bash
+```
 sudo chown user:group /path/to/file
 ```
 To give a file back to yourself: `sudo chown $USER:$USER /path/to/file`
 
 **Changing file permissions:**
-```bash
+```
 sudo chmod 644 /path/to/file
 ```
 644 = owner can read/write, everyone else can read.
 
 **Reading a config file:**
-```bash
+```
 cat /etc/retrogames/retrogames.conf
 ```
 or search for a specific key:
-```bash
+```
 grep "keyname" /etc/retrogames/retrogames.conf
 ```
 
 **Editing a config file:**
-```bash
+```
 sudo nano /etc/retrogames/retrogames.conf
 ```
 
 **Checking whether a directory exists:**
-```bash
+```
 ls /path/to/directory
 ```

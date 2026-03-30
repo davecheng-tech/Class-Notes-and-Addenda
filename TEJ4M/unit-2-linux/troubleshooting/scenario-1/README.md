@@ -33,7 +33,7 @@ You may hit more than one problem in sequence — fix each one and keep going.
 These are tools and concepts you may not have seen before. They're here if you get stuck — not as a recipe to follow.
 
 **Finding a file anywhere on the system:**
-```bash
+```
 find / -name filename 2>/dev/null
 ```
 The `2>/dev/null` suppresses permission-denied errors so you can read the results.
@@ -41,17 +41,17 @@ Common locations for installed software: `/usr/local/bin`, `/opt`.
 
 **The `file` command:**
 When a program fails with an unfamiliar error, `file` tells you what kind of file it actually is — its format and target architecture:
-```bash
+```
 file /path/to/somefile
 ```
 An executable built for one CPU architecture cannot run on another.
 
 **Checking your machine's architecture:**
-```bash
+```
 lscpu | grep Architecture
 ```
 
 **Running a file that isn't in your PATH:**
-```bash
+```
 /full/path/to/file
 ```

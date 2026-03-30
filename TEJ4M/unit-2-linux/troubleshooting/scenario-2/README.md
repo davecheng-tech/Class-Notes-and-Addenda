@@ -29,23 +29,23 @@ Diagnose what's running and why. Then stop it cleanly and verify it's gone.
 ## Hints
 
 **Seeing all running processes:**
-```bash
+```
 ps aux
 ```
 Look for process names you don't recognise.
 
 **Seeing parent-child relationships between processes:**
-```bash
+```
 ps aux --forest
 ```
 or
-```bash
+```
 pstree -p
 ```
 This shows which processes spawned which. If a child keeps coming back, ask yourself: what's the parent doing?
 
 **Searching a log file:**
-```bash
+```
 grep "pattern" /var/log/retro-monitor.log
 ```
 Useful patterns to try: `ERROR`, `MONITOR`, `WORKER`.
@@ -56,6 +56,6 @@ Useful patterns to try: `ERROR`, `MONITOR`, `WORKER`.
 `kill -9 <pid>` sends **SIGKILL** — forced, immediate termination. Cannot be ignored or caught.
 
 **Verifying a process is gone:**
-```bash
+```
 ps aux | grep processname
 ```

@@ -45,15 +45,72 @@ cp "$TMP_ARM" /usr/local/bin/launcher
 rm "$TMP_ARM"
 chmod 644 /usr/local/bin/launcher        # no execute bit — first obstacle
 
-# Create the real x86_64 launcher (a shell script) in a non-PATH location
+# Create the real x86_64 launcher as a proper ELF binary (not a shell script).
+# Using a shell script would allow `bash /opt/retrogames/launcher` to bypass
+# the missing execute permission — defeating the point of the exercise.
+# Python3 constructs a minimal but valid x86_64 ELF with two syscalls: write + exit.
 mkdir -p /opt/retrogames
-cat > /opt/retrogames/launcher << 'EOF'
-#!/bin/bash
-echo "RetroGames Launcher v1.0"
-echo "Architecture: $(uname -m)"
-echo "System ready. Load a ROM to begin."
-EOF
-chmod 644 /opt/retrogames/launcher       # no execute bit — must be fixed
+
+python3 << 'PYEOF'
+import struct, os, sys
+
+msg = b"RetroGames Launcher v1.0\nArchitecture: x86_64\nSystem ready. Load a ROM to begin.\n"
+
+load_addr   = 0x400000
+ehdr_size   = 64
+phdr_size   = 56
+code_offset = ehdr_size + phdr_size  # 120 bytes into file
+
+# x86_64 machine code:
+#   mov rax, 1 (SYS_write) — 7 bytes
+#   mov rdi, 1 (stdout fd) — 7 bytes
+#   mov rsi, msg_addr      — 10 bytes (REX + opcode + 8-byte immediate)
+#   mov rdx, msg_len       — 7 bytes
+#   syscall                — 2 bytes
+#   mov rax, 60 (SYS_exit) — 7 bytes
+#   xor rdi, rdi           — 3 bytes
+#   syscall                — 2 bytes
+# Total before message: 45 bytes
+pre_code_size = 45
+msg_addr = load_addr + code_offset + pre_code_size
+
+code = (
+    b'\x48\xc7\xc0\x01\x00\x00\x00'                   # mov rax, 1
+    + b'\x48\xc7\xc7\x01\x00\x00\x00'                 # mov rdi, 1
+    + b'\x48\xbe' + struct.pack('<Q', msg_addr)        # mov rsi, msg_addr
+    + b'\x48\xc7\xc2' + struct.pack('<I', len(msg))   # mov rdx, len(msg)
+    + b'\x0f\x05'                                      # syscall
+    + b'\x48\xc7\xc0\x3c\x00\x00\x00'                # mov rax, 60
+    + b'\x48\x31\xff'                                  # xor rdi, rdi
+    + b'\x0f\x05'                                      # syscall
+    + msg
+)
+
+total_size = code_offset + len(code)
+
+ident = b'\x7fELF\x02\x01\x01\x00' + b'\x00' * 8
+
+ehdr = ident + struct.pack('<HHIQQQIHHHHHH',
+    2, 0x3e, 1,                    # ET_EXEC, EM_X86_64, version
+    load_addr + code_offset,       # entry point
+    ehdr_size, 0, 0,               # phoff, shoff, flags
+    ehdr_size, phdr_size, 1,       # ehsize, phentsize, phnum
+    64, 0, 0)                      # shentsize, shnum, shstrndx
+
+phdr = struct.pack('<IIQQQQQQ',
+    1, 5,                          # PT_LOAD, PF_R|PF_X
+    0, load_addr, load_addr,       # offset, vaddr, paddr
+    total_size, total_size,        # filesz, memsz
+    0x200000)                      # align
+
+assert len(ehdr) == ehdr_size, f"ehdr size mismatch: {len(ehdr)}"
+assert len(phdr) == phdr_size, f"phdr size mismatch: {len(phdr)}"
+
+with open('/opt/retrogames/launcher', 'wb') as f:
+    f.write(ehdr + phdr + code)
+os.chmod('/opt/retrogames/launcher', 0o644)
+PYEOF
+
 chown root:root /opt/retrogames/launcher
 
 echo "    Done."

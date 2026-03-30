@@ -106,9 +106,9 @@ x86_64 ≠ aarch64. This binary cannot run here.
 file /opt/retrogames/launcher
 ```
 ```
-/opt/retrogames/launcher: Bourne-Again shell script, ASCII text executable
+/opt/retrogames/launcher: ELF 64-bit LSB executable, x86-64
 ```
-Shell script — architecture-independent. This is the one.
+x86_64 binary — matches this machine. This is the one.
 
 **Step 9 — Fix its permissions and run it.**
 ```bash

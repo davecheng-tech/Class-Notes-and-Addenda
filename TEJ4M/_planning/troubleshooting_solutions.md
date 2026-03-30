@@ -1,15 +1,8 @@
-# Teacher Solution Guide — Troubleshooting Exercise
-
-**Course:** TEJ4M | **Unit:** 2 — Linux | **Period:** 6
-
-Use this to take up each scenario after students have worked through them.
-Project and walk through the commands live in the terminal.
-
----
+# Solution Guide — Troubleshooting Exercise
 
 ## Setup Reminder
 
-Run on each student machine before class (or have students run it themselves):
+Run on each machine to set up the environment for this exercise:
 ```bash
 sudo bash setup.sh
 ```
@@ -99,7 +92,7 @@ Architecture: x86_64
 ```
 x86_64 ≠ aarch64. This binary cannot run here.
 
-> **Teaching moment:** This is exactly the architecture problem from Period 1 — ISAs are not cross-compatible. A binary compiled for ARM has instructions the x86 CPU doesn't understand. This is also why emulation exists: to bridge this gap in software.
+> **Important:** This is exactly the architecture problem from Period 1 — ISAs (or Instruction Set Architectures) are not cross-compatible. A binary compiled for ARM has instructions the x86 CPU doesn't understand. This is also why emulation exists: to bridge this gap in software.
 
 **Step 8 — Try the other launcher.**
 ```bash
@@ -185,7 +178,7 @@ student   2251  ...  bash .../worker.sh   ← new PID — it came back
 ```
 Worker respawned. The parent is keeping it alive.
 
-> **Teaching moment:** This is why process trees matter. Killing a child process only works if nothing is watching it. In real sysadmin work, services and daemons almost always have a parent that manages them — this is why `systemctl stop` exists instead of just `kill`.
+> **Important:** This is why process trees matter. Killing a child process only works if nothing is watching it. In real sysadmin work, services and daemons almost always have a parent that manages them — this is why `systemctl stop` exists instead of just `kill`.
 
 **Step 5 — Try killing the parent with SIGTERM.**
 ```bash
@@ -274,7 +267,7 @@ sudo chmod 644 /etc/retrogames/retrogames.conf
 ```
 One down.
 
-> **Teaching moment:** We could also have used `sudo chown $USER /etc/retrogames/retrogames.conf` — that would transfer ownership instead of opening up permissions. In a real system, which approach you choose matters for security. Here, `chmod 644` is fine.
+> **Important:** We could also have used `sudo chown $USER /etc/retrogames/retrogames.conf` — that would transfer ownership instead of opening up permissions. In a real system, which approach you choose matters for security. Here, `chmod 644` is fine.
 
 **Step 5 — Read the config file.**
 ```bash
@@ -326,7 +319,7 @@ mkdir ~/roms
 ---
 <br>
 
-## Common Student Mistakes to Watch For
+## Common Mistakes
 
 | Scenario | Mistake | Clarification |
 |----------|---------|---------------|

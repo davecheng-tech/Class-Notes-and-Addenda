@@ -236,7 +236,7 @@ No results (except the grep itself).
 
 **Step 1 — Run verify.sh. Everything fails.**
 ```bash
-bash verify.sh
+./verify.sh
 ```
 ```
   [FAIL] Config file is readable by current user  →  Hint: check ownership and permissions with ls -l
@@ -265,7 +265,7 @@ Root owns it, permissions `600` — only root can read. Fix it.
 **Step 4 — Fix permissions.**
 ```bash
 sudo chmod 644 /etc/retrogames/retrogames.conf
-bash verify.sh
+./verify.sh
 ```
 ```
   [PASS] Config file is readable by current user
@@ -295,7 +295,7 @@ sudo nano /etc/retrogames/retrogames.conf
 Change `DEBG` → `DEBUG` (or `INFO`). Save and exit.
 
 ```bash
-bash verify.sh
+./verify.sh
 ```
 ```
   [PASS] Config file is readable by current user
@@ -313,7 +313,7 @@ ls: cannot access '/home/student/roms': No such file or directory
 Doesn't exist. Create it.
 ```bash
 mkdir ~/roms
-bash verify.sh
+./verify.sh
 ```
 ```
   [PASS] Config file is readable by current user

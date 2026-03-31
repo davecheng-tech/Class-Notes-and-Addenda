@@ -330,3 +330,296 @@ mkdir ~/roms
 | 2 | Kill parent with SIGKILL, forget about orphaned worker | Worker is still running — check and kill it |
 | 3 | Try to edit config without sudo after making it readable | They own read permission but still need sudo/root to write |
 | 3 | Create `roms` directory in wrong location | Path in config is absolute — must match exactly |
+
+---
+<br>
+
+---
+<br>
+
+# Part 2 — Solution Guide (Scenarios 4–6)
+
+## Setup Reminder
+
+Run on each machine to set up exercise 2:
+```bash
+sudo bash troubleshooting-2/setup.sh
+```
+
+To reset at end of class:
+```bash
+sudo bash troubleshooting-2/teardown.sh
+```
+
+Both scripts are independent of the original exercise — safe to run in any order.
+
+---
+<br>
+
+## Scenario 4 — The Stats Script Won't Run
+
+### What Was Broken
+
+| Problem | Location | Description |
+|---------|----------|-------------|
+| 1 | `/usr/local/bin/rg-stats` | No execute permission (chmod 644) |
+| 2 | `/var/log/retrogames-stats.log` | chmod 600, owned by root — student cannot read it |
+
+### Step-by-Step Solution
+
+**Step 1 — Try running it.**
+```bash
+rg-stats
+```
+```
+bash: rg-stats: Permission denied
+```
+The script is in PATH (it's in `/usr/local/bin/`) but has no execute bit.
+
+**Step 2 — Confirm with ls -l.**
+```bash
+ls -l /usr/local/bin/rg-stats
+```
+```
+-rw-r--r-- 1 root root 312 Mar 31 08:00 /usr/local/bin/rg-stats
+```
+`rw-r--r--` — no `x` anywhere. Fix it.
+
+**Step 3 — Add execute permission.**
+```bash
+sudo chmod +x /usr/local/bin/rg-stats
+rg-stats
+```
+```
+ERROR: Cannot read stats log at /var/log/retrogames-stats.log
+       Check file permissions.
+```
+Different error — the script runs now, but can't read the log file.
+
+> **Key teaching point:** A program's own permissions are not the only thing that matters. When a program tries to *read a file*, that file's permissions also apply. This is the same reason a web server needs read access to the files it serves.
+
+**Step 4 — Check the log file's permissions.**
+```bash
+ls -l /var/log/retrogames-stats.log
+```
+```
+-rw------- 1 root root 310 Mar 31 08:00 /var/log/retrogames-stats.log
+```
+Root owns it, permissions `600` — no one else can read it. Fix it.
+
+**Step 5 — Fix the log file permissions.**
+```bash
+sudo chmod 644 /var/log/retrogames-stats.log
+rg-stats
+```
+```
+=== RetroGames Session Statistics ===
+
+Recent sessions:
+  2026-03-30 14:01:05 [SESSION] player=kanzaki game=galaga score=12400 duration=8m
+  2026-03-30 14:09:22 [SESSION] player=morrow game=pacman score=8800 duration=5m
+  2026-03-30 14:15:03 [SESSION] player=kanzaki game=centipede score=21600 duration=12m
+  2026-03-30 14:27:44 [SESSION] player=wu game=galaga score=9100 duration=6m
+  2026-03-30 14:33:59 [SESSION] player=morrow game=centipede score=15200 duration=9m
+
+Total sessions logged: 5
+```
+
+---
+<br>
+
+## Scenario 5 — The Highscore Server Config
+
+### What Was Broken
+
+| # | Problem | Fix |
+|---|---------|-----|
+| 1 | `/etc/retrogames/highscores.conf` owned by root, chmod 600 — not readable | `sudo chmod 644 /etc/retrogames/highscores.conf` |
+| 2 | `max_entries=one-hundred` — not a number | Edit to a valid integer, e.g. `100` |
+| 3 | `data_dir=/opt/retrogames/scores` — directory does not exist | `mkdir -p /opt/retrogames/scores` |
+
+### Step-by-Step Solution
+
+**Step 1 — Run verify.sh. Everything fails.**
+```bash
+./verify.sh
+```
+```
+  [FAIL] Config file is readable by current user  →  Hint: check ownership and permissions with ls -l
+  [FAIL] max_entries is a valid number (e.g. 100)  →  Current value: 'not found'
+  [FAIL] data_dir directory exists  →  Looking for: 'not found in config'
+```
+The cascading failures on Checks 2 and 3 happen because the file can't be read yet — the values aren't missing, they just can't be read. Fix Check 1 first.
+
+**Step 2 — Check the config file's permissions.**
+```bash
+ls -l /etc/retrogames/highscores.conf
+```
+```
+-rw------- 1 root root 104 Mar 31 08:00 /etc/retrogames/highscores.conf
+```
+Root owns it, `600`. Fix it.
+
+**Step 3 — Fix permissions.**
+```bash
+sudo chmod 644 /etc/retrogames/highscores.conf
+./verify.sh
+```
+```
+  [PASS] Config file is readable by current user
+  [FAIL] max_entries is a valid number (e.g. 100)  →  Current value: 'one-hundred'
+  [FAIL] data_dir directory exists  →  Looking for: '/opt/retrogames/scores'
+```
+One down. Now the real values are visible.
+
+**Step 4 — Read and fix the config.**
+```bash
+cat /etc/retrogames/highscores.conf
+```
+```
+# RetroGames Highscore Server Configuration
+max_entries=one-hundred
+data_dir=/opt/retrogames/scores
+leaderboard_name=RetroGames Hall of Fame
+```
+`max_entries=one-hundred` — a string where a number is expected.
+
+```bash
+sudo nano /etc/retrogames/highscores.conf
+```
+Change `one-hundred` → `100`. Save and exit.
+
+```bash
+./verify.sh
+```
+```
+  [PASS] Config file is readable by current user
+  [PASS] max_entries is a valid number (e.g. 100)
+  [FAIL] data_dir directory exists  →  Looking for: '/opt/retrogames/scores'
+```
+
+**Step 5 — Create the missing directory.**
+```bash
+ls /opt/retrogames/scores
+```
+```
+ls: cannot access '/opt/retrogames/scores': No such file or directory
+```
+Doesn't exist. Create it. Note: `/opt/retrogames/` may also not exist, so use `-p`:
+```bash
+mkdir -p /opt/retrogames/scores
+./verify.sh
+```
+```
+  [PASS] Config file is readable by current user
+  [PASS] max_entries is a valid number (e.g. 100)
+  [PASS] data_dir directory exists (/opt/retrogames/scores)
+
+  All 3 checks passed. Configuration is valid.
+```
+
+---
+<br>
+
+## Scenario 6 — The Media Server
+
+### What Was Broken
+
+| # | Problem | Fix |
+|---|---------|-----|
+| 1 | `/usr/local/bin/rg-media` has no execute permission (chmod 644) | `sudo chmod +x /usr/local/bin/rg-media` |
+| 2 | Config placed at `/etc/retrogames/media.conf.bak` — script expects `/etc/retrogames/media.conf` | `sudo cp /etc/retrogames/media.conf.bak /etc/retrogames/media.conf` |
+| 3 | `stream_dir=/var/lib/retrogames/streams` — directory does not exist | `sudo mkdir -p /var/lib/retrogames/streams` |
+
+### Step-by-Step Solution
+
+**Step 1 — Run verify.sh.**
+```bash
+./verify.sh
+```
+```
+  [FAIL] rg-media script is executable  →  Hint: check permissions with ls -l /usr/local/bin/rg-media
+  [FAIL] Config file exists and is readable at /etc/retrogames/media.conf  →  Hint: look at what is actually in /etc/retrogames/
+  [FAIL] stream_dir directory exists  →  Check config path first: is the config file in the right place?
+```
+
+**Step 2 — Fix execute permission.**
+```bash
+ls -l /usr/local/bin/rg-media
+```
+```
+-rw-r--r-- 1 root root 512 Mar 31 08:00 /usr/local/bin/rg-media
+```
+```bash
+sudo chmod +x /usr/local/bin/rg-media
+./verify.sh
+```
+```
+  [PASS] rg-media script is executable
+  [FAIL] Config file exists and is readable at /etc/retrogames/media.conf
+  [FAIL] stream_dir directory exists  →  Check config path first: is the config file in the right place?
+```
+
+**Step 3 — Investigate the config.**
+The script expects `/etc/retrogames/media.conf`. Let's see what's actually there:
+```bash
+ls /etc/retrogames/
+```
+```
+media.conf.bak   retrogames.conf   highscores.conf
+```
+`media.conf.bak` — the file is there but named incorrectly. Copy it to the expected path:
+```bash
+sudo cp /etc/retrogames/media.conf.bak /etc/retrogames/media.conf
+./verify.sh
+```
+```
+  [PASS] rg-media script is executable
+  [PASS] Config file exists and is readable at /etc/retrogames/media.conf
+  [FAIL] stream_dir directory exists  →  Looking for: '/var/lib/retrogames/streams'
+```
+
+**Step 4 — Read the script to understand what it needs (optional teaching moment).**
+```bash
+cat /usr/local/bin/rg-media
+```
+Reading the script shows exactly what path it is looking for in `stream_dir`. This is a key troubleshooting instinct: when a program can't find something, read the program.
+
+**Step 5 — Create the missing directory.**
+```bash
+sudo mkdir -p /var/lib/retrogames/streams
+./verify.sh
+```
+```
+  [PASS] rg-media script is executable
+  [PASS] Config file exists and is readable at /etc/retrogames/media.conf
+  [PASS] stream_dir directory exists (/var/lib/retrogames/streams)
+
+  All 3 checks passed.
+  Now run: rg-media
+```
+
+**Step 6 — Run the media server.**
+```bash
+rg-media
+```
+```
+RetroGames Media Server
+Stream directory: /var/lib/retrogames/streams
+Max connections:  10
+Status: ready
+```
+
+---
+<br>
+
+## Common Mistakes — Part 2
+
+| Scenario | Mistake | Clarification |
+|----------|---------|---------------|
+| 4 | Run `bash rg-stats` after seeing "Permission denied" — it works, student thinks they're done | `bash rg-stats` bypasses the execute bit — the problem is still there; always run by name |
+| 4 | Fix execute bit, see a new error, think they made it worse | A new error means progress — the first problem is solved, and a second one is now visible |
+| 5 | Try to edit config immediately without fixing permissions first | `nano` needs read access to open it — fix permissions first |
+| 5 | Use `mkdir /opt/retrogames/scores` without `-p` on a fresh machine | Parent directory may not exist — `-p` handles this |
+| 6 | Try to `mv` or `cp` the `.bak` file without `sudo` | `/etc/retrogames/` is root-owned — need sudo to write to it |
+| 6 | Copy the file but forget the destination filename | `sudo cp media.conf.bak media.conf.bak` leaves the problem unsolved — destination name matters |

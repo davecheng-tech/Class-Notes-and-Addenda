@@ -222,7 +222,7 @@ Download it from the terminal:
 
 ```bash
 cd /tmp
-wget https://github.com/aristocratos/btop/releases/latest/download/btop-x86_64-linux-musl.tbz
+wget https://github.com/aristocratos/btop/releases/download/v1.4.6/btop-x86_64-unknown-linux-musl.tbz
 ```
 
 > [!TIP]

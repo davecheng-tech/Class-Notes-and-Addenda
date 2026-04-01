@@ -233,7 +233,7 @@ wget https://github.com/aristocratos/btop/releases/download/v1.4.6/btop-x86_64-u
 The `.tbz` extension is a compressed tar archive (tar + bzip2). Extract it:
 
 ```bash
-tar -xjf btop-x86_64-linux-musl.tbz
+tar -xjf btop-x86_64-unknown-linux-musl.tbz
 ```
 
 The flags mean:

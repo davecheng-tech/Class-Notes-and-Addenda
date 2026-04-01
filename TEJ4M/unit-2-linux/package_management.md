@@ -195,6 +195,8 @@ This is why:
 - Programs installed by `apt` (which places binaries in `/usr/bin/`) work immediately
 - A program you download to your home directory does not work by just typing its name — your home directory is not in the PATH
 
+This is also why some of the troubleshooting scenarios produced `command not found` errors — the binary existed, but it was not in any directory the shell searches.
+
 ### Manual Install Strategy
 
 When installing software manually, you have two approaches:
@@ -333,7 +335,15 @@ Install `micro` manually by following the same pattern as the `btop` walkthrough
 
 3. Download it to `/tmp` using `wget`.
 
-4. Extract the archive. (Hint: the file extension tells you what compression is used. A `.tar.gz` file uses `-xzf` instead of `-xjf`.)
+4. Extract the archive. The file extension tells you what compression is used:
+
+   | Extension | tar flags |
+   |---|---|
+   | `.tar.gz` or `.tgz` | `-xzf` |
+   | `.tar.bz2` or `.tbz` | `-xjf` |
+   | `.tar.xz` | `-xJf` |
+
+   Look at the filename you downloaded. Which flags do you need?
 
 5. Explore the extracted directory. Where is the binary?
 
@@ -351,5 +361,5 @@ Install `micro` manually by following the same pattern as the `btop` walkthrough
     ```
     The output should be `/usr/local/bin/micro`.
 
-> [!NOTE]
-> Some of you may have already installed `micro` using `apt` during Unit 1. If so, check with `which micro` — if it shows `/usr/bin/micro`, that is the `apt`-installed version. You can still do this exercise: install the manual version to `/usr/local/bin/` and notice that `/usr/local/bin` appears earlier in the PATH than `/usr/bin`. Run `which micro` again after your manual install — which version does the system find first?
+> [!TIP]
+> **Going further:** Some of you may have already installed `micro` using `apt` during Unit 1. If `which micro` shows `/usr/bin/micro` before you start, that is the `apt`-installed version. After your manual install to `/usr/local/bin/`, run `which micro` again. Which version does the shell find first, and why? (Hint: look at the order of directories in your PATH.)

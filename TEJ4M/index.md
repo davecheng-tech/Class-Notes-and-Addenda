@@ -32,3 +32,4 @@ Concepts: Processor architecture (x86-64, ARM), Linux filesystem hierarchy, perm
 | 6 | Troubleshooting Exercise | Exercise |
 | 7 | [Package Management](unit-2-linux/package_management.md) | Notes |
 | 8 | Capstone: Emulator Project | Assignment |
+| — | [Retro Computing Exploration](retro_computing.md) | Class activity |

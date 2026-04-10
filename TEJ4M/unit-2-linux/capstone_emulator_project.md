@@ -1,12 +1,13 @@
-# Retro Gaming Capstone: Emulation on Linux
+# Retro Gaming Emulation on Linux
 
 **Course:** TEJ4M - Computer Engineering Technology (Grade 12)\
 **Unit:** Linux and Processor Architecture\
-**Timeline:** ~3 work periods × 75 minutes
+**Timeline:** 5 work periods × 75 minutes
 
 ## Contents
 
 - [Overview](#overview)
+- [The Three Platforms](#the-three-platforms)
 - [What You're Building](#what-youre-building)
 - [Part 1: Set Up Your Emulators](#part-1-set-up-your-emulators)
 - [Part 2: Choose Your Subject](#part-2-choose-your-subject)
@@ -23,27 +24,50 @@
 
 The Acer C720 is over a decade old. Its Intel Celeron processor runs at 1.4 GHz with 2 GB of RAM. A modern web browser can bring it to its knees. 
 
-That said, it's still powerful enough that it can run every video game console released before the year 2000, including the NES, Game Boy, and Super Nintendo, at full speed in a window on your Lubuntu desktop.
+That said, it's still powerful enough that it can run every video game console released before the year 2000, including the Nintendo Entertainment System (NES), Game Boy, and Super Nintendo - all at full speed in a window on your Lubuntu desktop. (I think of these systems as the "golden age" of video games, not by any academic or historical definition other than the fact that it's what I, your Gen X'er teacher, grew up with. lol)
 
-The NES had a 1.79 MHz processor. Your Chromebook's CPU runs approximately 800 times faster. That gap is what emulation takes advantage of. A machine with enough headroom can simulate a slower one in software, cycle by cycle, accurately enough that the software on top has no idea it isn't running on real hardware. We've already looked at the vocabulary for this: Processor architecture, ISAs, clock speeds, the difference between x86-64 and ARM. 
+To put this into perspective, the NES had a 1.79 MHz processor. Your Chromebook's CPU runs approximately 800 times faster. That gap is what emulation takes advantage of. A machine with enough headroom can simulate a slower one in software, cycle by cycle, accurately enough that the software on top has no idea it isn't running on real hardware. 
 
-For this project, you will install three emulators on your Linux machine, pick a subject to trace across three generations of gaming hardware, and write about what you find.
+For this project, you will install three retro video game console emulators on your Linux machine. Then, you'll pick a subject to trace across three generations of gaming hardware, and write about what you find.
+
+---
+
+## The Three Platforms
+
+The three systems in this project span one of gaming's most significant hardware transitions.
+
+**NES** (released in Japan as the **Famicom**, 1983; North America as the NES, 1985) was an 8-bit console built around a 6502-derived processor running at 1.79 MHz. Nintendo launched it into a North American market that had largely collapsed after the video game crash of 1983, and it became the platform that defined home console gaming for a generation.
+
+**Game Boy** (Japan and North America, 1989) was also 8-bit, but built for a different goal: portability and battery life over raw performance. Its Z80-based processor ran at 4.19 MHz, but the display was a 160×144 monochrome screen with four shades of gray. Its designer, Gunpei Yokoi, described the philosophy as "lateral thinking with withered technology" — use mature, inexpensive components and win on software and price. The technical constraints are visible and audible in everything the Game Boy does.
+
+**SNES** (released in Japan as the **Super Famicom**, 1990; North America as the Super Nintendo, 1991) moved to a 16-bit processor, but the more significant upgrade was in dedicated co-processors. Two dedicated video chips (Picture Processing Unit, or PPU) handled graphics, enabling features the scaling and rotation effects seen in games like F-Zero and Super Mario Kart. A Sony audio chip helped deliver 8-channel stereo sound with sample playback (i.e., digitized real-world audio recordings). The jump in visual and audio quality over the NES is not subtle.
+
+| | NES / Famicom | Game Boy | SNES / Super Famicom |
+|--|--|--|--|
+| **Released** | Japan 1983, US 1985 | Japan 1989, US 1989 | Japan 1990, US 1991 |
+| **CPU** | Ricoh 2A03 (6502-based), 8-bit, 1.79 MHz | Sharp LR35902 (Z80-based), 8-bit, 4.19 MHz | Ricoh 5A22 (65C816-based), 16-bit, 3.58 MHz |
+| **Colours** | 54 possible, 25 on screen | 4 shades of gray | 32,768 possible, 256 on screen |
+| **Sound** | 5 channels, no sample playback | 4 channels, no sample playback | Sony SPC700, 8 channels, sample playback |
+| **Graphics** | Single PPU chip | Integrated, minimal | Two dedicated PPU co-processors |
+
+This table is a starting point. Your report should go deeper: research the specific chips, understand what the architectural differences meant for game design, and connect what you observe in the games to what the hardware could actually do. If you want a refresher on the broader computing history behind these platforms, revisit the [Retro Computing Exploration](https://github.com/davecheng-tech/Class-Notes-and-Addenda/blob/main/TEJ4M/retro_computing.md) from earlier in the course.
 
 ---
 
 ## What You're Building
 
-Pick **something to trace across three generations of gaming hardware**: the NES, the Game Boy (or Game Boy Advance), and the Super Nintendo.
+Pick something to **trace across three generations of gaming hardware**: the NES, the Game Boy (or Game Boy Advance), and the Super Nintendo.
 
 Your subject could be a franchise, a genre, or a concept:
 
-**A franchise.** Follow a game series across all three systems. Mario, Zelda, Kirby, Mega Man, Tetris, Castlevania, Final Fantasy — pick something with entries on all three platforms and see how it changed, or didn't.
+**A franchise.** Follow a game series across all three systems. Mario, Zelda, Kirby, Mega Man, Tetris, Castlevania, Final Fantasy, etc. Pick something with entries on all three platforms and see how it changed, or didn't.
 
 **A genre.** Pick a style of game and find a representative title on each system. How do platformers, racing games, RPGs, puzzle games, or fighting games hold up across hardware generations? What does each platform make possible?
 
 **A concept.** Sound and music. Saving progress. Colour and art. Boss design. The hardware specs on these three systems differ in specific ways. How do those differences show up in how games were made?
 
-Your deliverable is a `README.md` file: a written and illustrated retrospective organized around your subject. Write as a player and a critic. The install process is setup, not the point.
+Your deliverable is a `README.md` file: a written and illustrated retrospective organized around your subject. You should write this document as a player and a game critic - pretend, maybe, this is a piece for an online video game magazine.
+
 
 ---
 
@@ -78,9 +102,9 @@ snap install snes9x-gtk
 
 Launch Snes9x from the application menu after installing.
 
-### No Configuration Required
+### Minimal Configuration
 
-All three emulators should work immediately after install. No config files to edit, no services to start. Install, open a ROM, play.
+All three emulators work immediately after install with keyboard controls. If you have a USB gamepad, you will need to map its buttons to the emulated console's controls. Each emulator has a settings or preferences menu where you can assign physical buttons to the console's A, B, Start, Select, and directional inputs. Plug in your controller first, then open the input/controller settings and map each button by pressing it when prompted.
 
 ---
 
@@ -115,7 +139,7 @@ Some starting points:
 
 For **each of the three platforms**, your README needs to cover all of the following.
 
-### Hardware Context *(2-4 sentences)*
+### Hardware Context
 
 What machine is this? What were the key specs: processor, speed, RAM, audio, colour depth? What made it capable or limited compared to what came before? You know where to find this kind of information.
 
@@ -123,15 +147,23 @@ What machine is this? What were the key specs: processor, speed, RAM, audio, col
 
 Name the ROMs you tried. If you went through several before something clicked, say so. You do not have to pick one game per platform and stop there.
 
-### Screenshots *(minimum 2 per platform)*
+### Screenshots
 
-Take screenshots that are useful to your argument, not just proof that the emulator opened. A visual comparison, a moment of impressive or disappointing graphics given the hardware, a UI decision that tells you something about the era. Make the screenshots count. Make them something you actually want to show someone.
+Take multiple screenshots that are useful to your argument, not just proof that the emulator opened. A visual comparison, a moment of impressive or disappointing graphics given the hardware, a UI decision that tells you something about the era. The screenshots should be doing a lot of the storytelling, so take the time to capture the perfect moments. Consider also comparative screenshots across platforms.
 
 ### Your Observations
 
 What did you notice? What surprised you? Where do you see the hardware constraints shaping what designers could and couldn't do?
 
-Write with enough specificity that the observation could only have come from you, playing this game. "The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out five years later, probably because the hardware had fewer audio channels" tells the reader something. "The graphics improved over time" tells them nothing.
+Consider this observation:
+
+>"The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out five years later. This is likely because the hardware had fewer audio channels, giving game designers fewer virtual instruments to work with." 
+
+It tells the reader something specific. You should also aim to write with enough specificity such that the observation could only have come from you, playing this game. 
+
+> "The graphics improved over time."  
+
+This is vague and says next to nothing.
 
 > [!IMPORTANT]
 > The observations section carries the most weight in the rubric. Describing what a game looks like is not enough. Noticing something specific and explaining why you think it is the way it is — that's what you're going for.
@@ -142,9 +174,9 @@ Write with enough specificity that the observation could only have come from you
 
 Add a final section covering the same subject on a modern platform.
 
-This does not need to run on your Chromebook. A screenshot from a phone game, a current console, a browser, a PC, or a streaming service all count.
+This does not need to run on your Chromebook. A screenshot from a mobile phone game, a current console, a browser, a PC, or a game streaming service all count.
 
-What does your subject look like in 2025? What changed? What, surprisingly, stayed the same?
+What does your subject look like in 2026? What changed? What, surprisingly, stayed the same?
 
 ---
 
@@ -179,9 +211,9 @@ Move your screenshots into your `images/` folder and rename them descriptively.
 
 ## Getting ROMs
 
-**Class file share.** NES, Game Boy, GBA, and SNES ROM collections are available on the class share (address on the board). Browse by system folder. Start here.
+**Class file share.** Start here. NES, Game Boy, GBA, and SNES ROM collections are available on the class file share. Browse by system folder to see what's available.
 
-**Archive.org.** For ROMs not on the class share, [archive.org](https://archive.org) has large collections organized by system. Search the system name, for example *NES ROM set* or *Game Boy ROM collection*. These are copyrighted games and hosting them is legally grey, but Archive.org operates as a software preservation archive and is the most reputable place to find this material.
+**Archive.org.** For ROMs not on the class share, [archive.org](https://archive.org) has large collections organized by system. Search the system name, for example *NES ROM set* or *Game Boy ROM collection*. These are copyrighted games and hosting them is a legal grey area, but Archive.org operates as a software preservation archive and is the most reputable place to find this material. Be careful of venturing into dark places on the internet looking for bootlegs.
 
 > [!TIP]
 > Going beyond the three required systems is entirely optional, but it is one path to Level 4+. If you want to emulate a Sega Genesis, Nintendo 64, PlayStation, Atari, or Commodore 64, the emulators exist, the ROMs are on Archive.org, and you can figure it out. Start with a search for the system name and "Linux emulator."
@@ -192,7 +224,7 @@ Move your screenshots into your `images/` folder and rename them descriptively.
 
 Your `README.md` is a Markdown file. Markdown is plain text with lightweight formatting that renders as HTML. It is the standard format for documentation on GitHub and across the software industry.
 
-Here is the syntax you need:
+Here is some of the syntax you might want to use:
 
 ```markdown
 # Heading 1
@@ -233,7 +265,7 @@ You may use any resources: documentation, online references, each other.
 
 Screenshots must be your own, taken on your machine or your personal devices. Writing must be in your own voice, based on what you actually observed while playing.
 
-AI-generated text is confident, well-organized, and has no actual opinions. It cannot tell you what surprised it about Super Mario Land because it never played it. Observations that could have been written by someone who never opened the emulator will read that way.
+AI-generated text is confident, well-organized, and has no actual opinions. It cannot tell you what surprised it about Super Mario Land because it never played it. Observations that could have been written by someone who never opened the emulator will read that way. As much as this is supposed to be a fun exploration in computer technology, it is very much also a personal opinion piece necessitating a human perspective.
 
 ---
 
@@ -295,8 +327,8 @@ Achievement levels correspond to Ontario grading bands:
 **Period 1 — Setup and Orientation**\
 Install all three emulators. Browse the ROM collection. Decide on a subject. Start playing.
 
-**Periods 2-3 — Exploration and Writing**\
+**Periods 2-4 — Exploration and Writing**\
 Explore your subject across all three platforms. Take screenshots as you go. Write while impressions are fresh. Do not leave all the writing to the end.
 
-**End of Period 3 — Finalize and Submit**\
+**Period 5 — Finalize and Submit**\
 Assemble your `README.md` and `images/` folder. Review formatting. Submit.

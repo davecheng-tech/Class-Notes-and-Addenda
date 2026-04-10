@@ -9,6 +9,7 @@ This document covers setup details that will come up during the project. It will
 - [ROM File Extensions](#rom-file-extensions)
 - [Unzipping GBA ROMs](#unzipping-gba-roms)
 - [Controllers](#controllers)
+  - [Snes9x: Controller Not Responding](#snes9x-controller-not-responding)
 
 ---
 
@@ -112,6 +113,18 @@ This produces a `.gba` file in the same folder. Open that file in mGBA.
 
 ## Controllers
 
-USB gamepads work out of the box. Plug in your controller, open the emulator, and configure button mapping under the emulator's settings or preferences menu.
+USB gamepads work in FCEUX and mGBA out of the box. Plug in your controller, open the emulator, and configure button mapping under the emulator's settings or preferences menu.
+
+### Snes9x: Controller Not Responding
+
+Snes9x is installed via snap, which sandboxes the application and blocks access to joystick devices by default. If your controller is not recognised in Snes9x's joypad configuration, run this once from the terminal:
+
+```bash
+sudo snap connect snes9x-gtk:joystick
+```
+
+Then restart Snes9x. Your controller should now appear and buttons can be mapped normally.
+
+### Bluetooth
 
 Bluetooth controller pairing on LXQt is possible but not covered here yet — check back if there's demand.

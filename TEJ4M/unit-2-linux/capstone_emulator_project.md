@@ -95,7 +95,7 @@ Launch with `mgba-qt` at the terminal or from the application menu. mGBA handles
 ### Super Nintendo: Snes9x
 
 ```bash
-snap install snes9x-gtk
+sudo snap install snes9x-gtk
 ```
 
 > [!NOTE]
@@ -230,6 +230,9 @@ Submit the `.zip` file as instructed.
 ---
 
 ## Getting ROMs
+
+> [!TIP]
+> For step-by-step instructions on connecting to the file server and unzipping GBA ROMs, see the [Tech Supplement](tech_supplement.md).
 
 **Class file share.** Start here. NES, Game Boy, GBA, and SNES ROM collections are available on the class file share. Browse by system folder to see what's available.
 

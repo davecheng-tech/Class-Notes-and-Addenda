@@ -14,6 +14,7 @@
 - [Part 3: Explore and Document](#part-3-explore-and-document)
 - [Part 4: Where Are We Now?](#part-4-where-are-we-now)
 - [Your Deliverable](#your-deliverable)
+  - [Submitting Your Work](#submitting-your-work)
 - [Getting ROMs](#getting-roms)
 - [Writing in Markdown](#writing-in-markdown)
 - [Assessment Rubric](#assessment-rubric)
@@ -206,6 +207,25 @@ Before taking a screenshot, use the emulator's pause or save state feature to fr
 > Do not photograph your monitor or laptop screen with a phone or camera. Image quality is unacceptable for documentation purposes and marks will be deducted.
 
 Move your screenshots into your `images/` folder and rename them descriptively.
+
+### Submitting Your Work
+
+When you are ready to submit, zip your project folder from the terminal. Navigate into the folder containing your `README.md` first, then run:
+
+```bash
+zip -r lastname-firstname-emulation.zip README.md images/
+```
+
+Replace `lastname-firstname` with your actual name. The resulting `.zip` file should contain `README.md` at the root and the `images/` folder alongside it — not buried inside another folder. Double-check by listing the contents before submitting:
+
+```bash
+unzip -l lastname-firstname-emulation.zip
+```
+
+Submit the `.zip` file as instructed.
+
+> [!NOTE]
+> If `zip` is not installed, run `sudo apt install zip` first.
 
 ---
 

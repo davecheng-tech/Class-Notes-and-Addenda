@@ -31,5 +31,5 @@ Concepts: Processor architecture (x86-64, ARM), Linux filesystem hierarchy, perm
 | 5 | [Pipes and Redirection](unit-2-linux/pipes_and_redirection.md) | Notes |
 | 6 | Troubleshooting Exercise | Exercise |
 | 7 | [Package Management](unit-2-linux/package_management.md) | Notes |
-| 8 | Capstone: Emulator Project | Assignment |
+| 8 | [Capstone: Retro Gaming — Emulation on Linux](unit-2-linux/capstone_emulator_project.md) | Assignment |
 | — | [Retro Computing Exploration](retro_computing.md) | Class activity |

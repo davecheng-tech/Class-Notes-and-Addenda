@@ -56,7 +56,7 @@ Students who finish early or want more can explore additional platforms (e.g., Z
 - [x] `pipes_and_redirection.md` — stdin/stdout/stderr, redirection, pipes, grep, pipeline challenges (10 questions)
 - [x] `package_management.md` — how apt works, dpkg, PATH, manual install walkthrough (btop), independent exercise (micro)
 - [ ] `troubleshooting_exercise.md` — student instructions for period 6 scripted scenario
-- [ ] `capstone_emulator_project.md` — emulator install + README.md deliverable, rubric, emulator menu
+- [x] `capstone_emulator_project.md` — emulator install + README.md deliverable, rubric, emulator menu
 
 ### Teacher-facing (in `_planning/`)
 - [x] `unit-2-overview.md` — this file

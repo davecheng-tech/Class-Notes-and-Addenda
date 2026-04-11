@@ -10,6 +10,8 @@ This document covers setup details that will come up during the project. It will
 - [Unzipping GBA ROMs](#unzipping-gba-roms)
 - [Controllers](#controllers)
   - [Snes9x: Controller Not Responding](#snes9x-controller-not-responding)
+  - [Bluetooth Pairing (Advanced)](#bluetooth-pairing-advanced)
+  - [Xbox Controllers](#xbox-controllers)
 
 ---
 
@@ -113,7 +115,7 @@ This produces a `.gba` file in the same folder. Open that file in mGBA.
 
 ## Controllers
 
-USB gamepads work in FCEUX and mGBA out of the box. Plug in your controller, open the emulator, and configure button mapping under the emulator's settings or preferences menu.
+The simplest option is a USB gamepad. The classroom has Logitech USB controllers available. Plug one in, open your emulator, and configure button mapping under the emulator's settings or preferences menu. Keyboard controls also work in all three emulators if you prefer.
 
 ### Snes9x: Controller Not Responding
 
@@ -125,6 +127,52 @@ sudo snap connect snes9x-gtk:joystick
 
 Then restart Snes9x. Your controller should now appear and buttons can be mapped normally.
 
-### Bluetooth
+### Bluetooth Pairing (Advanced)
 
-Bluetooth controller pairing on LXQt is possible but not covered here yet — check back if there's demand.
+Bluetooth pairing requires a few extra terminal steps. The classroom Logitech USB controllers are easier. Come back to this once your project is set up and running.
+
+The steps below are confirmed working for PS4 DualShock 4 and PS5 DualSense. Xbox controllers are a separate story — see below.
+
+#### PS4 DualShock 4 / PS5 DualSense
+
+**Step 1. Load the required kernel module:**
+
+```bash
+sudo modprobe joydev
+```
+
+To make this persist across reboots so you don't have to repeat it next session:
+
+```bash
+echo "joydev" | sudo tee -a /etc/modules
+```
+
+**Step 2. Put the controller in pairing mode:**
+
+- **DualShock 4:** Hold **Share + PS button** until the lightbar flashes rapidly
+- **DualSense:** Hold **Create + PS button** until the lightbar flashes
+
+**Step 3. Pair in Bluetooth Devices:**
+
+Open **Bluetooth Devices** from the system tray. Click **Search**, find **Wireless Controller**, and connect. If it shows as connected but the controller is still not responding, fully power off the controller by holding the PS button for 10 seconds, then reconnect.
+
+**Step 4. Verify:**
+
+```bash
+ls /dev/input/
+```
+
+`js0` should appear. Test it:
+
+```bash
+jstest /dev/input/js0
+```
+
+Press buttons and confirm the output changes. Then open your emulator and map the controller under its settings menu.
+
+> [!NOTE]
+> If using Snes9x, also run `sudo snap connect snes9x-gtk:joystick` and restart it. See the section above.
+
+#### Xbox Controllers
+
+Xbox controllers are not reliably supported on Linux. The USB driver has known compatibility issues with many Xbox One and Series models, and Bluetooth requires a third-party driver to work at all. If you want to try, you are on your own. A PlayStation controller or generic USB gamepad will be much less frustrating.

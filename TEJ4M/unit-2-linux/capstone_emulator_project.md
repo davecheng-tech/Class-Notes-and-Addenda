@@ -27,6 +27,8 @@ The Acer C720 is over a decade old. Its Intel Celeron processor runs at 1.4 GHz 
 
 That said, it's still powerful enough that it can run every video game console released before the year 2000, including the Nintendo Entertainment System (NES), Game Boy, and Super Nintendo - all at full speed in a window on your Lubuntu desktop. (I think of these systems as the "golden age" of video games, not by any academic or historical definition other than the fact that it's what I, your Gen X'er teacher, grew up with. lol)
 
+![Super Mario on NES, Game Boy, and SNES](images/super_mario.jpg)
+
 To put this into perspective, the NES had a 1.79 MHz processor. Your Chromebook's CPU runs approximately 800 times faster. That gap is what emulation takes advantage of. A machine with enough headroom can simulate a slower one in software, cycle by cycle, accurately enough that the software on top has no idea it isn't running on real hardware. 
 
 For this project, you will install three retro video game console emulators on your Linux machine. Then, you'll pick a subject to trace across three generations of gaming hardware, and write about what you find.

@@ -23,7 +23,7 @@
 
 ## Overview
 
-The Acer C720 is over a decade old. Its Intel Celeron processor runs at 1.4 GHz with 2 GB of RAM. A modern web browser can bring it to its knees. 
+The [Acer C720](https://www.intel.com/content/dam/www/public/us/en/documents/brochures/acer-chromebook-c720-datasheet.pdf) is over a decade old. Its Intel Celeron processor runs at 1.4 GHz with 2 GB of RAM. A modern web browser can [bring it to its knees](https://www.xda-developers.com/web-browsers-are-ram-hogs/). 
 
 That said, it's still powerful enough that it can run every video game console released before the year 2000, including the Nintendo Entertainment System (NES), Game Boy, and Super Nintendo - all at full speed in a window on your Lubuntu desktop. (I think of these systems as the "golden age" of video games, not by any academic or historical definition other than the fact that it's what I, your Gen X'er teacher, grew up with. lol)
 

@@ -115,7 +115,7 @@ This produces a `.gba` file in the same folder. Open that file in mGBA.
 
 ## Controllers
 
-The simplest option is a USB gamepad. The classroom has Logitech USB controllers available. Plug one in, open your emulator, and configure button mapping under the emulator's settings or preferences menu. Keyboard controls also work in all three emulators if you prefer.
+The simplest option is a USB gamepad. The classroom has Logitech F310 controllers available. Before plugging one in, check the small switch on the back and set it to **D mode**. X mode uses an Xbox-compatible protocol that does not work reliably on Linux. With the switch in D mode, plug in the controller, open your emulator, and configure button mapping under the emulator's settings or preferences menu. Keyboard controls also work in all three emulators if you prefer.
 
 ### Snes9x: Controller Not Responding
 

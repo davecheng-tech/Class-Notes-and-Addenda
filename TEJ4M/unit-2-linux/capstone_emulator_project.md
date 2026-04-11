@@ -43,6 +43,8 @@ The three systems in this project span one of gaming's most significant hardware
 
 **SNES** (released in Japan as the **Super Famicom**, 1990; North America as the Super Nintendo, 1991) moved to a 16-bit processor, but the more significant upgrade was in dedicated co-processors. Two dedicated video chips (Picture Processing Unit, or PPU) handled graphics, enabling features the scaling and rotation effects seen in games like F-Zero and Super Mario Kart. A Sony audio chip helped deliver 8-channel stereo sound with sample playback (i.e., digitized real-world audio recordings). The jump in visual and audio quality over the NES is not subtle.
 
+![game consoles](images/00.png)
+
 | | NES / Famicom | Game Boy | SNES / Super Famicom |
 |--|--|--|--|
 | **Released** | Japan 1983, US 1985 | Japan 1989, US 1989 | Japan 1990, US 1991 |

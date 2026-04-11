@@ -53,7 +53,7 @@ The three systems in this project span one of gaming's most significant hardware
 | **Sound** | 5 channels, no sample playback | 4 channels, no sample playback | Sony SPC700, 8 channels, sample playback |
 | **Graphics** | Single PPU chip | Integrated, minimal | Two dedicated PPU co-processors |
 
-This table is a starting point. Your report should go deeper: research the specific chips, understand what the architectural differences meant for game design, and connect what you observe in the games to what the hardware could actually do. If you want a refresher on the broader computing history behind these platforms, revisit the [Retro Computing Exploration](https://github.com/davecheng-tech/Class-Notes-and-Addenda/blob/main/TEJ4M/retro_computing.md) from earlier in the course.
+This table is a starting point. Your report should go deeper: research the specific chips, understand what the architectural differences meant for game design, and connect what you observe in the games to what the hardware could actually do. If you want a refresher on the broader computing history behind these platforms, revisit the [Retro Computing Exploration](https://github.com/davecheng-tech/Class-Notes-and-Addenda/blob/main/TEJ4M/unit-2-linux/retro_computing.md) from earlier in the course.
 
 ---
 
@@ -105,9 +105,12 @@ sudo snap install snes9x-gtk
 
 Launch Snes9x from the application menu after installing.
 
+> [!TIP]
+> If your USB controller is not recognised in Snes9x, see [Controllers](tech_supplement.md#controllers) in the Tech Supplement.
+
 ### Minimal Configuration
 
-All three emulators work immediately after install with keyboard controls. If you have a USB gamepad, you will need to map its buttons to the emulated console's controls. Each emulator has a settings or preferences menu where you can assign physical buttons to the console's A, B, Start, Select, and directional inputs. Plug in your controller first, then open the input/controller settings and map each button by pressing it when prompted.
+All three emulators work immediately after install with keyboard controls. If you have a USB gamepad, you will need to map its buttons to the emulated console's controls. Each emulator has a settings or preferences menu where you can assign physical buttons to the console's A, B, Start, Select, and directional inputs. Plug in your controller first, then open the input/controller settings and map each button by pressing it when prompted. If you run into trouble, see the [Tech Supplement](tech_supplement.md).
 
 ---
 

@@ -24,13 +24,14 @@ Concepts: Processor architecture (x86-64, ARM), Linux filesystem hierarchy, perm
 
 | # | Topic | Type |
 |---|-------|------|
+| — | [Retro Computing Exploration](unit-2-linux/retro_computing.md) | Class activity |
 | 1 | [Processor Architecture](unit-2-linux/processor_architecture.md) | Notes |
 | 2 | [Filesystem Hierarchy](unit-2-linux/filesystem_hierarchy.md) | Notes |
 | 3 | [Permissions and Ownership](unit-2-linux/permissions_and_ownership.md) | Notes |
 | 4 | [Processes and Services](unit-2-linux/processes_and_services.md) | Notes |
 | 5 | [Pipes and Redirection](unit-2-linux/pipes_and_redirection.md) | Notes |
-| 6 | Troubleshooting Exercise | Exercise |
+| 6 | [Troubleshooting Exercise 1](unit-2-linux/troubleshooting/scenario-1/README.md) (Scenarios 1–3) | Exercise |
 | 7 | [Package Management](unit-2-linux/package_management.md) | Notes |
+| — | [Troubleshooting Exercise 2](unit-2-linux/troubleshooting-2/scenario-4/README.md) (Scenarios 4–6) | Exercise |
 | 8 | [Capstone: Retro Gaming — Emulation on Linux](unit-2-linux/capstone_emulator_project.md) | Assignment |
 | — | [Tech Supplement: Emulation Setup](unit-2-linux/tech_supplement.md) | Reference |
-| — | [Retro Computing Exploration](retro_computing.md) | Class activity |

@@ -245,6 +245,8 @@ Submit the `.zip` file as instructed.
 
 **Class file share.** Start here. NES, Game Boy, GBA, and SNES ROM collections are available on the class file share. Browse by system folder to see what's available.
 
+**Google Drive.** The same ROM collection is also available on the [classroom Google Drive share](https://drive.google.com/drive/folders/1CmMt-jrd8PWXR8gnmJWKtfcBfpMcjUl4) if you can't reach the file server.
+
 **Archive.org.** For ROMs not on the class share, [archive.org](https://archive.org) has large collections organized by system. Search the system name, for example *NES ROM set* or *Game Boy ROM collection*. These are copyrighted games and hosting them is a legal grey area, but Archive.org operates as a software preservation archive and is the most reputable place to find this material. Be careful of venturing into dark places on the internet looking for bootlegs.
 
 > [!TIP]

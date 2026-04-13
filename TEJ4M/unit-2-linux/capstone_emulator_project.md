@@ -61,7 +61,9 @@ This table is a starting point. Your report should go deeper: research the speci
 
 ## What You're Building
 
-Pick something to **trace across three generations of gaming hardware**: the NES, the Game Boy (or Game Boy Advance), and the Super Nintendo.
+Pick something to **trace across three generations of gaming hardware**: the NES, the Game Boy, and the Super Nintendo.
+
+Your retrospective can cover more than three titles, but your first three must be one from each of these platforms, in this order. The file share has Game Boy Color and Game Boy Advance ROMs mixed in with the original Game Boy collection — those are later hardware released after the SNES, so they don't fit the arc. For your required Game Boy entry, pick an original `.gb` file. (You can explore GBC or GBA as extras if you're curious.)
 
 Your subject could be a franchise, a genre, or a concept:
 
@@ -94,7 +96,7 @@ Launch with `fceux` at the terminal, or find it in the application menu. **File 
 sudo apt install mgba-qt
 ```
 
-Launch with `mgba-qt` at the terminal or from the application menu. mGBA handles original Game Boy, Game Boy Color, and Game Boy Advance ROMs in one package.
+Launch with `mgba-qt` at the terminal or from the application menu. mGBA handles original Game Boy (`.gb`), Game Boy Color (`.gbc`), and Game Boy Advance (`.gba`) ROMs in one package. The class file share has all three mixed together in the Game Boy folder — for the required Game Boy entry in this project, use an original `.gb` file.
 
 ### Super Nintendo: Snes9x
 

@@ -206,6 +206,32 @@ images/
 
 Give image files descriptive names. Reference them in your README using the image syntax described in the *Writing in Markdown* section below.
 
+### Citing Your Sources
+
+You do not need a bibliography, works cited page, or footnotes. When you state a fact you looked up, link to where you found it — inline, the way Wikipedia does. That's it.
+
+**What needs a citation:** Hardware specs, release dates, historical facts, anything you looked up that a reader might want to verify.
+
+**What doesn't:** Your own observations, opinions, and inferences.
+
+Here's the same paragraph — first without citations, then with:
+
+> "The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out five years later. This is likely because the hardware had fewer audio channels, giving game designers fewer virtual instruments to work with."
+
+> "The sound in Super Mario Land is noticeably thinner than the NES version, even though the [Game Boy came out five years later](https://en.wikipedia.org/wiki/Game_Boy). This is likely because the hardware had [fewer audio channels](https://gbdev.io/pandocs/Audio.html), giving game designers fewer virtual instruments to work with."
+
+*"noticeably thinner"* is your opinion — no citation needed. *"likely because"* is your inference — no citation needed. But *"Game Boy came out five years later"* is a date you verified, and *"fewer audio channels"* is a hardware spec — both get a link.
+
+In Markdown, an inline link looks like this:
+
+```markdown
+The [Game Boy came out five years later](https://en.wikipedia.org/wiki/Game_Boy).
+```
+
+Link to the specific page or article where you found the information. If you can't find a source for something, either remove the claim or mark it as your own speculation with "I think" or "probably."
+
+---
+
 ### Taking Screenshots on Lubuntu
 
 These machines do not have a Print Screen key. Use **Graphics > ScreenGrab** from the application menu to capture your screen.
@@ -344,15 +370,15 @@ Achievement levels correspond to Ontario grading bands:
 
 ### Documentation & Presentation — /15 (Communication)
 
-**Assesses the quality of your README as a document: structure, markdown formatting, screenshot quality and captions, and overall presentation.**
+**Assesses the quality of your README as a document: structure, markdown formatting, screenshot quality and captions, inline citations, and overall presentation.**
 
 | Level | Descriptor |
 |:-----:|------------|
-| **4+** | README reads as a polished, publication-quality retrospective. Image selection and captioning are strong; every screenshot earns its place. Markdown is used with confidence and creativity beyond the basics (tables, blockquotes, structure that serves the content). The document has a clear editorial identity. |
-| **4** | README is well-structured with a clear heading hierarchy. Screenshots are purposeful and captioned. Markdown is used correctly and effectively throughout. The document reads as a coherent retrospective rather than a checklist. |
-| **3** | README is organized and readable. Screenshots are present and correctly referenced. Markdown is used competently with minor formatting errors. |
-| **2** | Structure is present but inconsistent. Screenshots are included but may be uncaptioned or loosely connected to the writing. Markdown errors affect readability in places. |
-| **1** | Document is difficult to follow. Screenshots are missing or not integrated with the writing. Little evidence of intentional formatting. |
+| **4+** | README reads as a polished, publication-quality retrospective. Image selection and captioning are strong; every screenshot earns its place. Markdown is used with confidence and creativity beyond the basics (tables, blockquotes, structure that serves the content). Factual claims are consistently cited inline. The document has a clear editorial identity. |
+| **4** | README is well-structured with a clear heading hierarchy. Screenshots are purposeful and captioned. Markdown is used correctly and effectively throughout. Factual claims about hardware, dates, and specifications are cited with inline links. The document reads as a coherent retrospective rather than a checklist. |
+| **3** | README is organized and readable. Screenshots are present and correctly referenced. Markdown is used competently with minor formatting errors. Most factual claims are cited, with some gaps. |
+| **2** | Structure is present but inconsistent. Screenshots are included but may be uncaptioned or loosely connected to the writing. Markdown errors affect readability in places. Inline citations are sparse or missing. |
+| **1** | Document is difficult to follow. Screenshots are missing or not integrated with the writing. Little evidence of intentional formatting. No citations. |
 
 ---
 

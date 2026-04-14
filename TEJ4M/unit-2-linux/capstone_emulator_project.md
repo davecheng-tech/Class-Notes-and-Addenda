@@ -218,7 +218,7 @@ Here's the same paragraph as an example, first *without* citations, then *with*:
 
 > "The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out five years later. This is likely because the hardware had fewer audio channels, giving game designers fewer virtual instruments to work with."
 
-> "The sound in Super Mario Land is noticeably thinner than the NES version, even though the [Game Boy came out five years later](https://en.wikipedia.org/wiki/Game_Boy). This is likely because the hardware had [fewer audio channels](https://gbdev.io/pandocs/Audio.html), giving game designers fewer virtual instruments to work with."
+> "The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out [five years later](https://en.wikipedia.org/wiki/Game_Boy). This is likely because the hardware had [fewer audio channels](https://gbdev.io/pandocs/Audio.html), giving game designers fewer virtual instruments to work with."
 
 In the above example:
 - *"noticeably thinner"* is your opinion, so no citation needed. 
@@ -229,7 +229,7 @@ In the above example:
 In Markdown, an inline link looks like this:
 
 ```markdown
-The [Game Boy came out five years later](https://en.wikipedia.org/wiki/Game_Boy).
+The Game Boy came out [five years later](https://en.wikipedia.org/wiki/Game_Boy).
 ```
 
 Link to the specific page or article where you found the information. If you can't find a source for something, either remove the claim or mark it as your own speculation with "I think" or "probably."

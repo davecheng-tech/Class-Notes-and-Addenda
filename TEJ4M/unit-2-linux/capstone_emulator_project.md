@@ -214,13 +214,16 @@ You do not need a bibliography, works cited page, or footnotes. When you state a
 
 **What doesn't:** Your own observations, opinions, and inferences.
 
-Here's the same paragraph as an example, first *without* citations, then *with*:
+Here's the same paragraph as an example, first *without* citations:
 
 > "The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out five years later. This is likely because the hardware had fewer audio channels, giving game designers fewer virtual instruments to work with."
+
+Then *with* citations:
 
 > "The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out [five years later](https://en.wikipedia.org/wiki/Game_Boy). This is likely because the hardware had [fewer audio channels](https://gbdev.io/pandocs/Audio.html), giving game designers fewer virtual instruments to work with."
 
 In the above example:
+
 - *"noticeably thinner"* is your opinion, so no citation needed. 
 - *"likely because"* is your inference, so no citation needed. 
 - *"Game Boy came out five years later"* is a date you verified, so we have a link to a source.

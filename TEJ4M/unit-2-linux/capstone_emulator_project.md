@@ -208,19 +208,23 @@ Give image files descriptive names. Reference them in your README using the imag
 
 ### Citing Your Sources
 
-You do not need a bibliography, works cited page, or footnotes. When you state a fact you looked up, link to where you found it — inline, the way Wikipedia does. That's it.
+You do not need a bibliography, works cited page, or footnotes. When you state a fact you looked up, link to where you found [inline](https://www.markdownlang.com/basic/links.html), the way Wikipedia does. That's it.
 
 **What needs a citation:** Hardware specs, release dates, historical facts, anything you looked up that a reader might want to verify.
 
 **What doesn't:** Your own observations, opinions, and inferences.
 
-Here's the same paragraph — first without citations, then with:
+Here's the same paragraph as an example, first *without* citations, then *with*:
 
 > "The sound in Super Mario Land is noticeably thinner than the NES version, even though the Game Boy came out five years later. This is likely because the hardware had fewer audio channels, giving game designers fewer virtual instruments to work with."
 
 > "The sound in Super Mario Land is noticeably thinner than the NES version, even though the [Game Boy came out five years later](https://en.wikipedia.org/wiki/Game_Boy). This is likely because the hardware had [fewer audio channels](https://gbdev.io/pandocs/Audio.html), giving game designers fewer virtual instruments to work with."
 
-*"noticeably thinner"* is your opinion — no citation needed. *"likely because"* is your inference — no citation needed. But *"Game Boy came out five years later"* is a date you verified, and *"fewer audio channels"* is a hardware spec — both get a link.
+In the above example:
+- *"noticeably thinner"* is your opinion, so no citation needed. 
+- *"likely because"* is your inference, so no citation needed. 
+- *"Game Boy came out five years later"* is a date you verified, so we have a link to a source.
+- *"fewer audio channels"* is a hardware spec, here featuring a link to more than just a spec sheet, but rather a resource that further elaborates on the audio capabilities of the Game Boy.
 
 In Markdown, an inline link looks like this:
 

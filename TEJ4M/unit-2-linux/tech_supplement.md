@@ -8,6 +8,7 @@ This document covers setup details that will come up during the project. It will
 - [Getting ROMs: Google Drive](#getting-roms-google-drive)
 - [ROM File Extensions](#rom-file-extensions)
 - [Unzipping GBA ROMs](#unzipping-gba-roms)
+- [Super Game Boy Enhanced ROMs](#super-game-boy-enhanced-roms)
 - [Controllers](#controllers)
   - [Snes9x: Controller Not Responding](#snes9x-controller-not-responding)
   - [Bluetooth Pairing (Advanced)](#bluetooth-pairing-advanced)
@@ -110,6 +111,22 @@ unzip "ROM Name.zip"
 ```
 
 This produces a `.gba` file in the same folder. Open that file in mGBA.
+
+---
+
+## Super Game Boy Enhanced ROMs
+
+The Super Game Boy was a cartridge adapter released in 1994 that plugged into a Super Nintendo, letting you play Game Boy games on a TV. It was a bridge between two separate consoles, not a standalone system, and some games included optional SGB-specific features like fancy colour palettes and custom borders.
+
+ROMs labelled **"Super Game Boy Enhanced"** contain those extra features, but they were designed for SGB hardware. When mGBA opens one of these ROMs, you'll be looking at an enhanced 1994 version of the game, not what it looked like on 1989hardware.
+
+To lock mGBA to standard Game Boy mode for these ROMs:
+
+**mGBA → Tools → Settings → Game Boy**
+
+Change **SGB Compatible** to **Game Boy**.
+
+The game will run as a normal Game Boy title without any SGB-specific behaviour.
 
 ---
 

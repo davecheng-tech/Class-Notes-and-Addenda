@@ -310,14 +310,18 @@ Normal paragraph text. Just write normally.
 [Link text](https://example.com)
 ```
 
-Use a browser-based editor to write your markdown and see the rendered output side by side:
+Since your document includes embedded screenshots, a desktop Markdown editor works better than an online one. The recommended editor is **[Bokuchi](https://bokuchi.com/)**, which is available for macOS, Windows, and Linux and provides a live preview with inline images as you write.
 
-- [markdowneditor.net](https://markdowneditor.net/markdown-editor/)
-
-When you are ready to save your work, copy the text into `README.md` using nano:
+**On the C720 Chromebook (Lubuntu)**, the simplest option is to edit directly in the terminal:
 
 ```bash
 nano README.md
+```
+
+To preview the rendered output, double-click your `.md` file in the file manager (Okular will open it), or run:
+
+```bash
+okular README.md
 ```
 
 **Reference and tutorial:**

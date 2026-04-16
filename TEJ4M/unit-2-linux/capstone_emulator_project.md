@@ -184,9 +184,16 @@ This is vague and says next to nothing.
 
 Add a final section covering the same subject on a modern platform.
 
-This does not need to run on your Chromebook. A screenshot from a mobile phone game, a current console, a browser, a PC, or a game streaming service all count.
+**If your franchise is still active**, find a recent entry on a current platform, e.g., Nintendo Switch, PlayStation 5, Xbox Series X, PC, or mobile. What does the modern version look like? What changed?
 
-What does your subject look like in 2026? What changed? What, surprisingly, stayed the same?
+**If your franchise ended**, find a *spiritual successor*: a modern game that is clearly influenced by, or continues the spirit of, what you played. A modern metroidvania if you traced Castlevania. A modern puzzle platformer if you followed Kirby. A modern competitive puzzler if you played Tetris. The connection should be visible and worth explaining.
+
+**For screenshots**, use whatever you have access to:
+
+- If you own the game, play it and take your own screenshots.
+- If you don't, find a streamer on [YouTube](https://www.youtube.com) or [Twitch](https://www.twitch.tv) playing the game, watch a few minutes of actual gameplay, and grab a screenshot directly from your browser. Don't just use a promotional image or box art. Instead, capture something from real gameplay that connects to what you were observing in the retro versions.
+
+The goal is a meaningful comparison. What does your subject look like in 2026? What changed? What, surprisingly, stayed the same?
 
 ---
 

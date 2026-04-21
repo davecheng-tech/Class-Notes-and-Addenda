@@ -74,15 +74,13 @@ A single transistor configured as an inverter flips the signal: when it is on, t
 
 Every logic gate in a CPU (and therefore every instruction, every calculation, every pixel on your screen) is ultimately a small arrangement of transistors doing exactly this.
 
-```
-Two transistors in series:       Two transistors in parallel:
-                                     
-   ┌──[T1]──[T2]──┐                  ┌──[T1]──┐
-IN ┤              ├ OUT           IN ┤──[T2]──├ OUT
-   └──────────────┘                  └────────┘
+**In series = AND behaviour:** both switches must be closed for current to flow.
 
-   AND: both must be ON          OR: either can be ON
-```
+![Two switches in series](images/switches-series.png)
+
+**In parallel = OR behaviour:** either switch being closed is enough for current to flow.
+
+![Two switches in parallel](images/switches-parallel.png)
 
 > [!NOTE]
 > Real CMOS gates use complementary pairs of transistors (PMOS and NMOS) for better efficiency, so the actual transistor count per gate is typically 4–6. But the logical behaviour is exactly what the AND/OR description above predicts.

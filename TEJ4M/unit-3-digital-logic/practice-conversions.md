@@ -55,7 +55,7 @@ A projector displays an image when a valid signal is connected (VGA or HDMI) and
 | 1 | 0 | 0 | 0 |
 | 1 | 0 | 1 | 0 |
 | 1 | 1 | 0 | 0 |
-| 1 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 0 |
 
 Once you have your equation, describe in one sentence what this circuit does.
 

@@ -10,29 +10,29 @@ For each circuit you build, toggle all input combinations and confirm the output
 
 For each truth table below: (1) derive the Boolean equation using the SOP method, and (2) build the circuit in CircuitVerse and verify it.
 
-### A1. Car Starter
+### A1. Car Starter (Manual Transmission)
 
-A car engine starts when the key is turned AND the car is in park OR neutral, but not both simultaneously.
+A manual transmission car starts when the key is turned and the clutch pedal is pressed. The car can start in any gear as long as the clutch is engaged.
 
-| A (Key) | B (Park) | C (Neutral) | Z (Starts) |
-|---------|----------|-------------|------------|
+| A (Key) | B (Neutral) | C (Clutch) | Z (Starts) |
+|---------|-------------|------------|------------|
 | 0 | 0 | 0 | 0 |
 | 0 | 0 | 1 | 0 |
 | 0 | 1 | 0 | 0 |
 | 0 | 1 | 1 | 0 |
 | 1 | 0 | 0 | 0 |
 | 1 | 0 | 1 | 1 |
-| 1 | 1 | 0 | 1 |
-| 1 | 1 | 1 | 0 |
+| 1 | 1 | 0 | 0 |
+| 1 | 1 | 1 | 1 |
 
 ---
 
 ### A2. LCD Projector
 
-A projector displays an image when a valid signal is connected (VGA or S-Video) and the lamp temperature is acceptable. When both VGA and S-Video are connected, it defaults to VGA.
+A projector displays an image when a valid signal is connected (VGA or HDMI) and the lamp temperature is acceptable. When both VGA and HDMI are connected, it defaults to HDMI.
 
-| A (VGA) | B (S-Video) | C (Good Temp) | Z (Projecting) |
-|---------|-------------|---------------|----------------|
+| A (VGA) | B (HDMI) | C (Good Temp) | Z (Projecting) |
+|---------|----------|---------------|----------------|
 | 0 | 0 | 0 | 0 |
 | 0 | 0 | 1 | 0 |
 | 0 | 1 | 0 | 0 |
@@ -208,6 +208,6 @@ This circuit is called a **majority gate**: Z = 1 when the majority of inputs ar
 
 ## Challenge
 
-Take the equation from A1 (car starter) and simplify it using Boolean algebra laws. State which laws you used at each step and count the gates before and after.
+Take the equation from A1 (manual car starter) and simplify it using Boolean algebra laws. State which laws you used at each step and count the gates before and after.
 
-Then verify in CircuitVerse that the simplified circuit produces the same truth table as the original.
+Then verify in CircuitVerse that the simplified circuit produces the same truth table as the original. What does the simplified equation tell you about the role of input B?

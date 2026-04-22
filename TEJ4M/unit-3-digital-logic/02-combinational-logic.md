@@ -37,9 +37,9 @@ All four say the same thing. Being able to translate between them is the core sk
 
 The tool used for building and testing circuits in this unit is **CircuitVerse**, a free browser-based logic simulator. You do not need to install anything.
 
-Access it at [circuitverse.org](https://circuitverse.org) and use **Launch Simulator** to open the editor. You can add inputs (switches), gates, and outputs (lights/probes) from the panel on the left.
+Access it at [circuitverse.org](https://circuitverse.org) and click on  **Simulator** (top menubar, left side) to open the editor. You can add inputs (switches), gates, and outputs (lights/probes) from the panel on the left.
 
-Build the circuit, toggle the inputs, and verify that the outputs match the truth table you expect. CircuitVerse saves to your account if you sign in, or to the browser otherwise.
+Build the circuit, toggle the inputs, and verify that the outputs match the truth table you expect. Since YCDSB has blocked the ability to sign-in with the Google account, you will need to export (download) and import (upload) your project as `.cv` files.
 
 <br>
 

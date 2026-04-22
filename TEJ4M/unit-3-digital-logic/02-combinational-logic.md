@@ -298,10 +298,7 @@ Notice this is the truth table for XOR. The equation `(A'·B) + (A·B')` is equi
 
 ## 9. Summary: The Conversion Map
 
-```
-Truth Table ←→ Equation ←→ Circuit Diagram
-      ↑________________________________↑
-```
+![The three representations of a logic circuit — truth table, Boolean equation, and circuit diagram — are all interconvertible](images/s9-summary-conversion-map.png)
 
 Every conversion is possible in both directions. The SOP method gets you from a truth table to an equation or circuit. Tracing gates gets you from a circuit to an equation or truth table. Sub-expression columns get you from an equation to a truth table.
 

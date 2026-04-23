@@ -202,11 +202,3 @@ Build the truth table with intermediate columns.
 | 1 | 1 | 1 | | | | |
 
 This circuit is called a **majority gate**: Z = 1 when the majority of inputs are 1. Confirm that the truth table matches that description.
-
----
-
-## Challenge
-
-Take the equation from A1 (manual car starter) and simplify it using Boolean algebra laws. State which laws you used at each step and count the gates before and after.
-
-Then verify in CircuitVerse that the simplified circuit produces the same truth table as the original. What does the simplified equation tell you about the role of input B?

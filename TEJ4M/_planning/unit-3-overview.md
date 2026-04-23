@@ -23,14 +23,10 @@ The unit has two natural halves:
 | 2 | Four representations; SOP method; Truth Table → Circuit and Equation (car starter worked example) | Socratic + demo | — | `02-combinational-logic.md` §1–4 |
 | — | **In-class practice:** A1–A2 (`practice-conversions.md`) — students build in CircuitVerse and verify | Paired | Completion | — |
 | — | **Homework:** A3–A4 (`practice-conversions.md`) | Independent | Completion | — |
-| 3 | Equation → Circuit (inside-out method; examples with solution dropdowns) | Live build in CircuitVerse | — | `02-combinational-logic.md` §5 |
-| — | **In-class practice:** B1–B4 (`practice-conversions.md`) | Independent | Completion | — |
-| 4 | Circuit → Equation; Circuit → Truth Table (intermediate columns) | Demo using circuit images in notes | — | `02-combinational-logic.md` §6–7 |
-| — | **In-class practice:** Parts C and D (`practice-conversions.md`) | Independent | Completion | — |
-| — | **Homework:** `homework.md` (assigned, due period 6) | Independent | Completion | — |
-| 5 | Equation → Truth Table; Summary / conversion map | Demo + practice | — | `02-combinational-logic.md` §8–9 |
-| — | **In-class:** A5 (`practice-conversions.md`) + challenge problem | Paired | — | — |
-| 6 | Boolean simplification: laws, worked examples, before/after gate count | Lecture + guided practice | — | `03-boolean-simplification.md` |
+| 3 | All six conversions: Equation → Circuit (inside-out), Circuit → Equation, Circuit → Truth Table, Equation → Truth Table; summary conversion map | Socratic lecture + live CircuitVerse build demo | `homework.md` assigned (due period 5) | `02-combinational-logic.md` §5–9 |
+| — | **In-class practice:** B1–B4 and Parts C, D (`practice-conversions.md`) as time allows | Independent | Completion | — |
+| 4 | `homework.md` work period — all six conversion types | Independent with check-ins | `homework.md` in progress | — |
+| 5 | Boolean simplification: laws, worked examples, before/after gate count | Lecture + guided practice | `homework.md` due | `03-boolean-simplification.md` |
 | — | Homework review; Practice Parts A–B (`practice-simplification.md`) | — | Completion | — |
 | 7 | Simplification practice + consolidation | Independent work | — | `practice-simplification.md` Parts B–C |
 | 8 | **Combinational logic test** (conversions + simplification) | Written, closed-note | **Summative (KU, APP, COMM, TIPS)** | — |
@@ -94,6 +90,6 @@ The unit has two natural halves:
 
 ## Open items
 - Practice problems in `practice-conversions.md` Parts C and D use text-described circuits — consider adding CircuitVerse screenshots if students find them hard to follow from description alone
-- The `homework.md` security system problem (Problem 1) has 4 inputs and 16 rows — may be too long for homework; consider replacing with a 3-input problem
+- `homework.md` is intentionally long (16 problems, all six conversion directions) — period 4 is a dedicated work period; students should not expect to finish it entirely at home after period 3
 - ALU assignment: confirm CircuitVerse has a Splitter component available before assigning (needed for 4-bit bus routing)
 - Buffer period at end of unit (period 14) doubles as ALU demo day — if demos run short, can use time for unit 4 preview or free build

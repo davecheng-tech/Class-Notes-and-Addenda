@@ -1,6 +1,6 @@
 # Homework: Combinational Logic Conversions
 
-Complete the following problems independently. For Sections 1 and 2, derive the Boolean equation using the SOP method, then build and test the circuit in CircuitVerse. For Sections 3 and 4, build circuits or write equations as directed.
+Complete the following problems independently. For Section 1, build and verify circuits using any approach that works for you. For Section 2, use the SOP method. For Sections 3 and 4, build circuits or write equations as directed.
 
 Screenshot or export your CircuitVerse circuits with input labels, output labels, and all inputs toggled to a row where Z = 1 (as proof of testing).
 
@@ -8,7 +8,7 @@ Screenshot or export your CircuitVerse circuits with input labels, output labels
 
 ## Section 1 — Truth Table → Circuit
 
-For each truth table: derive the SOP equation, then build and verify the circuit in CircuitVerse.
+For each problem: build the circuit in CircuitVerse using the word description or the SOP method — your choice. Then verify that your circuit produces outputs that match the truth table.
 
 ### 1. Security System
 

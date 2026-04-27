@@ -23,7 +23,7 @@ For the engineer, fewer gates means:
 - **Cooler:** fewer gates generating less heat
 - **More reliable:** fewer components that can fail
 
-Every circuit manufactured at scale — a CPU, a graphics card, a microcontroller — was optimized using techniques like Boolean simplification. The principles here are the same ones used in industrial chip design.
+Every circuit manufactured at scale (e.g., CPU, graphics card, microcontroller) was optimized using techniques like Boolean simplification. The principles here are the same ones used in industrial chip design.
 
 <br>
 
@@ -32,59 +32,109 @@ Every circuit manufactured at scale — a CPU, a graphics card, a microcontrolle
 The following identities hold for any Boolean variables A and B. You can apply any of these at any step of a simplification.
 
 ### Identity Laws
+
+OR-ing with 0 or AND-ing with 1 leaves a variable unchanged — the same way adding 0 or multiplying by 1 does nothing in regular algebra. These constants are "neutral" elements that contribute nothing to the result, so any term involving them can be immediately simplified.
+
 ```
 A + 0 = A
 A · 1 = A
 ```
 
 ### Null (Domination) Laws
+
+Certain constant inputs override everything else. OR-ing any value with 1 always gives 1 — a guaranteed HIGH on one input dominates the gate. AND-ing any value with 0 always gives 0 — a guaranteed LOW shuts the gate down regardless of A. If you know one input to a gate is fixed at 0 or 1, you can collapse the entire expression immediately.
+
 ```
 A + 1 = 1
 A · 0 = 0
 ```
 
 ### Idempotent Laws
+
+(*Pronounced eye-DEM-puh-tent*.) Combining a variable with itself produces no change. OR-ing a signal with itself gives the same signal back; AND-ing it with itself does too. A duplicate term in an expression is simply redundant — you can drop the extra copy. This has no direct parallel in regular algebra (where `x + x = 2x`), making it one of the distinctly Boolean identities.
+
 ```
 A + A = A
 A · A = A
 ```
 
 ### Complement Laws
+
+A variable and its complement together always resolve to a constant. OR-ing A with NOT-A covers every possible case — either A is 1, or its complement is — so the result is always 1. AND-ing them requires both to be 1 simultaneously, which is impossible, so the result is always 0. Spotting a variable and its complement in an expression is one of the most powerful shortcuts in simplification.
+
 ```
 A + A' = 1
 A · A' = 0
 ```
 
 ### Double Negation
+
+Two NOT operations cancel each other out. Inverting a signal twice returns it to its original value. This appears naturally when applying De Morgan's laws multiple times, or when NOT gates accumulate in a circuit. Any time you see two consecutive inversions, eliminate both.
+
 ```
 (A')' = A
 ```
 
 ### Commutative Laws
+
+The order of inputs to an OR or AND gate doesn't matter — the gate produces the same output regardless. This mirrors regular algebra and gives you the freedom to reorder terms during simplification to bring matching or complementary variables together.
+
 ```
 A + B = B + A
 A · B = B · A
 ```
 
 ### Associative Laws
+
+When the same operation is chained, the grouping doesn't matter. A three-input OR (or AND) gives the same result no matter how you parenthesize the pairs. This means you can freely re-group sub-expressions to make factoring or pattern-matching easier, without changing the circuit's behaviour.
+
 ```
 (A + B) + C = A + (B + C)
 (A · B) · C = A · (B · C)
 ```
 
 ### Distributive Laws
+
+AND distributes over OR the same way multiplication distributes over addition in regular algebra. Boolean algebra adds a second form with no regular-algebra equivalent: OR also distributes over AND. You use these laws in both directions — forward to expand a factored expression, and in reverse to factor out a common term. Factoring (reverse distributive) is one of the most common and powerful moves in simplification.
+
 ```
 A · (B + C) = AB + AC          ← AND distributes over OR
 A + (B · C) = (A + B)(A + C)   ← OR distributes over AND
 ```
 
 ### Absorption Laws
+
+A term that already contains A is fully "covered" by A alone. In `A + AB`, whenever AB is 1, A must already be 1 — so AB contributes nothing that A doesn't already provide. The whole expression collapses to just A. This law lets you eliminate entire product terms without expanding them, making it especially useful when a shorter term appears alongside longer ones that share it as a factor.
+
 ```
 A + AB = A
 A · (A + B) = A
 ```
 
+The complement on the absorbed variable doesn't matter. `A + AB'` still absorbs to `A`, because AB' can only be 1 when A is already 1:
+
+```
+A + AB' = A
+```
+
+The law also scales to longer terms. Here AB plays the role of "A" in the law, and C plays the role of "B":
+
+```
+AB + ABC = AB
+```
+
+And it extends to more than two terms in the sum. Any term that contains a shorter term as a factor is redundant:
+
+```
+C + ABC = C
+```
+
+**In practice:** Scan your expression for a shorter term that appears as a subset of a longer one. The longer term absorbs away and can be dropped immediately. No expansion needed.
+
 ### De Morgan's Laws
+
+When you invert the output of a gate, De Morgan's laws tell you what that's equivalent to: NOT-AND becomes OR-with-inverted-inputs, and NOT-OR becomes AND-with-inverted-inputs. In plain English, the NOT distributes inward and the operation flips between AND and OR. These are essential for converting between gate types and for simplifying expressions that apply NOT over a group of variables.
+
 ```
 (A · B)' = A' + B'
 (A + B)' = A' · B'
@@ -93,6 +143,9 @@ A · (A + B) = A
 De Morgan's laws are especially important. They let you convert between NAND and NOR representations, and simplify expressions that involve NOT over a group.
 
 ### XOR Identity
+
+Two product terms where one variable is complemented in each — and they differ only in which variable is complemented — are XOR in disguise. XOR outputs 1 when exactly one of its inputs is 1, which is precisely what `A'B + AB'` expresses. Recognizing this pattern lets you replace two AND gates and a NOT with a single XOR gate.
+
 ```
 A'B + AB' = A ⊕ B
 ```
@@ -100,7 +153,7 @@ A'B + AB' = A ⊕ B
 This one is worth recognizing. If you see two terms where one variable is inverted in each, and they differ by which variable is complemented, that is XOR in disguise.
 
 > [!NOTE]
-> These identities work like regular algebra in most respects — but not all. `A² = A` in Boolean algebra (idempotent law), which has no parallel in regular algebra. Similarly, `A + 1 = 1`, not `A + 1 = A + 1`.
+> These identities work like regular algebra in most respects, *but not all*. `A² = A` in Boolean algebra (idempotent law), which has no parallel in regular algebra. Similarly, `A + 1 = 1`, not `A + 1 = A + 1`.
 
 <br>
 
@@ -128,13 +181,13 @@ Z = A'·B·C + A·B'·C
 
 Count the gates before simplification: 2 NOT gates (A', B'), 2 three-input AND gates, 1 OR gate = **5 gates**.
 
-**Step 1 — Factor out C:**
+**Step 1: Factor out C:**
 ```
 Z = C · (A'B + AB')
 ```
 *Distributive law (reverse)*
 
-**Step 2 — Recognize XOR:**
+**Step 2: Recognize XOR:**
 ```
 Z = C · (A ⊕ B)
 ```

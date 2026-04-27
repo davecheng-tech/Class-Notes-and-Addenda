@@ -302,7 +302,7 @@ Report the count before simplification and after, and identify how many laws you
 
 ## 8. Quick Reference
 
-Both notation styles are in common use. Prime notation (`A'`) is standard in most textbooks. Overbar notation (`Ā`) is common in circuit diagrams and datasheets where the bar is drawn directly over the signal name.
+Both notation styles are in common use. Prime notation (`A'`) is standard in most textbooks. Overbar notation (`Ā`) is common in circuit diagrams and datasheets where the bar is drawn directly over the signal name. For De Morgan's laws, the left-hand side requires a bar spanning a compound expression (e.g., a bar over `AB` as a whole) — this cannot be rendered in plain text, so prime notation is used on the left side of those rows.
 
 | Law | Prime ( `'` ) notation | Overbar notation |
 |---|---|---|
@@ -315,7 +315,7 @@ Both notation styles are in common use. Prime notation (`A'`) is standard in mos
 | **Associative** | `(A+B)+C = A+(B+C)` <br> `(A·B)·C = A·(B·C)` | (A+B)+C = A+(B+C) <br> (A·B)·C = A·(B·C) |
 | **Distributive** | `A·(B+C) = AB+AC` <br> `A+(BC) = (A+B)(A+C)` | A·(B+C) = AB+AC <br> A+(BC) = (A+B)(A+C) |
 | **Absorption** | `A + AB = A` <br> `A·(A+B) = A` | A + AB = A <br> A·(A+B) = A |
-| **De Morgan's** | `(A·B)' = A' + B'` <br> `(A+B)' = A'·B'` | <span style="text-decoration:overline">AB</span> = A̅ + B̅ <br> <span style="text-decoration:overline">A+B</span> = A̅ · B̅ |
+| **De Morgan's** | `(A·B)' = A' + B'` <br> `(A+B)' = A'·B'` | (A·B)' = A̅ + B̅ <br> (A+B)' = A̅ · B̅ |
 | **XOR Identity** | `A'B + AB' = A ⊕ B` | A̅B + AB̅ = A ⊕ B |
 
 <br>

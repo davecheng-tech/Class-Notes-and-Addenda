@@ -6,9 +6,9 @@ Verify your simplified circuits in CircuitVerse by confirming both forms produce
 
 ---
 
-## Part A — Equation → Circuit (Before Simplification)
+## Part A — Equation → Circuit
 
-Build the following circuits in CircuitVerse before attempting to simplify them. This gives you a reference to verify your simplified version against.
+Build the following circuits in CircuitVerse. Each expression is given as an equation — translate it directly into a logic circuit, then count how many gates you used. This is circuit-building practice only; no simplification required here.
 
 ### A1.
 ```
@@ -42,11 +42,63 @@ Draw the circuit. How many gates does it use?
 
 ---
 
-## Part B — Simplification Practice
+## Part B — Fill in the Steps
+
+Each problem below shows you where the simplification starts and where it ends. Fill in all the steps in between and name the law at each one. Your path may use more or fewer steps than someone else's — that's fine, as long as every step is valid.
+
+### B1.
+
+```
+Z = A·B + A·B'
+
+  ⋮
+
+  = A
+```
+
+---
+
+### B2.
+
+```
+Z = (A·B)' · B
+
+  ⋮
+
+  = A'·B
+```
+
+---
+
+### B3.
+
+```
+Z = (A + B) · (A + C)
+
+  ⋮
+
+  = A + B·C
+```
+
+---
+
+### B4.
+
+```
+Z = A·B·C + A·B·C' + A·B'·C
+
+  ⋮
+
+  = A·(B + C)
+```
+
+---
+
+## Part C — Simplification Practice
 
 Simplify each expression. Name every law you use. Then count gates before and after.
 
-### B1.
+### C1.
 ```
 Z = A·B' + A·(B' + C) + B·(B' + C)
 ```
@@ -55,7 +107,7 @@ Z = A·B' + A·(B' + C) + B·(B' + C)
 
 ---
 
-### B2.
+### C2.
 ```
 Z = [A·B·(C + B·D) + A'·B']·C
 ```
@@ -64,7 +116,7 @@ Z = [A·B·(C + B·D) + A'·B']·C
 
 ---
 
-### B3.
+### C3.
 ```
 Z = A'·B·C + A'·B·C' + A·B·C' + A·B'·C' + A·B·C
 ```
@@ -73,7 +125,7 @@ Z = A'·B·C + A'·B·C' + A·B·C' + A·B'·C' + A·B·C
 
 ---
 
-## Part C — Equation → Circuit → Simplify → Verify
+## Part D — Equation → Circuit → Simplify → Verify
 
 For each problem:
 1. Build the original circuit in CircuitVerse
@@ -83,9 +135,9 @@ For each problem:
 5. Confirm the truth tables match
 6. State how many gates you saved
 
-### C1.
+### D1.
 
-Start with the truth table from practice problem A5 (the one with minterms at rows 001, 110):
+Start with this truth table (minterms at rows 001 and 110):
 
 | A | B | C | Z |
 |---|---|---|---|
@@ -102,7 +154,7 @@ Write the SOP equation, then simplify it as far as you can.
 
 ---
 
-### C2.
+### D2.
 
 Start with:
 ```

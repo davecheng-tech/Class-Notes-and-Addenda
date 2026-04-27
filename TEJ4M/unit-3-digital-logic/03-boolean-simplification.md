@@ -195,13 +195,13 @@ Z = C · (A ⊕ B)
 
 **Result:** `Z = C · (A ⊕ B)`
 
-In plain English: the engine starts when the Key (C) is on AND Park XOR Neutral — exactly one of the two gear positions is selected.
+In plain English: the engine starts when the Key (C) is on AND Park XOR Neutral. Exactly one of the two gear positions is selected.
 
 Count the gates after simplification: 1 XOR gate, 1 AND gate = **2 gates**.
 
 That is a 60% reduction in gate count from the same truth table.
 
-**Before** (5 gates — from note 02):
+**Before** (5 gates, from our previous note):
 
 ![Car starter SOP circuit — 5 gates](images/car-starter-circuit.png)
 
@@ -223,30 +223,30 @@ Z = A'·B'·C' + A'·B'·C + A'·B·C' + A'·B·C + A·B'·C
 
 This has 5 minterms.
 
-**Step 1 — Factor A' from the first four terms:**
+**Step 1: Factor A' from the first four terms:**
 ```
 Z = A'·(B'C' + B'C + BC' + BC) + A·B'·C
 ```
 
-**Step 2 — Factor B' from the first two inner terms, and B from the last two:**
+**Step 2: Factor B' from the first two inner terms, and B from the last two:**
 ```
 Z = A'·(B'(C' + C) + B(C' + C)) + A·B'·C
 ```
 
-**Step 3 — Apply complement law, C' + C = 1:**
+**Step 3: Apply complement law, C' + C = 1:**
 ```
 Z = A'·(B'·1 + B·1) + A·B'·C
   = A'·(B' + B) + A·B'·C
 ```
 
-**Step 4 — Apply complement law, B' + B = 1:**
+**Step 4: Apply complement law, B' + B = 1:**
 ```
 Z = A'·1 + A·B'·C
   = A' + A·B'·C
 ```
 *Identity law*
 
-**Step 5 — Apply absorption-like reasoning (A' + A = 1, partial coverage):**
+**Step 5: Apply absorption-like reasoning (A' + A = 1, partial coverage):**
 
 Use the distributive law: `A' + AB'C = (A' + A)(A' + B'C) = 1 · (A' + B'C) = A' + B'C`
 

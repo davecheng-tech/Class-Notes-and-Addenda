@@ -302,21 +302,7 @@ Report the count before simplification and after, and identify how many laws you
 
 ## 8. Quick Reference
 
-Both notation styles are in common use. Prime notation (`A'`) is standard in most textbooks. Overbar notation (`Ā`) is common in circuit diagrams and datasheets where the bar is drawn directly over the signal name. For De Morgan's laws, the left-hand side requires a bar spanning a compound expression (e.g., a bar over `AB` as a whole) — this cannot be rendered in plain text, so prime notation is used on the left side of those rows.
-
-| Law | Prime ( `'` ) notation | Overbar notation |
-|---|---|---|
-| **Identity** | `A + 0 = A` <br> `A · 1 = A` | A + 0 = A <br> A · 1 = A |
-| **Null / Domination** | `A + 1 = 1` <br> `A · 0 = 0` | A + 1 = 1 <br> A · 0 = 0 |
-| **Idempotent** | `A + A = A` <br> `A · A = A` | A + A = A <br> A · A = A |
-| **Complement** | `A + A' = 1` <br> `A · A' = 0` | A + A̅ = 1 <br> A · A̅ = 0 |
-| **Double Negation** | `(A')' = A` | A̿ = A |
-| **Commutative** | `A + B = B + A` <br> `A · B = B · A` | A + B = B + A <br> A · B = B · A |
-| **Associative** | `(A+B)+C = A+(B+C)` <br> `(A·B)·C = A·(B·C)` | (A+B)+C = A+(B+C) <br> (A·B)·C = A·(B·C) |
-| **Distributive** | `A·(B+C) = AB+AC` <br> `A+(BC) = (A+B)(A+C)` | A·(B+C) = AB+AC <br> A+(BC) = (A+B)(A+C) |
-| **Absorption** | `A + AB = A` <br> `A·(A+B) = A` | A + AB = A <br> A·(A+B) = A |
-| **De Morgan's** | `(A·B)' = A' + B'` <br> `(A+B)' = A'·B'` | (A·B)' = A̅ + B̅ <br> (A+B)' = A̅ · B̅ |
-| **XOR Identity** | `A'B + AB' = A ⊕ B` | A̅B + AB̅ = A ⊕ B |
+![Boolean algebra laws quick reference](images/law-table.png)
 
 <br>
 

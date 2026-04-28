@@ -103,7 +103,7 @@ Simplify each expression. Name every law you use. Then count gates before and af
 Z = A·B' + A·(B' + C) + B·(B' + C)
 ```
 
-*Hint: start by expanding, then look for absorption.*
+*Hint: expand all three terms using the Distributive Law. You will find a complement pair that cancels to 0 and a duplicate term to eliminate. Your fully simplified answer has three terms. If an online solver shows two terms, it is using the Consensus theorem — a law we have not covered. Three terms is the expected stopping point.*
 
 ---
 
@@ -112,7 +112,7 @@ Z = A·B' + A·(B' + C) + B·(B' + C)
 Z = [A·B·(C + B·D) + A'·B']·C
 ```
 
-*Hint: consider what happens when you apply De Morgan's to the A'B' term.*
+*Hint: start by expanding A·B·(C + B·D) — watch for a repeated variable that Idempotent can clean up. Then distribute the outer ·C across the whole bracket (Idempotent handles C·C). At that point, look for a four-variable product term that can be absorbed into a shorter one. Factor out a common variable last.*
 
 ---
 
@@ -121,7 +121,7 @@ Z = [A·B·(C + B·D) + A'·B']·C
 Z = A'·B·C + A'·B·C' + A·B·C' + A·B'·C' + A·B·C
 ```
 
-*Hint: count the gates in the SOP form first. Look for factoring opportunities.*
+*Hint: look for pairs of terms that share two variables and differ only in whether the third is complemented — those pairs collapse to a two-variable product using Distributive, Complement, and Identity. There are two such pairs. After handling them, you will have three terms; factor again.*
 
 ---
 

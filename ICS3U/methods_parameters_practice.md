@@ -2,9 +2,8 @@
 
 These problems combine **looping logic** with **method parameters**. Each method takes one or more values as input and produces output via `System.out.print()` or `System.out.println()`.
 
-**Note:** You are **not** writing return statements yet — methods print their results directly to the console.
+**Note:** You are **not** writing return statements yet. These methods print their results directly to the console.
 
-**Scaffolding approach:**
 - **Problems 1–8:** Method header is provided; write the method body.
 - **Problems 9–15:** Write the full method header and body.
 

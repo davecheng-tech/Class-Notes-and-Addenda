@@ -137,20 +137,20 @@ For each problem:
 
 ### D1.
 
-Start with this truth table (minterms at rows 001 and 110):
+Start with this truth table (minterms at rows 011, 101, and 111):
 
 | A | B | C | Z |
 |---|---|---|---|
 | 0 | 0 | 0 | 0 |
-| 0 | 0 | 1 | 1 |
+| 0 | 0 | 1 | 0 |
 | 0 | 1 | 0 | 0 |
-| 0 | 1 | 1 | 0 |
+| 0 | 1 | 1 | 1 |
 | 1 | 0 | 0 | 0 |
-| 1 | 0 | 1 | 0 |
-| 1 | 1 | 0 | 1 |
-| 1 | 1 | 1 | 0 |
+| 1 | 0 | 1 | 1 |
+| 1 | 1 | 0 | 0 |
+| 1 | 1 | 1 | 1 |
 
-Write the SOP equation, then simplify it as far as you can.
+Write the SOP equation, then simplify it as far as you can. Draw both the original and simplified circuits in CircuitVerse before verifying the truth tables match.
 
 ---
 

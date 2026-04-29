@@ -38,6 +38,20 @@ Label all inputs and outputs on every tab. Use the label/annotation tool in Circ
 
 ---
 
+## Work Period Milestones
+
+Use these targets to pace your work across the three work periods.
+
+| End of period | Target |
+|---------------|--------|
+| Work period 1 | Tabs 1–4 complete and verified. At minimum, Tab 2 (4-bit adder) should pass: A=0011, B=0101, Control=00 → Z=1000. |
+| Work period 2 | Tabs 5–7 complete and verified. Tab 6 (LSTer) should pass: A=0011, B=0101 → Z=0001; A=0101, B=0011 → Z=0000. |
+| Work period 3 | Tab 8 (ALU) wired and all five test cases passing. Design document introduction and at least two component sections written. |
+
+If you're ahead of a milestone, start on the design document section for whichever component you just finished — the details are freshest right after building.
+
+---
+
 ## Design Document
 
 Submit a Google Doc alongside your CircuitVerse project. It must include:

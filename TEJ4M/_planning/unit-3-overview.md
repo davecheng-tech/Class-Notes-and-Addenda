@@ -30,14 +30,14 @@ The unit has two natural halves:
 | — | Homework review; Practice Parts A–B (`practice-simplification.md`) | — | Completion | — |
 | 7 | Simplification practice + consolidation | Independent work | — | `practice-simplification.md` Parts B–C |
 | 8 | **Combinational logic test** (conversions + simplification) | Written, closed-note | **Summative (KU, APP, COMM, TIPS)** | — |
-| 9 | ALU context + adder design: half adder → full adder → 4-bit chain | Lecture + build | — | `04-alu-design.md` §1–5 |
-| — | **In-class:** Build 1-bit full adder in CircuitVerse before end of period | — | — | — |
-| 10 | Subtractor design (half → full → 4-bit); ANDer | Lecture + build | — | `04-alu-design.md` §6–9 |
-| 11 | LST unit; MUX (2-in-1 → 4-in-1); ALU structure overview | Lecture + build | — | `04-alu-design.md` §10–12 |
-| — | **Introduce ALU assignment** | — | — | `alu-assignment.md` |
-| 12 | ALU assignment work period 1 | Independent with check-ins | — | — |
-| 13 | ALU assignment work period 2 | Independent with check-ins | — | — |
-| 14 | ALU assignment due + demos; buffer | Submission + show-and-tell | **Summative (APP, KU, COMM, TIPS)** | — |
+| 9 | ALU context; CircuitVerse multi-tab workflow demo; half adder derivation + build | Lecture + guided build | Distribute `04-alu-design.md` and `practice-alu-guided-build.md` | `04-alu-design.md` §1–3 |
+| 10 | Binary addition review; full adder derivation + build; 4-bit ripple carry concept | Socratic + guided build | — | `04-alu-design.md` §2–5 |
+| 11 | Binary subtraction; half + full subtractor; 2-in-1 MUX; 1-bit 2-op mini-ALU (ADD/SUB) | Guided build together | `practice-alu-guided-build.md` Parts 1–4 in progress | `04-alu-design.md` §6–9, §11 |
+| 12 | ANDer; LST unit; 4-in-1 MUX; complete 1-bit 4-op ALU; assign 4-bit project | Guided + independent | Distribute `alu-assignment.md`; distribute `alu-extension.md` to students working ahead | `04-alu-design.md` §10–12 |
+| 13 | Work period 1 — milestone: Tabs 1–4 (1-bit adder ref, 4-bit adder, 1-bit subtractor ref, 4-bit subtractor) | Independent with check-ins | Milestone: Tabs 1–4 complete and verified | — |
+| 14 | Work period 2 — milestone: Tabs 5–7 (ANDer, LSTer, MUX ref) | Independent with check-ins | Milestone: Tabs 5–7 complete and verified | — |
+| 15 | Work period 3 — milestone: Tab 8 (ALU assembly) + design document progress | Independent with check-ins | Milestone: Tab 8 wired; document intro + 2 sections drafted | — |
+| 16 | ALU assignment due + demos; buffer | Submission + show-and-tell | **Summative (APP, KU, COMM, TIPS)** | — |
 
 ## Assessment Structure
 
@@ -79,17 +79,20 @@ The unit has two natural halves:
 - [x] `01-from-transistors-to-gates.md` — transistors, binary, history, 7-gate review
 - [x] `02-combinational-logic.md` — all 6 conversions with worked examples and circuit images
 - [x] `03-boolean-simplification.md` — laws, worked examples, before/after circuits
-- [x] `04-alu-design.md` — half/full adder and subtractor, ANDer, LST, MUX, ALU structure
+- [x] `04-alu-design.md` — half/full adder and subtractor, ANDer, LST, MUX, ALU structure; reference for the full ALU section
 - [x] `practice-conversions.md` — Parts A–D, all conversion types
 - [x] `practice-simplification.md` — equation → circuit, simplification practice, law reference
 - [x] `practice-simplification-solutions.md` — solutions for `practice-simplification.md`
 - [x] `practice-more-simplification.md` — additional simplification problems (Part C onward), increasing difficulty
 - [x] `practice-more-simplification-solutions.md` — solutions for `practice-more-simplification.md`
+- [x] `practice-alu-guided-build.md` — in-class guided build activity (periods 9–12); truth table derivation, CircuitVerse steps, verification checklists; doubles as a reference during the assignment
 - [x] `homework.md` — independent practice set, due period 6
-- [x] `alu-assignment.md` — CircuitVerse project spec, design document spec, test cases, rubric
+- [x] `alu-assignment.md` — CircuitVerse project spec, design document spec, test cases, milestones, rubric
+- [x] `alu-extension.md` — optional extension challenges for students working ahead (add OR operation, overflow indicator, carry-lookahead adder)
 
 ### Teacher-facing (in `_planning/`)
 - [x] `unit-3-overview.md` — this file
+- [x] `unit-3-alu-lesson-plans.md` — detailed period-by-period lesson plans for the ALU section (periods 9–16), including timing, key questions, common misconceptions, and differentiation notes
 
 ## Open items
 - Practice problems in `practice-conversions.md` Parts C and D use text-described circuits — consider adding CircuitVerse screenshots if students find them hard to follow from description alone

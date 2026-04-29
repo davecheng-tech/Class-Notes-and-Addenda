@@ -1,9 +1,11 @@
-# Unit 3: ALU Section — Detailed Lesson Plans (Periods 9–16)
+# Unit 3: ALU Section — Detailed Lesson Plans (Periods 9–17)
 
 These plans cover the ALU design section of Unit 3. The combinational logic section (periods 1–8) is in `unit-3-overview.md`. These plans assume:
-- Students have passed the combinational logic test (period 8)
+- Students have completed the combinational logic and Boolean simplification practice (periods 1–8)
 - Fluency with truth table → equation → circuit conversion (all 6 directions)
 - Some CircuitVerse experience (single-tab circuits from earlier in the unit)
+
+Note: the combinational logic test is at **period 13** — after the guided ALU build (periods 9–12). This gives students four additional periods of derivation practice (full adder, full subtractor, MUX) before being assessed on the same skills.
 
 The core pedagogical arc: **familiar workflow (truth table → equation → circuit) applied to new circuits**, then building toward the ALU in stages — 1-bit components → 1-bit ALU together → 4-bit ALU independently.
 
@@ -17,7 +19,8 @@ The core pedagogical arc: **familiar workflow (truth table → equation → circ
 | 10 | — (already distributed) |
 | 11 | — |
 | 12 | `alu-assignment.md`; `alu-extension.md` (for students working ahead) |
-| 13–16 | — |
+| 13 | Test paper (printed) |
+| 14–17 | — |
 
 The class guided build (periods 9–12) uses a separate CircuitVerse project from the assignment. Make this explicit on day 1: students create a learning project in class, then start a fresh project for the assignment.
 
@@ -422,7 +425,41 @@ Hand out `alu-extension.md` to students who want to go further.
 
 ---
 
-## Period 13 — Work Period 1
+## Period 13 — Combinational Logic Test
+
+**Format:** Written, closed-note, 60 minutes  
+**Covers:** All six conversion directions + Boolean algebra simplification  
+**Marks:** /18 (see test breakdown in `unit-3-overview.md`)
+
+### Setup
+
+Print one test per student. Arrange seating to minimise sharing. Students need only a pencil — no notes, no CircuitVerse.
+
+### Why Here
+
+The test was deliberately moved from the traditional mid-unit position to after the guided ALU build. By period 13, students have spent four periods deriving circuits from truth tables (full adder, full subtractor, MUX, ANDer, LST) — exactly the skills on the test. Students who were shaky after period 7 have had substantially more practice in context.
+
+### Timing
+
+| Time | Activity |
+|------|----------|
+| 0–3 | Distribute tests, remind students of format |
+| 3–55 | Students work independently |
+| 55–60 | Collect, brief transition note for next period |
+
+### During the Test
+
+Circulate normally. The test is closed-note — if a student asks about a Boolean law or conversion step, redirect: "that's part of what we're assessing today."
+
+Students who finish early: ask them to review their work. Do not let students begin the assignment during the test period.
+
+### After the Test
+
+Brief closing (2 min): "Next period you begin the 4-bit ALU assignment — your class project from the last four periods is your reference."
+
+---
+
+## Period 14 — Work Period 1
 
 **Milestone goal:** Tabs 1–4 complete and verified  
 *Tab 1: Full Adder (1-bit) / Tab 2: 4-bit Adder / Tab 3: Full Subtractor (1-bit) / Tab 4: 4-bit Subtractor*
@@ -454,9 +491,9 @@ Have students run the ADD test case: A=0011, B=0101 → expected sum 1000 (3+5=8
 
 ---
 
-## Period 14 — Work Period 2
+## Period 15 — Work Period 2
 
-**Milestone goal:** Tabs 5–7 complete and verified  
+**Milestone goal:** Tabs 5–7 complete and verified
 *Tab 5: ANDer (4-bit) / Tab 6: LSTer (4-bit) / Tab 7: MUX (2-in-1, 1-bit)*
 
 ### Opening (5 min)
@@ -487,7 +524,7 @@ Same 2-in-1 MUX from class. Students can replicate it quickly. If they used Tab 
 
 ---
 
-## Period 15 — Work Period 3
+## Period 16 — Work Period 3
 
 **Milestone goal:** Tab 8 wired; design document introduction and at least two component sections complete
 
@@ -520,7 +557,7 @@ Students who haven't started the document should at minimum get the introduction
 
 ---
 
-## Period 16 — Demo Day + Submission
+## Period 17 — Demo Day + Submission
 
 **Format:** Students demo their ALUs, then submit.
 

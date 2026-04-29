@@ -130,12 +130,12 @@ Final carry: Cout = C1 + C2
 To add two 4-bit numbers, chain four full adders together. The carry out of each adder feeds into the carry in of the next.
 
 ```
-Bit position:    1 (LSB)       2             3             4 (MSB)
-                 ┌──────┐     ┌──────┐     ┌──────┐     ┌──────┐
+Bit position:    1 (LSB)       2            3            4 (MSB)
+                ┌──────┐     ┌──────┐     ┌──────┐     ┌──────┐
    A1, B1 ──▶   │ Full │     │ Full │     │ Full │     │ Full │
    Cin=0 ────▶  │ Add  │─C─▶ │ Add  │─C─▶ │ Add  │─C─▶ │ Add  │─▶ Overflow
                 └──┬───┘     └──┬───┘     └──┬───┘     └──┬───┘
-                   Z1           Z2            Z3            Z4
+                   Z1           Z2           Z3           Z4
 ```
 
 Inputs:
@@ -307,11 +307,10 @@ The ALU connects all four units to a MUX bank:
 
 ```
 A (4-bit) ──┬──▶ 4-bit ADD  ──▶ ADD result (4 bits) ──┐
-             ├──▶ 4-bit SUB  ──▶ SUB result (4 bits) ──┤
-             ├──▶ 4-bit AND  ──▶ AND result (4 bits) ──┼──▶ 4-bit MUX ──▶ Z (4 bits)
-             └──▶ 4-bit LST  ──▶ LST result (4 bits) ──┘
-B (4-bit) ──┘                                              ▲
-                                                    Control (2-bit)
+            ├──▶ 4-bit SUB  ──▶ SUB result (4 bits) ──┤
+            ├──▶ 4-bit AND  ──▶ AND result (4 bits) ──┼──▶ 4-bit MUX ──▶ Z (4 bits)
+            └──▶ 4-bit LST  ──▶ LST result (4 bits) ──┘        ▲
+B (4-bit) ──┘                                            Control (2-bit)
 ```
 
 All four units receive A and B simultaneously and compute their results. The MUX selects which result to pass to Z.

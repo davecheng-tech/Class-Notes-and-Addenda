@@ -1,8 +1,8 @@
 # Practice: More Boolean Algebra Simplification
 
-A second set of simplification problems. Work through in order — the problems increase in difficulty. For every simplification, name the law you apply at each step. Count the gates before and after.
+Another set of simplification problems. Work through in order from top to bottom — the problems increase in difficulty. For every simplification, name the law you apply at each step. Count the gates before and after.
 
-Verify your simplified circuits in CircuitVerse by confirming both the original and simplified forms produce identical truth tables.
+Verify your simplified circuits in [CircuitVerse](https://circuitverse.org/) by confirming both the original and simplified forms produce identical truth tables.
 
 ---
 
@@ -56,7 +56,7 @@ Z = (A + B)' + A·B'
 Z = A'·B·C' + A'·B·C + A·B'·C' + A·B'·C
 ```
 
-*Hint: Your simplified answer should use 1 gate — but it may not be the gate type you expect.*
+*Hint: Your simplified answer should use 1 gate, but it may not be the gate type you expect.*
 
 ---
 
@@ -64,10 +64,10 @@ Z = A'·B·C' + A'·B·C + A·B'·C' + A·B'·C
 
 For each problem:
 
-1. Write the SOP equation from the truth table — one product term (minterm) for every row where Z = 1
+1. Write the SOP equation from the truth table (i.e., one minterm for every row where `Z = 1`)
 2. Build the original SOP circuit in CircuitVerse and record its truth table
-3. Simplify the equation algebraically — name every law at every step
-4. Build the simplified circuit in CircuitVerse
+3. Simplify the equation algebraically. Name every law at every step
+4. Build the simplified circuit in [CircuitVerse](https://circuitverse.org/)
 5. Confirm both circuits produce identical truth tables
 6. State the gate count before and after, and how many gates you saved
 

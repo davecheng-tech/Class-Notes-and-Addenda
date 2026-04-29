@@ -82,6 +82,9 @@ The unit has two natural halves:
 - [x] `04-alu-design.md` — half/full adder and subtractor, ANDer, LST, MUX, ALU structure
 - [x] `practice-conversions.md` — Parts A–D, all conversion types
 - [x] `practice-simplification.md` — equation → circuit, simplification practice, law reference
+- [x] `practice-simplification-solutions.md` — solutions for `practice-simplification.md`
+- [x] `practice-more-simplification.md` — additional simplification problems (Part C onward), increasing difficulty
+- [x] `practice-more-simplification-solutions.md` — solutions for `practice-more-simplification.md`
 - [x] `homework.md` — independent practice set, due period 6
 - [x] `alu-assignment.md` — CircuitVerse project spec, design document spec, test cases, rubric
 

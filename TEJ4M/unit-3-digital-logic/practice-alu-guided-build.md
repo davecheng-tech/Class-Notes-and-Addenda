@@ -1,14 +1,12 @@
 # Guided Build: 1-Bit ALU in CircuitVerse
 
-This sheet walks you through building a complete 1-bit, 4-operation ALU step by step — one component at a time. Each part has a truth table to fill in, equations to derive, and a CircuitVerse build to complete.
+This sheet walks you through building a complete 1-bit, 4-operation ALU step by step, one component at a time. Each part has a truth table to fill in, equations to derive, and a CircuitVerse build to complete.
 
-**Start a new CircuitVerse project for this activity.** This is your class learning project, separate from the assignment. Keep it — you'll use it as a reference when you build the 4-bit version.
+**Start a new CircuitVerse project for this activity.** This is your class learning project, separate from the assignment. Keep it. You'll use it as a reference when you build the 4-bit version.
 
 ---
 
 ## Part 1 — Half Adder
-
-> Period 9 — guided with teacher
 
 **CircuitVerse tab:** `Half Adder`
 
@@ -51,8 +49,6 @@ Y = _______________
 ---
 
 ## Part 2 — Full Adder
-
-> Period 10 — guided with teacher
 
 **CircuitVerse tab:** `Full Adder (1-bit)`
 
@@ -106,13 +102,11 @@ Final carry:   Cout = C1 + C2      (one OR gate)
 
 ## Part 3 — Full Subtractor
 
-> Period 11 — you derive this one
-
 **CircuitVerse tab:** `Full Subtractor (1-bit)`
 
 A full subtractor subtracts B and a borrow in (Bin) from A.
 
-*Hint: Bout = 1 when A has to borrow — when A is too small to subtract.*
+*Hint: Bout = 1 when A has to borrow, i.e., when A is too small to subtract.*
 
 ### Truth Table
 
@@ -154,8 +148,6 @@ Bout = _______________
 ---
 
 ## Part 4 — 2-in-1 MUX + 1-bit 2-op Mini-ALU
-
-> Period 11 — guided with teacher
 
 ### 4a. 2-in-1 Multiplexer (MUX)
 
@@ -246,8 +238,6 @@ Fill in Your ALU Z and verify:
 
 ## Part 5 — ANDer + LST (Less Than)
 
-> Period 12 — independent then guided
-
 ### 5a. ANDer
 
 **CircuitVerse tab:** `ANDer (1-bit)`
@@ -308,8 +298,6 @@ Before building, work through these questions:
 ---
 
 ## Part 6 — 4-in-1 MUX + Complete 1-bit ALU
-
-> Period 12 — guided with teacher
 
 ### 6a. 4-in-1 MUX Structure
 

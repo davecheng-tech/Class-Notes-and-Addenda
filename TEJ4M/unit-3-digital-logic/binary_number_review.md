@@ -281,69 +281,11 @@ Result: `0111₂ = 7` ✓
 
 ---
 
-### 4.2 Two's Complement — How Computers Actually Subtract
-
-Real digital systems almost never use borrow-method subtraction directly. Instead, they use a technique called **two's complement**, which converts subtraction into addition. This is why the same adder circuit can handle both operations.
-
-#### Step 1 — One's Complement (Invert All Bits)
-
-Flip every bit: 0 becomes 1, 1 becomes 0.
-
-```
-Original:         1010  (10)
-One's complement: 0101
-```
-
-#### Step 2 — Two's Complement (Add 1)
-
-```
-One's complement: 0101
-+ 1:              0001
-                  ────
-Two's complement: 0110  (6... but it represents −10)
-```
-
-Check: `10 + (−10) = 0`. In 4-bit arithmetic:
-
-```
-  1 0 1 0   (+10)
-+ 0 1 1 0   (−10, as two's complement)
-─────────
-1 0 0 0 0
-```
-
-The carry-out overflows the 4-bit result, leaving `0000`. Correct — 10 − 10 = 0. ✓
-
-#### Performing Subtraction via Two's Complement
-
-To compute **A − B**:
-1. Take the two's complement of B
-2. Add it to A
-3. Discard the carry-out (if any)
-
-**Example — compute 1101 − 0101 (13 − 5):**
-
-Step 1: Two's complement of 0101:
-```
-Invert: 1010
-Add 1:  1011   (this is −5 in two's complement)
-```
-
-Step 2: Add:
-```
-  1 1 0 1    (13)
-+ 1 0 1 1    (−5)
-─────────
-1 1 0 0 0
-```
-
-Step 3: Discard the carry-out. Result: `1000₂ = 8`. And 13 − 5 = 8. ✓
-
----
-
-### 4.3 Why This Matters for Your ALU
+### 4.2 Why This Matters for Your ALU
 
 Your ALU project uses a **full subtractor** circuit. Internally it computes the difference and a **borrow-out** (Bout) — analogous to the carry-out in addition. When Bout = 1, it means the minuend was too small (A < B), and the circuit had to borrow. This is how the **Less Than (LST)** operation works in your 4-bit ALU.
+
+> **FYI:** Real CPUs usually skip the subtractor circuit entirely and instead add the two's complement of B — but your ALU makes the borrow logic explicit with a dedicated full subtractor.
 
 ---
 

@@ -36,6 +36,8 @@ Submit **one CircuitVerse project** with a separate tab for each component:
 
 Label all inputs and outputs on every tab. Use the label/annotation tool in CircuitVerse to name each sub-component.
 
+**MUX note:** Tab 7 must be built from basic gates (AND, OR, NOT) — this is the design you'll document. For Tab 8 (the ALU assembly), you may use CircuitVerse's built-in Multiplexer component configured as a 4-in-1 selector, or instantiate your Tab 7 design as a subcircuit. Either is acceptable.
+
 ---
 
 ## Work Period Milestones

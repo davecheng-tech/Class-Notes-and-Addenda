@@ -38,6 +38,8 @@ This note covers:
                   Z (4 bits)
 ```
 
+![ALU (4-bit) block diagram](images/alu-block.png)
+
 All four arithmetic/logic units compute their result simultaneously. The MUX selects which result becomes the output Z, based on the 2-bit control signal:
 
 | Control | Operation |

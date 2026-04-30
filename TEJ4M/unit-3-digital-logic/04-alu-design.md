@@ -8,6 +8,8 @@ Modern CPUs contain ALUs that support dozens of operations on 64-bit values. In 
 - **2-bit control input** (selects one of four operations)
 - **4 operations:** ADD, SUB, AND, LST (less than)
 
+![ALU (4-bit) block diagram](images/alu-block.png)
+
 This note covers:
 
 - Binary addition and subtraction at the gate level
@@ -37,8 +39,6 @@ This note covers:
                      │
                   Z (4 bits)
 ```
-
-![ALU (4-bit) block diagram](images/alu-block.png)
 
 All four arithmetic/logic units compute their result simultaneously. The MUX selects which result becomes the output Z, based on the 2-bit control signal:
 

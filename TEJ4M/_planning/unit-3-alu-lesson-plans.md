@@ -1,11 +1,11 @@
-# Unit 3: ALU Section — Detailed Lesson Plans (Periods 9–17)
+# Unit 3: ALU Section — Detailed Lesson Plans (Periods 9–16)
 
 These plans cover the ALU design section of Unit 3. The combinational logic section (periods 1–8) is in `unit-3-overview.md`. These plans assume:
 - Students have completed the combinational logic and Boolean simplification practice (periods 1–8)
 - Fluency with truth table → equation → circuit conversion (all 6 directions)
 - Some CircuitVerse experience (single-tab circuits from earlier in the unit)
 
-Note: the combinational logic test is at **period 13** — after the guided ALU build (periods 9–12). This gives students four additional periods of derivation practice (full adder, full subtractor, MUX) before being assessed on the same skills.
+Note: the combinational logic test is at **period 12** — after the guided ALU build (periods 9–11). This gives students three additional periods of derivation practice (full adder, full subtractor, MUX) before being assessed on the same skills.
 
 The core pedagogical arc: **familiar workflow (truth table → equation → circuit) applied to new circuits**, then building toward the ALU in stages — 1-bit components → 1-bit ALU together → 4-bit ALU independently.
 
@@ -16,19 +16,18 @@ The core pedagogical arc: **familiar workflow (truth table → equation → circ
 | Period | Distribute to students |
 |--------|----------------------|
 | 9 | `04-alu-design.md`, `practice-alu-guided-build.md` |
-| 10 | — (already distributed) |
-| 11 | — |
-| 12 | `alu-assignment.md`; `alu-extension.md` (for students working ahead) |
-| 13 | Test paper (printed) |
-| 14–17 | — |
+| 10 | — |
+| 11 | `alu-assignment.md`; `alu-extension.md` (for students working ahead) |
+| 12 | Test paper (printed) |
+| 13–16 | — |
 
 The class guided build (periods 9–12) uses a separate CircuitVerse project from the assignment. Make this explicit on day 1: students create a learning project in class, then start a fresh project for the assignment.
 
 ---
 
-## Period 9 — ALU Context + CircuitVerse Multi-Tab Workflow + Half Adder
+## Period 9 — ALU Context + Multi-Tab Workflow + Half Adder + Full Adder
 
-**Goal:** Students understand what an ALU does, can navigate CircuitVerse's multi-tab project structure, and have built and tested a working half adder.
+**Goal:** Students understand what an ALU does, can navigate CircuitVerse's multi-tab project structure, and have built and verified both a half adder and a full adder.
 
 **Distribute:** `04-alu-design.md` and `practice-alu-guided-build.md`
 
@@ -36,12 +35,14 @@ The class guided build (periods 9–12) uses a separate CircuitVerse project fro
 
 | Time | Activity |
 |------|----------|
-| 0–10 | What is an ALU? |
-| 10–20 | CircuitVerse multi-tab workflow demo |
-| 20–50 | Half adder derivation + build |
-| 50–60 | Verify, wrap-up |
+| 0–5 | What is an ALU? |
+| 5–15 | CircuitVerse multi-tab workflow demo |
+| 15–30 | Half adder derivation + build |
+| 30–35 | Binary addition review |
+| 35–55 | Full adder derivation + build |
+| 55–60 | 4-bit ripple carry concept |
 
-### What is an ALU? (10 min)
+### What is an ALU? (5 min)
 
 Return to the Unit 2 framing: a CPU executes an instruction set. Each instruction is carried out by hardware. Today students go one level deeper — the hardware that does the arithmetic.
 
@@ -66,7 +67,7 @@ Walk through explicitly:
 
 Say: "This is how we'll organize the ALU. Every component gets its own tab. You test each tab independently before connecting them. The final ALU tab assembles everything."
 
-### Half Adder (30 min)
+### Half Adder (15 min)
 
 On the board:
 ```
@@ -90,38 +91,9 @@ Ask: "What pattern does Y follow?" → outputs 1 only when both are 1 → AND
 
 Write equations: `Z = A ⊕ B`, `Y = A · B`
 
-Ask: "How many gates?" → 2 total. Simple.
+Students build on Tab 1 of a **new CircuitVerse project** (emphasise: new project, not the same one as earlier in the unit). Name the tab "Half Adder". Inputs labeled A and B; outputs labeled Z and Y.
 
-Students build on Tab 1 of a **new CircuitVerse project** (emphasise: new project, not the same one as earlier in the unit). Circulate and check:
-- Inputs labeled A and B; outputs labeled Z and Y
-- Tab named "Half Adder"
-- Both gates present
-
-Verify as a class: go through all 4 input combinations.
-
-Wrap-up: "Notice we used the exact same process you've been practising for weeks — truth table to equation to circuit. New circuit, same method. It's called a *half* adder because it can't handle a carry arriving from a previous column. We fix that next class."
-
-### Watch For
-
-- **XOR vs. OR confusion:** The truth table is the authority. 1⊕1=0 is the distinguishing row. If a student uses an OR gate for Z, their circuit will fail on A=1, B=1.
-- **Tab naming:** Some students won't see that you double-click to rename. Walk the whole class through it before they start.
-- **New vs. old project:** Students may open a previous CircuitVerse project. Check at the start of the build that everyone has a fresh project.
-- **CircuitVerse slowness or issues:** If the tool is unresponsive, have students draw the half adder on paper. They can build in CircuitVerse at the start of period 10.
-
----
-
-## Period 10 — Full Adder: Derivation + Build
-
-**Goal:** Students derive and build a full adder in CircuitVerse and understand how four of them chain into a 4-bit adder.
-
-### Timing
-
-| Time | Activity |
-|------|----------|
-| 0–5 | Binary addition review |
-| 5–25 | Full adder derivation (guided) |
-| 25–50 | Build in CircuitVerse |
-| 50–60 | 4-bit ripple carry concept |
+Verify as a class: go through all 4 input combinations. Keep this moving — the goal is to reach the full adder before the midpoint of the period.
 
 ### Binary Addition Review (5 min)
 
@@ -135,7 +107,9 @@ On the board:
 
 "When two bits sum to 2, we generate a carry into the next column. In multi-bit addition, each column may also receive a carry from the column to its right. A full adder handles that carry coming *in*."
 
-### Full Adder Derivation (20 min)
+Note: the half adder is called "half" because it can only add two bits — it cannot accept a carry from a previous column. The full adder adds that capability.
+
+### Full Adder Derivation + Build (20 min)
 
 Three inputs: A, B, Cin. Two outputs: Z (sum), Cout.
 
@@ -156,19 +130,9 @@ Half Adder 2: S1, Cin → sum Z = S1 ⊕ Cin, partial carry C2 = S1·Cin
 Final carry: Cout = C1 + C2  (one OR gate)
 ```
 
-This is the modular insight — the half adder becomes a building block.
+Tab 2: "Full Adder (1-bit)" — build from two half adders + OR gate. Verify all 8 input combinations.
 
-### Build (25 min)
-
-Tab 2: "Full Adder (1-bit)"
-
-Recommend building from two half adders + OR gate (enforces modular thinking). Students who are ahead can try building from scratch from the truth table equations — both are valid.
-
-Have students use the half adder logic directly (either redraw the XOR and AND gates, or use Tab 1 as a subcircuit if they're comfortable with that from the demo).
-
-Verify all 8 input combinations. Have students check off on the guided build sheet.
-
-### 4-Bit Ripple Carry Concept (10 min)
+### 4-Bit Ripple Carry Concept (5 min)
 
 Draw on the board:
 ```
@@ -183,18 +147,22 @@ Cin=0
 
 "The carry-out of each adder feeds into the carry-in of the next. The first adder's Cin is always 0. The carry-out of the last adder is an overflow flag — it means the result didn't fit in 4 bits."
 
-Don't build it yet. This is conceptual setup for the assignment. Students will build the 4-bit adder in period 13.
+Students don't build this now — it's a preview of the assignment. They'll build the 4-bit adder in period 12.
 
 ### Watch For
 
+- **XOR vs. OR confusion:** The truth table is the authority. 1⊕1=0 is the distinguishing row. If a student uses an OR gate for Z, their circuit will fail on A=1, B=1.
+- **Tab naming:** Some students won't see that you double-click to rename. Walk the whole class through it before they start.
+- **New vs. old project:** Students may open a previous CircuitVerse project. Check at the start of the build that everyone has a fresh project.
 - **SOP derivation of Cout:** Students often miss that the three SOP terms simplify to AB + ACin + BCin. A useful frame: "carry out when any two of the three inputs are 1." Let them work through it; don't simplify for them immediately.
-- **Building the full adder from scratch vs. from two half adders:** Both approaches work in CircuitVerse. The two-half-adder approach is preferred — it's modular and sets up the subcircuit concept. If a student builds it from scratch, that's fine but note the connection.
+- **Building the full adder from two half adders vs. from scratch:** Both approaches work. The two-half-adder approach is preferred — it's modular and sets up the subcircuit concept.
 - **OR gate for Cout:** Students often forget this gate. "C1 or C2 — if either half adder produced a carry, we carry out."
 - **Floating Cin:** Students may leave Cin unconnected. In CircuitVerse this defaults to 0, but they should wire a constant 0 explicitly.
+- **Pace:** The half adder should feel fast for this group. Keep it moving. If a student is still stuck on the half adder after 20 minutes, have them reference the notes and proceed — don't let one circuit block the whole period.
 
 ---
 
-## Period 11 — Full Subtractor + 2-in-1 MUX + 1-bit 2-op Mini-ALU
+## Period 10 — Full Subtractor + 2-in-1 MUX + 1-bit 2-op Mini-ALU
 
 **Goal:** Students build a full subtractor and a 2-in-1 MUX, then wire a 1-bit mini-ALU that selects between ADD and SUB based on a single control bit. The payoff: flipping one bit changes the operation.
 
@@ -307,11 +275,11 @@ Say: "You just built a circuit that performs two different arithmetic operations
 - **Full subtractor Bout derivation:** Students often forget the A' in the first two terms. Guide: "borrow happens when A doesn't have enough — when A=0. So the terms where A has to borrow all start with A'."
 - **Shared A and B inputs:** Students commonly wire A and B to only the adder or only the subtractor. Be explicit: "both circuits need to see A and B. Run wires from A to both inputs. Same for B."
 - **Cin/Bin wired to 0 explicitly:** Students may leave them floating. Show how to place a constant-0 input in CircuitVerse.
-- **Students who aren't caught up:** If students haven't finished the full adder from period 10, have them skip to the MUX (Part 4a) and come back to the subtractor during the next period.
+- **Students who aren't caught up:** If students haven't finished the full adder from period 9, have them skip to the MUX (Part 4a) and come back to the subtractor during the next period.
 
 ---
 
-## Period 12 — ANDer + LST + 4-in-1 MUX + Complete 1-bit ALU + Assignment
+## Period 11 — ANDer + LST + 4-in-1 MUX + Complete 1-bit ALU + Assignment
 
 **Goal:** Complete the 1-bit ALU with all 4 operations. Students have a working proof-of-concept before the 4-bit assignment starts.
 
@@ -411,9 +379,9 @@ Walk through the 8-tab structure:
 - Tab 8 is the ALU assembly — all components through four 4-in-1 MUXes (one per output bit)
 
 Milestone targets:
-- **End of period 13:** Tabs 1–4 built and verified
-- **End of period 14:** Tabs 5–7 built and verified
-- **End of period 15:** Tab 8 wired; design document structure drafted with at least two sections written
+- **End of period 12:** Tabs 1–4 built and verified
+- **End of period 13:** Tabs 5–7 built and verified
+- **End of period 14:** Tab 8 wired; design document structure drafted with at least two sections written
 
 Hand out `alu-extension.md` to students who want to go further.
 
@@ -425,7 +393,7 @@ Hand out `alu-extension.md` to students who want to go further.
 
 ---
 
-## Period 13 — Combinational Logic Test
+## Period 12 — Combinational Logic Test
 
 **Format:** Written, closed-note, 60 minutes  
 **Covers:** All six conversion directions + Boolean algebra simplification  
@@ -437,7 +405,7 @@ Print one test per student. Arrange seating to minimise sharing. Students need o
 
 ### Why Here
 
-The test was deliberately moved from the traditional mid-unit position to after the guided ALU build. By period 13, students have spent four periods deriving circuits from truth tables (full adder, full subtractor, MUX, ANDer, LST) — exactly the skills on the test. Students who were shaky after period 7 have had substantially more practice in context.
+The test was deliberately moved from the traditional mid-unit position to after the guided ALU build. By period 12, students have spent three periods deriving circuits from truth tables (full adder, full subtractor, MUX, ANDer, LST) — exactly the skills on the test. Students who were shaky after period 7 have had substantially more practice in context.
 
 ### Timing
 
@@ -459,7 +427,7 @@ Brief closing (2 min): "Next period you begin the 4-bit ALU assignment — your 
 
 ---
 
-## Period 14 — Work Period 1
+## Period 13 — Work Period 1
 
 **Milestone goal:** Tabs 1–4 complete and verified  
 *Tab 1: Full Adder (1-bit) / Tab 2: 4-bit Adder / Tab 3: Full Subtractor (1-bit) / Tab 4: 4-bit Subtractor*
@@ -491,7 +459,7 @@ Have students run the ADD test case: A=0011, B=0101 → expected sum 1000 (3+5=8
 
 ---
 
-## Period 15 — Work Period 2
+## Period 14 — Work Period 2
 
 **Milestone goal:** Tabs 5–7 complete and verified
 *Tab 5: ANDer (4-bit) / Tab 6: LSTer (4-bit) / Tab 7: MUX (2-in-1, 1-bit)*
@@ -524,7 +492,7 @@ Same 2-in-1 MUX from class. Students can replicate it quickly. If they used Tab 
 
 ---
 
-## Period 16 — Work Period 3
+## Period 15 — Work Period 3
 
 **Milestone goal:** Tab 8 wired; design document introduction and at least two component sections complete
 
@@ -557,7 +525,7 @@ Students who haven't started the document should at minimum get the introduction
 
 ---
 
-## Period 17 — Demo Day + Submission
+## Period 16 — Demo Day + Submission
 
 **Format:** Students demo their ALUs, then submit.
 

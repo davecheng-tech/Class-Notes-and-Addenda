@@ -1,7 +1,7 @@
 # Unit 3: Digital Logic — Overview
 
 **Course:** TEJ4M — Computer Engineering Technology (Grade 12)\
-**Duration:** 17 periods × 60 minutes\
+**Duration:** 16 periods × 60 minutes\
 **Prerequisites:** Unit 2 (Linux and Processor Architecture) — students understand CPU architecture, instruction sets, binary. Unit TEJ3M — students built all 7 basic logic gates in CircuitVerse and on a TinkerCAD breadboard.
 
 ## Unit Arc
@@ -30,24 +30,23 @@ The unit has two natural halves:
 | — | Homework review; Practice Parts A–B (`practice-simplification.md`) | — | Completion | — |
 | 7 | Simplification practice + consolidation | Independent work | — | `practice-simplification.md` Parts B–C |
 | 8 | Additional simplification practice — `practice-more-simplification.md` | Independent work | Completion | `practice-more-simplification.md` |
-| 9 | ALU context; CircuitVerse multi-tab workflow demo; half adder derivation + build | Lecture + guided build | Distribute `04-alu-design.md` and `practice-alu-guided-build.md` | `04-alu-design.md` §1–3 |
-| 10 | Binary addition review; full adder derivation + build; 4-bit ripple carry concept | Socratic + guided build | — | `04-alu-design.md` §2–5 |
-| 11 | Binary subtraction; half + full subtractor; 2-in-1 MUX; 1-bit 2-op mini-ALU (ADD/SUB) | Guided build together | `practice-alu-guided-build.md` Parts 1–4 in progress | `04-alu-design.md` §6–9, §11 |
-| 12 | ANDer; LST unit; 4-in-1 MUX; complete 1-bit 4-op ALU; assign 4-bit project | Guided + independent | Distribute `alu-assignment.md`; distribute `alu-extension.md` to students working ahead | `04-alu-design.md` §10–12 |
-| 13 | **Combinational logic test** (conversions + simplification) | Written, closed-note | **Summative (KU, APP, COMM, TIPS)** | — |
-| 14 | Work period 1 — milestone: Tabs 1–4 (1-bit adder ref, 4-bit adder, 1-bit subtractor ref, 4-bit subtractor) | Independent with check-ins | Milestone: Tabs 1–4 complete and verified | — |
-| 15 | Work period 2 — milestone: Tabs 5–7 (ANDer, LSTer, MUX ref) | Independent with check-ins | Milestone: Tabs 5–7 complete and verified | — |
-| 16 | Work period 3 — milestone: Tab 8 (ALU assembly) + design document progress | Independent with check-ins | Milestone: Tab 8 wired; document intro + 2 sections drafted | — |
-| 17 | ALU assignment due + demos; buffer | Submission + show-and-tell | **Summative (APP, KU, COMM, TIPS)** | — |
+| 9 | ALU context; CircuitVerse multi-tab workflow demo; half adder + full adder derivation + build; 4-bit ripple carry concept | Lecture + guided build | Distribute `04-alu-design.md` and `practice-alu-guided-build.md` | `04-alu-design.md` §1–5 |
+| 10 | Binary subtraction; half + full subtractor; 2-in-1 MUX; 1-bit 2-op mini-ALU (ADD/SUB) | Guided build together | `practice-alu-guided-build.md` Parts 1–4 in progress | `04-alu-design.md` §6–9, §11 |
+| 11 | ANDer; LST unit; 4-in-1 MUX; complete 1-bit 4-op ALU; assign 4-bit project | Guided + independent | Distribute `alu-assignment.md`; distribute `alu-extension.md` to students working ahead | `04-alu-design.md` §10–12 |
+| 12 | **Combinational logic test** (conversions + simplification) | Written, closed-note | **Summative (KU, APP, COMM, TIPS)** | — |
+| 13 | Work period 1 — milestone: Tabs 1–4 (1-bit adder ref, 4-bit adder, 1-bit subtractor ref, 4-bit subtractor) | Independent with check-ins | Milestone: Tabs 1–4 complete and verified | — |
+| 14 | Work period 2 — milestone: Tabs 5–7 (ANDer, LSTer, MUX ref) | Independent with check-ins | Milestone: Tabs 5–7 complete and verified | — |
+| 15 | Work period 3 — milestone: Tab 8 (ALU assembly) + design document progress | Independent with check-ins | Milestone: Tab 8 wired; document intro + 2 sections drafted | — |
+| 16 | ALU assignment due + demos; buffer | Submission + show-and-tell | **Summative (APP, KU, COMM, TIPS)** | — |
 
 ## Assessment Structure
 
 - **Completion marks (homework + in-class practice):** Low-stakes, graded for completion. Purpose is to build fluency with conversions before the test and with CircuitVerse before the assignment.
 - **7-gate CircuitVerse homework (after period 1):** Completion. Ensures students are functional in CircuitVerse before the unit depends on it.
-- **Combinational logic test (period 13):** Summative, closed-note written assessment. Covers all six conversions and Boolean simplification. Moved to period 13 (after the ALU guided build) so students benefit from four additional periods of derivation practice before being assessed. Format drawn from the prior teacher's test (Spring 2025): students choose one of two conversion methods to explain for each KU question, then complete APP circuit problems, and answer COMM/TIPS reflection questions.
-- **ALU assignment (due period 17):** Summative project. Students submit one CircuitVerse project (8 tabs) and a design document. Weighted toward Application; also assesses Knowledge (component designs), Communication (document structure), and Thinking (LST explanation).
+- **Combinational logic test (period 12):** Summative, closed-note written assessment. Covers all six conversions and Boolean simplification. Moved to period 12 (after the ALU guided build) so students benefit from three additional periods of derivation practice before being assessed. Format drawn from the prior teacher's test (Spring 2025): students choose one of two conversion methods to explain for each KU question, then complete APP circuit problems, and answer COMM/TIPS reflection questions.
+- **ALU assignment (due period 16):** Summative project. Students submit one CircuitVerse project (8 tabs) and a design document. Weighted toward Application; also assesses Knowledge (component designs), Communication (document structure), and Thinking (LST explanation).
 
-### Test breakdown (period 13)
+### Test breakdown (period 12)
 
 | Category | Question | Marks |
 |----------|----------|-------|
@@ -63,7 +62,7 @@ The unit has two natural halves:
 | TIPS | Two benefits of Boolean algebra simplification | /2 |
 | **Total** | | **/18** |
 
-### ALU assignment breakdown (period 17)
+### ALU assignment breakdown (period 16)
 
 | Category | Criteria | Marks |
 |----------|----------|-------|
@@ -86,17 +85,17 @@ The unit has two natural halves:
 - [x] `practice-simplification-solutions.md` — solutions for `practice-simplification.md`
 - [x] `practice-more-simplification.md` — additional simplification problems (Part C onward), increasing difficulty
 - [x] `practice-more-simplification-solutions.md` — solutions for `practice-more-simplification.md`
-- [x] `practice-alu-guided-build.md` — in-class guided build activity (periods 9–12); truth table derivation, CircuitVerse steps, verification checklists; doubles as a reference during the assignment
+- [x] `practice-alu-guided-build.md` — in-class guided build activity (periods 9–11); truth table derivation, CircuitVerse steps, verification checklists; doubles as a reference during the assignment
 - [x] `homework.md` — independent practice set, due period 6
 - [x] `alu-assignment.md` — CircuitVerse project spec, design document spec, test cases, milestones, rubric
 - [x] `alu-extension.md` — optional extension challenges for students working ahead (add OR operation, overflow indicator, carry-lookahead adder)
 
 ### Teacher-facing (in `_planning/`)
 - [x] `unit-3-overview.md` — this file
-- [x] `unit-3-alu-lesson-plans.md` — detailed period-by-period lesson plans for the ALU section (periods 9–17), including timing, key questions, common misconceptions, and differentiation notes
+- [x] `unit-3-alu-lesson-plans.md` — detailed period-by-period lesson plans for the ALU section (periods 9–16), including timing, key questions, common misconceptions, and differentiation notes
 
 ## Open items
 - Practice problems in `practice-conversions.md` Parts C and D use text-described circuits — consider adding CircuitVerse screenshots if students find them hard to follow from description alone
 - `homework.md` is intentionally long (16 problems, all six conversion directions) — period 4 is a dedicated work period; students should not expect to finish it entirely at home after period 3
 - ALU assignment: confirm CircuitVerse has a Splitter component available before assigning (needed for 4-bit bus routing)
-- Buffer period at end of unit (period 17) doubles as ALU demo day — if demos run short, can use time for unit 4 preview or free build
+- Buffer period at end of unit (period 16) doubles as ALU demo day — if demos run short, can use time for unit 4 preview or free build

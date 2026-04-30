@@ -269,6 +269,7 @@ Column by column: 1−0=1, 0−0=0, 1−1=0, 1−0=1. Result: 9 ✓
   1 0 1 0    (10)
 - 0 0 1 1    ( 3)
 ─────────
+  0 1 1 1    ( 7)
 ```
 
 - Col 0: 0 − 1 → borrow. Becomes 10₂ (=2) − 1 = 1. Mark borrow into col 1.

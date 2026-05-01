@@ -16,8 +16,8 @@ A half adder adds two single bits and produces a sum and a carry out.
 
 Fill in the output columns.
 
-| A | B | Z (Sum) | Y (Carry Out) |
-|---|---|---------|---------------|
+| A | B | Z (Sum) | Cout |
+|---|---|---------|------|
 | 0 | 0 | | |
 | 0 | 1 | | |
 | 1 | 0 | | |
@@ -27,23 +27,23 @@ Fill in the output columns.
 
 What pattern does Z follow? _______________
 
-What pattern does Y follow? _______________
+What pattern does Cout follow? _______________
 
 Z = _______________
 
-Y = _______________
+Cout = _______________
 
 ### Build
 
 1. Create Tab 1. Double-click the tab name and rename it **Half Adder**.
 2. Add two inputs labeled `A` and `B`.
-3. Add two outputs labeled `Z` and `Y`.
+3. Add two outputs labeled `Z` and `Cout`.
 4. Wire the gates that match your equations.
 
 ### Before Moving On
 
 - [ ] All 4 input combinations tested and match your truth table
-- [ ] Inputs labeled `A` and `B`; outputs labeled `Z` and `Y`
+- [ ] Inputs labeled `A` and `B`; outputs labeled `Z` and `Cout`
 - [ ] Tab named **Half Adder**
 
 ---
@@ -356,7 +356,7 @@ Use this during the assignment. All equations are for single-bit versions; the 4
 
 | Component | Key equation(s) |
 |-----------|-----------------|
-| Half Adder | Z = A ⊕ B, &nbsp; Y = A·B |
+| Half Adder | Z = A ⊕ B, &nbsp; Cout = A·B |
 | Full Adder | Z = A ⊕ B ⊕ Cin, &nbsp; Cout = AB + ACin + BCin |
 | Full Subtractor | Z = A ⊕ B ⊕ Bin, &nbsp; Bout = A'B + A'Bin + BBin |
 | MUX (2-in-1) | Z = A·C' + B·C |

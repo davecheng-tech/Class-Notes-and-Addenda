@@ -325,7 +325,7 @@ Control table:
 
 > **Challenge:** You derived the 2-in-1 MUX equation as `Z = A·C' + B·C` — each data input is gated by the control minterm that selects it. Can you extend that pattern to write the equation for a 4-in-1 MUX with inputs A, B, C, D and 2-bit control C1, C0?
 >
-> If you can write it, build a single MUX tab from basic gates (AND, OR, NOT) and use it in place of the three-MUX cascade below. Verify it against the control table above.
+> If you can write it, try to build a single MUX tab from basic gates (AND, OR, NOT) and use it in place of the three-MUX cascade. Verify it against the control table.
 
 ---
 

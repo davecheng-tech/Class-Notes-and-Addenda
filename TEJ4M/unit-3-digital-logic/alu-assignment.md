@@ -21,22 +21,30 @@ This assignment requires both a working CircuitVerse project and a written desig
 
 ## CircuitVerse Project
 
-Submit **one CircuitVerse project** with a separate tab for each component:
+Submit **one CircuitVerse project** organized into tabs — one tab per component or sub-component. The minimum required components are listed below, but the total number of tabs will depend on how you decompose your design.
 
-| Tab | Component | Description |
-|-----|-----------|-------------|
-| 1 | Full Adder (1-bit) | Single-bit full adder for design reference |
-| 2 | 4-bit Adder | Four full adders chained with ripple carry |
-| 3 | Full Subtractor (1-bit) | Single-bit full subtractor for design reference |
-| 4 | 4-bit Subtractor | Four full subtractors chained with ripple borrow |
-| 5 | ANDer (4-bit) | Four independent AND gates |
-| 6 | LSTer (4-bit) | Less Than unit |
-| 7 | MUX (2-in-1, 1-bit) | Basic multiplexer for design reference |
-| 8 | ALU (4-bit, 4-function) | All components connected through a 4-in-1 MUX |
+**Required components:**
+
+| Component | Description |
+|-----------|-------------|
+| Full Adder (1-bit) | Single-bit full adder for design reference. |
+| Adder (4-bit) | A 4-bit adder built from 1-bit full adders chained with ripple carry. If you prefer to build bottom-up, you may use separate tabs for a half adder and a full adder before the 4-bit adder. |
+| Full Subtractor (1-bit) | Single-bit full subtractor for design reference. |
+| Subtractor (4-bit) | A 4-bit subtractor built from 1-bit full subtractors chained with ripple borrow. |
+| ANDer (4-bit) | Four independent AND gates. |
+| LSTer (4-bit) | Less Than unit. |
+| MUX 2:1 (1-bit) | A 1-bit 2-to-1 multiplexer built from basic gates (AND, OR, NOT). |
+| MUX 4:1 (1-bit) | A 1-bit 4-to-1 multiplexer built by cascading your MUX 2:1 (1-bit) subcircuit instances. **Do not use CircuitVerse's built-in Multiplexer component.** |
+| MUX 4:1 (4-bit) | Four MUX 4:1 (1-bit) subcircuit instances, one per output bit, each wired independently. This tab abstracts the full 4-bit selection into a single subcircuit so the ALU tab stays clean. **Do not use CircuitVerse's built-in Multiplexer component.** |
+| ALU (4-bit, 4-function) | All four operation units connected through your MUX 4:1 (4-bit) subcircuit. Keep this tab as clean as possible — use subcircuits for every component rather than rebuilding gates directly. |
+
+You may also add tabs for additional sub-components. Examples:
+- A **Half Adder (1-bit)** tab before your full adder, if you are building bottom-up
+- An **OVF gate** tab — overflow detection logic that suppresses the overflow flag when the operation is AND or LST, since those operations do not produce arithmetic overflow
 
 Label all inputs and outputs on every tab. Use the label/annotation tool in CircuitVerse to name each sub-component.
 
-**MUX note:** Tab 7 must be built from basic gates (AND, OR, NOT) — this is the design you'll document. For Tab 8 (the ALU assembly), you may use CircuitVerse's built-in Multiplexer component configured as a 4-in-1 selector, or instantiate your Tab 7 design as a subcircuit. Either is acceptable.
+**MUX hierarchy:** The multiplexer is built in three stages: (1) MUX 2:1 (1-bit) from basic gates; (2) MUX 4:1 (1-bit) by cascading three MUX 2:1 (1-bit) subcircuit instances; (3) MUX 4:1 (4-bit) by cascading four MUX 4:1 (1-bit) subcircuit instances. In the ALU tab, use your MUX 4:1 (4-bit) as a single subcircuit. Do not use CircuitVerse's built-in Multiplexer component at any stage.
 
 ---
 
@@ -46,9 +54,9 @@ Use these targets to pace your work across the three work periods.
 
 | End of period | Target |
 |---------------|--------|
-| Work period 1 | Tabs 1–4 complete and verified. At minimum, Tab 2 (4-bit adder) should pass: A=0011, B=0101, Control=00 → Z=1000. |
-| Work period 2 | Tabs 5–7 complete and verified. Tab 6 (LSTer) should pass: A=0011, B=0101 → Z=0001; A=0101, B=0011 → Z=0000. |
-| Work period 3 | Tab 8 (ALU) wired and all five test cases passing. Design document introduction and at least two component sections written. |
+| Work period 1 | 4-bit Adder and 4-bit Subtractor complete and verified. Adder: A=0011, B=0101 → Z=1000. Subtractor: A=0111, B=0011 → Z=0100. |
+| Work period 2 | ANDer, LSTer, and all three MUX tabs complete and verified. LSTer: A=0011, B=0101 → Z=0001; A=0101, B=0011 → Z=0000. MUX 4:1 (4-bit) verified with all four control combinations. |
+| Work period 3 | ALU tab wired and all five test cases passing. Design document at least half complete — introduction and sections 2–4 written. |
 
 If you're ahead of a milestone, start on the design document section for whichever component you just finished — the details are freshest right after building.
 
@@ -56,17 +64,25 @@ If you're ahead of a milestone, start on the design document section for whichev
 
 ## Design Document
 
-Submit a Google Doc alongside your CircuitVerse project. It must include:
+Submit a Google Doc alongside your CircuitVerse project. Your guided build notes already contain the 1-bit truth tables and Boolean equations — your document should go beyond that and demonstrate understanding of the **4-bit design and how it is constructed from 1-bit components**.
 
-1. **Introduction** — What is an ALU? What does your ALU do?
-2. **Full Adder Design** — 1-bit truth table, Boolean equations for sum and carry out, circuit diagram or screenshot
-3. **Full Subtractor Design** — 1-bit truth table, Boolean equations for difference and borrow out, circuit diagram or screenshot
-4. **ANDer Design** — 1-bit truth table, Boolean equation, circuit diagram or screenshot
-5. **LSTer Design** — Explain in words or with a diagram how the Less Than unit was built. Which other component does it reuse?
-6. **MUX Design** — 1-bit 2-in-1-out truth table, Boolean equation, circuit diagram or screenshot
-7. **Conclusion** — Describe one thing that surprised or challenged you during this project
+Required sections:
 
-Each design section should be its own subsection. Use clear headings.
+1. **Introduction** — In your own words: what is an ALU? Describe what your 4-bit ALU does, list all four operations, and explain how the 2-bit control signal selects among them.
+
+2. **4-bit Adder** — Explain how four 1-bit full adders chain together using ripple carry. Include a screenshot of your 4-bit adder tab and trace one test case step by step, showing how carry propagates from bit 0 through to bit 3. (Suggested: A = 0111, B = 0001.)
+
+3. **4-bit Subtractor** — Explain how four 1-bit full subtractors chain together using ripple borrow. Include a screenshot and trace one test case showing how borrow propagates across the four stages.
+
+4. **ANDer and LSTer** — Include a screenshot of each 4-bit unit. For the LSTer specifically: which output of which component produces the Less Than signal, and why does that output indicate A < B? Verify with two test cases — one where A < B and one where A ≥ B.
+
+5. **MUX Design** — Document both stages of the MUX hierarchy. First, explain how three MUX 2:1 (1-bit) subcircuits cascade to produce a MUX 4:1 (1-bit), and include a screenshot of that tab. Then explain how four MUX 4:1 (1-bit) subcircuits combine to produce a MUX 4:1 (4-bit), and include a screenshot of that tab. Include a table showing how C1 and C0 together select each of the four operations.
+
+6. **ALU Architecture** — Describe how all components connect in the ALU tab. What four signals feed into the MUX? What controls the MUX? Include a screenshot of your ALU tab and a completed verification table showing all five standard test cases, your ALU's actual output for each, and whether each passed.
+
+7. **Conclusion** — Describe one thing that surprised or challenged you during this project.
+
+Each section must have a clear heading. Sections 2–6 must include screenshots of the corresponding CircuitVerse tab.
 
 ---
 
@@ -83,8 +99,6 @@ Before submitting, test each operation manually:
 **LST test (A < B):** Set A = 0011 (3), B = 0101 (5), Control = 11. Expected output: 0001.
 
 **LST test (A ≥ B):** Set A = 0101 (5), B = 0011 (3), Control = 11. Expected output: 0000.
-
-Include screenshots of at least two of these tests in your design document.
 
 ---
 
@@ -105,8 +119,8 @@ Achievement levels correspond to Ontario grading bands:
 
 | Level | Descriptor |
 |:-----:|------------|
-| **4+** | All eight tabs functional and all five standard test cases pass. Student has gone beyond the spec: overflow behaviour documented, additional test cases explored, or a genuine extension (e.g., a fifth operation, wider bit-width, additional subcircuit). |
-| **4** | All eight tabs functional. All five standard test cases pass in the ALU tab. |
+| **4+** | All required tabs functional and all five standard test cases pass. Student has gone beyond the spec: overflow behaviour documented, an OVF gate implemented, additional test cases explored, or a genuine extension (e.g., a fifth operation, wider bit-width, additional subcircuit). |
+| **4** | All required tabs functional. All five standard test cases pass in the ALU tab. |
 | **3** | Most tabs functional. ALU tab is wired and most operations work; one operation may fail or produce unexpected output on edge cases. |
 | **2** | Some tabs functional; others are incomplete or produce incorrect output. ALU tab is partially wired or has multiple operations failing. |
 | **1** | Few tabs functional. ALU tab is missing or non-functional. |
@@ -129,37 +143,22 @@ Achievement levels correspond to Ontario grading bands:
 
 ### Design Document — /20 (Knowledge & Understanding / Communication)
 
-**Assesses whether all required sections are present, technically accurate, and clearly explained. The document should demonstrate understanding of what was built, not just that something was built.**
+**Assesses whether all required sections are present and demonstrate understanding of the 4-bit design — not just that the guided build was completed.**
 
 | Level | Descriptor |
 |:-----:|------------|
-| **4+** | All sections present and technically rigorous. Truth tables are complete and correct. Boolean equations are correctly derived and simplified where applicable. The LSTer explanation identifies the underlying relationship to another component and explains *why* it works. Introduction and conclusion are substantive — the conclusion reflects genuinely on a challenge or surprise rather than restating what was built. |
-| **4** | All sections present. Truth tables and equations are correct. The LSTer explanation correctly identifies the derived component and how it is reused. Screenshots are clear and relevant. Document uses consistent headings and is well organized. |
-| **3** | All or nearly all sections present. Truth tables and equations are mostly correct with minor errors. The LSTer explanation is partially correct or lacks depth. Screenshots are included but may be loosely connected to the text. |
-| **2** | Some sections missing or incomplete. Truth tables may have errors. Equations are absent or incorrect in places. The LSTer explanation is vague or missing. Screenshots are present but uncaptioned or poorly chosen. |
-| **1** | Multiple required sections missing. Content is sparse and does not demonstrate understanding of the components designed. |
+| **4+** | All sections present and technically rigorous. Ripple carry and ripple borrow traces are correct bit-by-bit. The MUX 4:1 section clearly explains the cascading structure and correctly shows the full control encoding. The LSTer explanation identifies the exact output used and explains the logic of why it signals A < B. Introduction and conclusion are substantive — the conclusion reflects genuinely on a challenge or surprise. |
+| **4** | All sections present. Ripple carry and ripple borrow traces are correct. MUX 4:1 control encoding table is correct. LSTer explanation correctly identifies which component output is used and why. Screenshots are clear and correspond to the described tab. Document uses consistent headings and is well organized. |
+| **3** | All or nearly all sections present. Carry and borrow traces are attempted but may have minor errors. MUX 4:1 section explains cascading but the control encoding may be incomplete. LSTer explanation is partially correct or lacks depth. Screenshots are included but may be loosely connected to the text. |
+| **2** | Some sections missing or incomplete. Carry and borrow propagation is not explained or is incorrect. MUX 4:1 and LSTer explanations are vague or missing. Screenshots are present but uncaptioned or poorly chosen. |
+| **1** | Multiple required sections missing. Content is sparse and does not demonstrate understanding of the 4-bit design. |
 
 ---
 
 ## Notes on CircuitVerse
 
-- Save frequently. Use **File → Save Online** if signed in, or export regularly as a backup.
-- Use the **Splitter** component to separate a 4-bit bus into individual bits when connecting to components that expect single-bit inputs.
+- Save frequently. Use **Project → Export as File** if not signed in. Older versions of the `.cv` file can be kept as backup for version history.
 - Name your inputs and outputs using the **Label** property in the properties panel — this makes the project much easier to read and debug.
-- The 4-in-1 MUX in the ALU tab can be built by combining three 2-in-1 MUXes (see the design notes).
+- Build your multiplexer in three stages: MUX 2:1 (1-bit) from basic gates → MUX 4:1 (1-bit) by cascading three MUX 2:1 (1-bit) instances → MUX 4:1 (4-bit) by cascading four MUX 4:1 (1-bit) instances. Do not use the built-in Multiplexer component at any stage. Use your MUX 4:1 (4-bit) as a single subcircuit in the ALU tab.
 - Test each tab independently before wiring the final ALU tab.
 
----
-
-## Reference: ALU Operation Truth Table (for testing)
-
-Fill this table in as you test your final ALU. All values are in binary.
-
-| A | B | Control | Expected Z | Your ALU Z | Correct? |
-|---|---|---------|------------|------------|----------|
-| 0011 | 0101 | 00 (ADD) | 1000 | | |
-| 0111 | 0011 | 01 (SUB) | 0100 | | |
-| 1010 | 1100 | 10 (AND) | 1000 | | |
-| 0011 | 0101 | 11 (LST) | 0001 | | |
-| 0101 | 0011 | 11 (LST) | 0000 | | |
-| 1111 | 0001 | 00 (ADD) | — | | (overflow — what happens?) |

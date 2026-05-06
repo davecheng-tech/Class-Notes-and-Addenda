@@ -88,16 +88,56 @@ Include screenshots of at least two of these tests in your design document.
 
 ---
 
-## Evaluation
+## Assessment Rubric
 
-| Category | Criteria | Marks |
-|----------|----------|-------|
-| **APP** | Circuit components built and working — 1 mark per component (Adder, Subtractor, AND, LST, MUX) | /5 |
-| **APP** | ALU tab: all components connected and all four operations functional | /3 |
-| **COMM** | Document format: introduction, conclusion, all subsections present and clear | /3 |
-| **KU** | Component designs: truth tables, equations, and circuit screenshots (one mark each for Adder, Subtractor, AND, MUX) | /4 |
-| **TIPS** | LSTer explanation: correctly explains how the Less Than unit was derived from another component | /1 |
-| **Total** | | /16 |
+Achievement levels correspond to Ontario grading bands:
+
+- **Level 1:** 50–59%
+- **Level 2:** 60–69%
+- **Level 3:** 70–79%
+- **Level 4 / 4+:** 80–100%
+
+<br>
+
+### Circuit Functionality — /20 (Application)
+
+**Assesses whether each component works correctly and whether the full ALU integrates them all. Each tab should function independently; the ALU tab must route all four operations correctly through the MUX.**
+
+| Level | Descriptor |
+|:-----:|------------|
+| **4+** | All eight tabs functional and all five standard test cases pass. Student has gone beyond the spec: overflow behaviour documented, additional test cases explored, or a genuine extension (e.g., a fifth operation, wider bit-width, additional subcircuit). |
+| **4** | All eight tabs functional. All five standard test cases pass in the ALU tab. |
+| **3** | Most tabs functional. ALU tab is wired and most operations work; one operation may fail or produce unexpected output on edge cases. |
+| **2** | Some tabs functional; others are incomplete or produce incorrect output. ALU tab is partially wired or has multiple operations failing. |
+| **1** | Few tabs functional. ALU tab is missing or non-functional. |
+
+<br>
+
+### Schematic Style & Conventions — /10 (Application)
+
+**Assesses how well the CircuitVerse project follows schematic drawing conventions. Circuits should be readable to someone who has never seen them before.**
+
+| Level | Descriptor |
+|:-----:|------------|
+| **4+** | All conventions followed consistently across every tab. Signal flows left to right; data and control signals are visually distinct; stubs are present on gate pins before any wire turns; parallel components (e.g., the four 1-bit operation units) are aligned; every input and output is labelled with consistent naming across tabs. The circuit reads as a professional diagram. |
+| **4** | Conventions followed in most tabs with only minor lapses. Labelling is consistent across tabs. Signal flow direction and data/control separation are clear. |
+| **3** | Conventions followed in places but inconsistently applied. Most inputs and outputs are labelled. One or two conventions (e.g., pin stubs, data/control separation) may be missing or unclear in some tabs. |
+| **2** | Some labelling present but conventions are largely unobserved. Wires turn immediately at gate pins, parallel components are misaligned, or data and control signals are difficult to distinguish. |
+| **1** | Little attention to conventions. Circuits are difficult to read and trace. Few or no labels on inputs and outputs. |
+
+<br>
+
+### Design Document — /20 (Knowledge & Understanding / Communication)
+
+**Assesses whether all required sections are present, technically accurate, and clearly explained. The document should demonstrate understanding of what was built, not just that something was built.**
+
+| Level | Descriptor |
+|:-----:|------------|
+| **4+** | All sections present and technically rigorous. Truth tables are complete and correct. Boolean equations are correctly derived and simplified where applicable. The LSTer explanation identifies the underlying relationship to another component and explains *why* it works. Introduction and conclusion are substantive — the conclusion reflects genuinely on a challenge or surprise rather than restating what was built. |
+| **4** | All sections present. Truth tables and equations are correct. The LSTer explanation correctly identifies the derived component and how it is reused. Screenshots are clear and relevant. Document uses consistent headings and is well organized. |
+| **3** | All or nearly all sections present. Truth tables and equations are mostly correct with minor errors. The LSTer explanation is partially correct or lacks depth. Screenshots are included but may be loosely connected to the text. |
+| **2** | Some sections missing or incomplete. Truth tables may have errors. Equations are absent or incorrect in places. The LSTer explanation is vague or missing. Screenshots are present but uncaptioned or poorly chosen. |
+| **1** | Multiple required sections missing. Content is sparse and does not demonstrate understanding of the components designed. |
 
 ---
 

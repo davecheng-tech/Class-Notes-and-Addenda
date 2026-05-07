@@ -4,7 +4,7 @@ Optional extensions for students who finish the 4-bit ALU early. Each builds dir
 
 Note that each addition should have its own corresponding section in your documentation.
 
-**Difficulty:** ★☆☆ quick &nbsp;|&nbsp; ★★☆ one period &nbsp;|&nbsp; ★★★ two periods+
+**Difficulty:** ★☆☆ quick &nbsp;|&nbsp; ★★☆ < one period &nbsp;|&nbsp; ★★★ > one period
 
 ---
 

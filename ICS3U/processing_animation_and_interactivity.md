@@ -159,54 +159,10 @@ textSize(16);
 text("Press A to change colour. Click to move ball.", 20, 20);
 ```
 
-## 7. Images (Sprites)
-The `image()` method behaves quite similarly to other methods such as `ellipse()`. They can be used to place an image anywhere on the screen with coordinate values.
+## 7. Useful Links
 
-### Loading an image
-
-```java
-PImage mySpriteName;
-
-public void setup() {
-  size(800, 600);
-  mySpriteName = loadImage("mySprite.png");
-}
-```
-
-### Drawing an image
-
-```java
-image(mySpriteName, ballX, ballY);
-```
-
-### Resizing an image
-The `PImage` class contains several useful functions that let you manipulate images. For example, the `resize()` method resizes an image. (See [documentation](https://processing.org/reference/PImage_resize_.html) for additional uses.) 
-
-Here’s an example that resizes the image to 200 pixels wide whenever the user clicks the mouse:
-
-```java
-PImage mySpriteName;
-
-public void setup() {
-  size(800, 600);
-  mySpriteName = loadImage("mySprite.png");
-}
-
-public void mousePressed() {
-  mySpriteName.resize(200, 0);  // height = 0 keeps proportions
-}
-
-public void draw() {
-  image(mySpriteName, mouseX, mouseY);
-}
-```
-
-## 8. Useful Links
-
-- Images: https://happycoding.io/tutorials/processing/images  
 - Animation: https://happycoding.io/tutorials/processing/animation  
 - Input: https://happycoding.io/tutorials/processing/input  
-- Free Image Assets: https://www.kenney.nl/assets
 
 
 

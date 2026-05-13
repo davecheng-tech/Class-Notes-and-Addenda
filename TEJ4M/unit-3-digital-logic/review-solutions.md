@@ -127,42 +127,44 @@ Gate count (unsimplified):
 
 b) Simplification:
 
-The key insight is to duplicate the term `A·B·C` using the Idempotent Law, allowing it to pair with three different terms.
+Group the first two terms and last two terms — **Commutative** (reordering within a sum is valid):
 
 ```
-Z = A'·B·C + A·B'·C + A·B·C' + A·B·C
+Z = (A'·B·C + A·B'·C) + (A·B·C' + A·B·C)
 ```
 
-Duplicate A·B·C twice using **Idempotent** (A·B·C + A·B·C + A·B·C = A·B·C, so we can introduce extra copies):
+Factor C from the first group, A·B from the second — **Distributive** (reverse):
 
 ```
-Z = (A'·B·C + A·B·C) + (A·B'·C + A·B·C) + (A·B·C' + A·B·C)
+Z = C·(A'·B + A·B') + A·B·(C' + C)
 ```
 
-Factor each pair using **Distributive (reverse)**:
+C' + C = 1 — **Complement**:
 
 ```
-= B·C·(A' + A) + A·C·(B' + B) + A·B·(C' + C)
+Z = C·(A'·B + A·B') + A·B·1
 ```
 
-Apply **Complement** law (X + X' = 1) to each bracket:
+A·B·1 = A·B — **Identity**:
 
 ```
-= B·C·1 + A·C·1 + A·B·1
+Z = C·(A'·B + A·B') + A·B
 ```
 
-Apply **Identity** law (X · 1 = X):
+Recognize XOR — **XOR identity** (A'·B + A·B' = A ⊕ B):
 
 ```
-Z = BC + AC + AB
+Z = C·(A ⊕ B) + A·B
 ```
 
 c) Gate count (simplified):
-- 3 two-input AND gates (BC, AC, AB)
-- 1 three-input OR gate
+- 1 XOR gate (A ⊕ B)
+- 1 AND gate (C with XOR result)
+- 1 AND gate (A·B)
+- 1 OR gate
 - **Total: 4 gates** (saving 4 gates)
 
-*Note: Z = AB + AC + BC is the majority circuit — it outputs 1 whenever at least two of the three inputs are 1.*
+*Note: Z = AB + C(A⊕B) is the majority circuit — it outputs 1 whenever at least two of the three inputs are 1.*
 
 ---
 

@@ -445,10 +445,10 @@ c) What decimal values are being added, and what is their decimal sum? Does this
 
 ```
   Carries:  1 1 1
-    1 0 1 1    (11)
-  + 0 1 1 0    ( 6)
-  ─────────
-    0 0 0 1   + carry out = 1
+              1 0 1 1    (11)
+            + 0 1 1 0    ( 6)
+            ─────────
+              0 0 0 1   + carry out = 1
 ```
 
 Column by column (right to left):

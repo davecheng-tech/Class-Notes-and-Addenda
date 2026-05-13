@@ -127,7 +127,7 @@ Gate count (unsimplified):
 
 b) Simplification:
 
-Group the first two terms and last two terms — **Commutative** (reordering within a sum is valid):
+Group the first two terms and last two terms — **Associative** (regrouping within a sum doesn't change the result):
 
 ```
 Z = (A'·B·C + A·B'·C) + (A·B·C' + A·B·C)

@@ -242,7 +242,7 @@ Z = A'·B·C + A·B'·C + A·B·C' + A·B·C
 
 Gate count (unsimplified): 3 NOT gates + 4 three-input AND gates + 1 four-input OR gate = **8 gates**
 
-b) Group the first two terms and last two terms — **Commutative** (reordering within a sum is valid):
+b) Group the first two terms and last two terms — **Associative** (regrouping within a sum doesn't change the result):
 
 ```
 Z = (A'·B·C + A·B'·C) + (A·B·C' + A·B·C)

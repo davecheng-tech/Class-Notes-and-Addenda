@@ -106,7 +106,7 @@ a) Working left to right through each gate:
 - E = D · B = A'·B
 - Z = E + C = **A'·B + C**
 
-b) Accept any reasonable real-world assignment. Example:
+b) Any reasonable real-world assignment is acceptable. Example:
 - A = security system is active, B = motion detected, C = emergency button pressed
 - *"The alarm sounds when motion is detected and the security system is not active, or when the emergency button is pressed."*
 

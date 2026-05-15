@@ -243,6 +243,8 @@ Other examples:
 
 These browser-based tools let you hear and see the waveforms from today's lesson.
 
+**[Wave Sampling Explorer](https://davecheng-tech.github.io/Class-Notes-and-Addenda/TEJ4M/unit-4-rpi/wave-sampling-explorer.html)** — Interactive ADC simulator. Adjust bit depth (2, 4, 8-bit) and sample rate to see how quantization steps and sampling density affect the reconstructed waveform. Hit Play to hear the difference at 440 Hz — low settings produce a harsh, buzzy tone; higher settings converge on a clean sine.
+
 **[ToneSynth](https://tonesynth.com)** — Simple tone generator. Select sine, square, sawtooth, or triangle wave and hit play. Default pitch is A440 (440 Hz). Compare how the four wave shapes sound.
 
 **[WebSynth Studio](https://szabadkai.github.io/synth-demo/)** — Two-oscillator synthesizer with a live oscilloscope display. Play notes using the home row keys on your keyboard. Try:

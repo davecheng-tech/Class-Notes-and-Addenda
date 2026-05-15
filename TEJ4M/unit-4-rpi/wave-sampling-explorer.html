@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wave Sampling Explorer</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #111827;
+    color: #d1d5db;
+    min-height: 100vh;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #93c5fd;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    font-size: 0.78rem;
+    color: #6b7280;
+  }
+
+  canvas {
+    border-radius: 6px;
+    border: 1px solid #1f2937;
+    display: block;
+    max-width: 100%;
+    background: #0d131f;
+  }
+
+  .controls {
+    margin-top: 16px;
+    width: 820px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .panel {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+
+  .panel-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+
+  .panel-value {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #f9fafb;
+    line-height: 1;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .panel-detail {
+    font-size: 0.73rem;
+    color: #9ca3af;
+    margin-bottom: 14px;
+    min-height: 1.2em;
+    line-height: 1.5;
+  }
+
+  .bit-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .bit-btn {
+    flex: 1;
+    padding: 9px 0;
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    color: #9ca3af;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+  }
+
+  .bit-btn:hover { border-color: #4b5563; color: #d1d5db; }
+
+  .bit-btn.active {
+    background: #1e3a5f;
+    border-color: #3b82f6;
+    color: #93c5fd;
+  }
+
+  .slider-wrap { position: relative; margin-bottom: 14px; }
+
+  input[type=range] {
+    width: 100%;
+    height: 5px;
+    accent-color: #f59e0b;
+    cursor: pointer;
+  }
+
+  .bottom-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .play-btn {
+    padding: 9px 22px;
+    background: #064e3b;
+    border: 1px solid #065f46;
+    border-radius: 6px;
+    color: #6ee7b7;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.12s;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .play-btn:hover { background: #065f46; }
+
+  .play-btn.playing {
+    background: #450a0a;
+    border-color: #7f1d1d;
+    color: #fca5a5;
+  }
+
+  .legend {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.73rem;
+    color: #9ca3af;
+  }
+
+  .legend-line {
+    width: 18px;
+    height: 2.5px;
+    border-radius: 2px;
+  }
+
+  .legend-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-left: -5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Wave Sampling Explorer</h1>
+  <p class="subtitle">Adjust bit depth and sample rate &mdash; see and hear how ADC quality changes</p>
+</header>
+
+<canvas id="canvas" width="820" height="300"></canvas>
+
+<div class="controls">
+  <div class="panel">
+    <div class="panel-label">Bit Depth</div>
+    <div class="panel-value" id="bit-val">4-bit</div>
+    <div class="panel-detail" id="bit-detail"></div>
+    <div class="bit-row">
+      <button class="bit-btn" data-bits="2">2-bit</button>
+      <button class="bit-btn active" data-bits="4">4-bit</button>
+      <button class="bit-btn" data-bits="8">8-bit</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label">Sample Rate</div>
+    <div class="panel-value" id="sr-val"></div>
+    <div class="panel-detail" id="sr-detail"></div>
+    <div class="slider-wrap">
+      <input type="range" id="sr-slider" min="2" max="40" value="16">
+    </div>
+    <div class="bottom-row">
+      <button class="play-btn" id="play-btn">&#9654; Play 440 Hz</button>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-line" style="background:#3b82f6"></div>
+          Original
+        </div>
+        <div class="legend-item">
+          <div class="legend-line" style="background:#f59e0b"></div>
+          <div class="legend-dot" style="background:#fcd34d"></div>
+          Sampled
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Constants ────────────────────────────────────────────────
+const VMAX   = 7;       // ±7V range, as per the note
+const VRANGE = 14;
+const CYCLES = 3;       // cycles shown on canvas
+
+// ── State ────────────────────────────────────────────────────
+let bitDepth        = 4;
+let samplesPerCycle = 16;
+let isPlaying       = false;
+let audioCtx        = null;
+let currentSource   = null;
+
+// ── Canvas ───────────────────────────────────────────────────
+const canvas = document.getElementById('canvas');
+const gfx    = canvas.getContext('2d');
+const W      = canvas.width;
+const H      = canvas.height;
+const PAD    = { top: 22, bottom: 22, left: 38, right: 12 };
+const PW     = W - PAD.left - PAD.right;   // plot width
+const PH     = H - PAD.top  - PAD.bottom;  // plot height
+
+function voltToY(v) {
+  // v in [-VMAX, +VMAX] → canvas y
+  return PAD.top + PH / 2 - (v / VMAX) * (PH / 2);
+}
+
+function tToX(t) {
+  return PAD.left + (t / CYCLES) * PW;
+}
+
+// Uniform mid-tread quantizer over ±VMAX
+function quantize(v, bits) {
+  const n    = 1 << bits;
+  const step = VRANGE / n;
+  const idx  = Math.max(0, Math.min(n - 1, Math.floor((v + VMAX) / step)));
+  return -VMAX + idx * step + step / 2;
+}
+
+// ── Drawing ──────────────────────────────────────────────────
+function draw() {
+  gfx.clearRect(0, 0, W, H);
+
+  const n    = 1 << bitDepth;
+  const step = VRANGE / n;
+
+  // Quantization level lines (skip when too many to be visible)
+  if (n <= 32) {
+    const alpha = bitDepth === 2 ? 0.20 : 0.10;
+    gfx.strokeStyle = `rgba(255,255,255,${alpha})`;
+    gfx.lineWidth = 1;
+    for (let i = 0; i <= n; i++) {
+      const y = voltToY(-VMAX + i * step);
+      gfx.beginPath();
+      gfx.moveTo(PAD.left, y);
+      gfx.lineTo(PAD.left + PW, y);
+      gfx.stroke();
+    }
+  } else {
+    // 8-bit: just show a very light fill hint — levels are too fine to draw
+    gfx.fillStyle = 'rgba(255,255,255,0.03)';
+    gfx.fillRect(PAD.left, PAD.top, PW, PH);
+  }
+
+  // Zero line
+  gfx.strokeStyle = 'rgba(255,255,255,0.18)';
+  gfx.lineWidth = 1;
+  gfx.setLineDash([4, 6]);
+  gfx.beginPath();
+  gfx.moveTo(PAD.left, voltToY(0));
+  gfx.lineTo(PAD.left + PW, voltToY(0));
+  gfx.stroke();
+  gfx.setLineDash([]);
+
+  // Y-axis labels
+  gfx.fillStyle = '#4b5563';
+  gfx.font      = '11px system-ui';
+  gfx.textAlign = 'right';
+  [VMAX, 0, -VMAX].forEach(v => {
+    const label = v === 0 ? '0' : (v > 0 ? '+' : '−') + Math.abs(v) + 'V';
+    gfx.fillText(label, PAD.left - 5, voltToY(v) + 4);
+  });
+
+  // ── Original sine wave ──────────────────────────────────
+  gfx.strokeStyle = '#3b82f6';
+  gfx.lineWidth   = 2;
+  gfx.beginPath();
+  for (let px = 0; px <= PW; px++) {
+    const t = (px / PW) * CYCLES;
+    const v = VMAX * Math.sin(2 * Math.PI * t);
+    const x = PAD.left + px;
+    const y = voltToY(v);
+    px === 0 ? gfx.moveTo(x, y) : gfx.lineTo(x, y);
+  }
+  gfx.stroke();
+
+  // ── Compute samples ─────────────────────────────────────
+  const total   = CYCLES * samplesPerCycle;
+  const samples = [];
+  for (let s = 0; s <= total; s++) {
+    const t  = s / samplesPerCycle;
+    const v  = VMAX * Math.sin(2 * Math.PI * t);
+    const qv = quantize(v, bitDepth);
+    samples.push({ t, v, qv });
+  }
+
+  // ── Staircase (sample-and-hold reconstruction) ──────────
+  gfx.strokeStyle = '#f59e0b';
+  gfx.lineWidth   = 2.5;
+  gfx.beginPath();
+  for (let s = 0; s < samples.length - 1; s++) {
+    const x0 = tToX(samples[s].t);
+    const x1 = tToX(samples[s + 1].t);
+    const y  = voltToY(samples[s].qv);
+    s === 0 ? gfx.moveTo(x0, y) : gfx.lineTo(x0, y);
+    gfx.lineTo(x1, y);
+  }
+  gfx.stroke();
+
+  // ── Sample dots ─────────────────────────────────────────
+  const r = samplesPerCycle <= 12 ? 5 : samplesPerCycle <= 24 ? 4 : 3;
+  gfx.fillStyle = '#fcd34d';
+  for (const sp of samples) {
+    if (sp.t > CYCLES + 1e-9) break;
+    gfx.beginPath();
+    gfx.arc(tToX(sp.t), voltToY(sp.qv), r, 0, Math.PI * 2);
+    gfx.fill();
+  }
+}
+
+// ── UI Updates ───────────────────────────────────────────────
+function updateBitInfo() {
+  const n    = 1 << bitDepth;
+  const step = (VRANGE / n).toFixed(bitDepth < 4 ? 1 : 2);
+  document.getElementById('bit-val').textContent   = bitDepth + '‑bit';
+  document.getElementById('bit-detail').textContent =
+    n + ' levels • ' + step + 'V step over ±7V';
+}
+
+function updateSrInfo() {
+  const audioHz = samplesPerCycle * 440;
+  document.getElementById('sr-val').textContent = samplesPerCycle + ' per cycle';
+  document.getElementById('sr-detail').textContent =
+    'At 440 Hz: ' + audioHz.toLocaleString() + ' Hz' +
+    (audioHz < 44100 ? ' — CD quality is 44,100 Hz' : '');
+}
+
+// ── Audio ────────────────────────────────────────────────────
+function buildBuffer(actx) {
+  const SR       = actx.sampleRate;
+  const dur      = 2;            // seconds of audio to loop
+  const freq     = 440;          // Hz
+  const nSamp    = Math.ceil(SR * dur);
+  const buf      = actx.createBuffer(1, nSamp, SR);
+  const data     = buf.getChannelData(0);
+
+  const n         = 1 << bitDepth;
+  const adcRate   = samplesPerCycle * freq;  // ADC samples/sec
+  const holdLen   = SR / adcRate;            // output samples per ADC sample
+
+  for (let i = 0; i < nSamp; i++) {
+    const adcIdx = Math.floor(i / holdLen);
+    const t      = adcIdx / adcRate;
+    const v      = Math.sin(2 * Math.PI * freq * t); // ±1 normalized
+
+    // Quantize in ±1 space
+    const step   = 2 / n;
+    const idx    = Math.max(0, Math.min(n - 1, Math.floor((v + 1) / step)));
+    data[i]      = -1 + idx * step + step / 2;
+  }
+
+  // Short fade in/out to prevent clicks on loop
+  const fade = Math.min(Math.floor(SR * 0.012), nSamp >> 1);
+  for (let i = 0; i < fade; i++) {
+    const f = i / fade;
+    data[i]            *= f;
+    data[nSamp - 1 - i] *= f;
+  }
+
+  return buf;
+}
+
+function startAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const gain = audioCtx.createGain();
+  gain.gain.value = 0.32;
+  gain.connect(audioCtx.destination);
+
+  const src = audioCtx.createBufferSource();
+  src.buffer = buildBuffer(audioCtx);
+  src.loop   = true;
+  src.connect(gain);
+  src.start();
+  currentSource = src;
+
+  isPlaying = true;
+  const btn = document.getElementById('play-btn');
+  btn.textContent = '■ Stop';
+  btn.classList.add('playing');
+}
+
+function stopAudio() {
+  if (currentSource) {
+    try { currentSource.stop(); } catch (_) {}
+    currentSource = null;
+  }
+  isPlaying = false;
+  const btn = document.getElementById('play-btn');
+  btn.textContent = '▶ Play 440 Hz';
+  btn.classList.remove('playing');
+}
+
+function restartAudio() {
+  if (!isPlaying) return;
+  stopAudio();
+  startAudio();
+}
+
+// ── Event Wiring ─────────────────────────────────────────────
+document.querySelectorAll('.bit-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.bit-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    bitDepth = parseInt(btn.dataset.bits);
+    updateBitInfo();
+    draw();
+    restartAudio();
+  });
+});
+
+const slider = document.getElementById('sr-slider');
+
+slider.addEventListener('input', () => {
+  samplesPerCycle = parseInt(slider.value);
+  updateSrInfo();
+  draw();
+});
+
+// Only rebuild audio buffer on release, not on every tick (avoids rapid rebuilds)
+slider.addEventListener('change', () => restartAudio());
+
+document.getElementById('play-btn').addEventListener('click', () => {
+  isPlaying ? stopAudio() : startAudio();
+});
+
+// ── Init ─────────────────────────────────────────────────────
+updateBitInfo();
+updateSrInfo();
+draw();
+</script>
+
+</body>
+</html>

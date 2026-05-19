@@ -1,5 +1,17 @@
 # Python for GPIO
 
+![Raspberry Pi 4 Model B](./images/rpi-pi4.jpg)
+
+A **Raspberry Pi** is a complete computer on a single circuit board — about the size of a deck of cards. It has a CPU, RAM, Wi-Fi, USB ports, and an HDMI output, and it runs Linux. You interact with it exactly the way you did in Unit 2: through a terminal over SSH.
+
+What makes the RPi different from a regular computer is the **40-pin GPIO header** — the two rows of metal pins along the top edge of the board.
+
+![Raspberry Pi 4 labelled diagram](./images/rpi-labels.png)
+
+**GPIO** stands for *General Purpose Input/Output*. Each pin can be individually configured in software to either send a voltage signal (output) or read one (input). This is the bridge between your code and the physical world: an LED wired to an output pin turns on when your script sets it HIGH; a button wired to an input pin lets your script detect a press. In this unit, those pins will drive motors, read sensors, and ultimately control an autonomous robot.
+
+<br>
+
 In Unit 3 you designed circuits in logic gates. In Unit 4 you control circuits with code. The bridge between them is a Python script running on a Raspberry Pi, sending electrical signals through GPIO pins.
 
 This note teaches you the Python you need to write those scripts — starting from the ground up. If you have ICS3U Python experience, most of §2 will be review; skip ahead to §3 when you are comfortable. If you have ICS3U Java but no Python, the language is similar in logic but different in syntax — the differences are called out explicitly. If this is your first time programming, work through every section in order.

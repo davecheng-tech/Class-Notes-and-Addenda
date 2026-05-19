@@ -1,8 +1,8 @@
 # Python for GPIO
 
-![Raspberry Pi 4 Model B](./images/rpi-pi4.jpg)
+![Raspberry Pi 5 held in a hand, showing its compact size](./images/rpi-hand.jpg)
 
-A **Raspberry Pi** is a complete computer on a single circuit board — about the size of a deck of cards. It has a CPU, RAM, Wi-Fi, USB ports, and an HDMI output, and it runs Linux. You interact with it exactly the way you did in Unit 2: through a terminal over SSH.
+A **Raspberry Pi** is a complete computer on a single circuit board — about the size of a deck of cards. It has a CPU, RAM, Wi-Fi, USB ports, and an HDMI output, and it runs Linux. While it's possible to connect a monitor and keyboard to one and interact with it like a desktop computer, you're more likely to find them running "headless" (i.e., without a monitor) in embedded systems. We'll be controlling ours in the terminal using `ssh`. 
 
 What makes the RPi different from a regular computer is the **40-pin GPIO header** — the two rows of metal pins along the top edge of the board.
 

@@ -14,7 +14,7 @@ What makes the RPi different from a regular computer is the **40-pin GPIO header
 
 In Unit 3 you designed circuits in logic gates. In Unit 4 you control circuits with code. The bridge between them is a Python script running on a Raspberry Pi, sending electrical signals through GPIO pins.
 
-This note teaches you the Python you need to write those scripts — starting from the ground up. If you have ICS3U Python experience, most of §2 will be review; skip ahead to §3 when you are comfortable. If you have ICS3U Java but no Python, the language is similar in logic but different in syntax — the differences are called out explicitly. If this is your first time programming, work through every section in order.
+This note teaches you the Python you need to write those scripts, starting from the ground up. If you have prior Python experience, most of §2 will be review; skip ahead to §4 when you are comfortable. If you have ICS3U Java but no Python, the language is similar in logic but different in syntax. (You'll see the differences called out explicitly in this note.) If this is your first time programming, work through every section in order.
 
 **By the end of Day 3, you will be able to read and write a complete GPIO script from scratch.**
 
@@ -22,16 +22,14 @@ This note teaches you the Python you need to write those scripts — starting fr
 
 ## 1. Why Python?
 
-Raspberry Pi runs a full Linux operating system (you used Linux in Unit 2). Python is the standard language for RPi GPIO programming because:
+Raspberry Pi runs a full Linux operating system. Python is the standard language for RPi GPIO programming because:
 
 - The official RPi GPIO library (`RPi.GPIO`) is written for Python
-- Python is pre-installed on Raspberry Pi OS — no setup required
-- The syntax is readable: a GPIO script reads almost like a list of instructions
-
-You could write GPIO code in C, but Python gets you running in a fraction of the time.
+- Python is pre-installed on Raspberry Pi OS, so no setup is required
+- The syntax (i.e. code) is easily-readable: a GPIO script reads almost like a list of instructions
 
 > [!NOTE]
-> If you have Java experience from ICS3U: Python uses the same concepts — variables, loops, conditionals, functions — but with a different syntax. The most important differences are: no curly braces (indentation controls structure), no semicolons, no type declarations, and `True`/`False` are capitalized. These are noted throughout.
+> If you have Java experience from ICS3U: Python uses the same concepts — variables, loops, conditionals, functions — but with a different syntax. The most important differences are: no curly braces (rather, indentation controls structure), no semicolons, no type declarations, and `True`/`False` are capitalized. These are noted here throughout.
 
 <br>
 
@@ -39,7 +37,7 @@ You could write GPIO code in C, but Python gets you running in a fraction of the
 
 ### 2.1 Variables
 
-A **variable** is a named container for a value. In Python, you create a variable by assigning a value to a name — no type declaration required.
+A **variable** is a named container for a value. In Python, you create a variable by assigning a value to a name. No type declaration is required.
 
 ```python
 LED_PIN = 18          # stores the integer 18
@@ -174,7 +172,48 @@ if button_a or button_b:
 
 <br>
 
-### 2.4 Functions
+---
+
+## Day 2 Practice
+
+These exercises use only what you've covered today — variables, loops, and conditionals. No GPIO library needed. Work in a new file called `practice.py` in your `gpio` folder.
+
+### Part A — Blink simulator (everyone)
+
+Write a script that simulates an LED blinking using only `print` statements:
+
+1. Define `BLINK_COUNT = 5`
+2. Use a `for` loop to blink that many times
+3. Each iteration: print `"LED ON"` then `"LED OFF"`
+4. After the loop ends, print `"Done blinking."`
+
+Run it with `python3 practice.py` and confirm the output looks right.
+
+Then modify it:
+- Change `BLINK_COUNT` to 3
+- Add a conditional inside the loop: if it is the **last** blink (`i == BLINK_COUNT - 1`), also print `"Last blink!"` after `"LED OFF"`
+
+### Part B — Two speeds (extension)
+
+Extend your script to blink in two phases: 3 fast blinks, then 3 slow blinks. Use two separate `for` loops. Label the output so it's clear which phase is which: `"FAST ON"` / `"FAST OFF"` for the first loop, `"SLOW ON"` / `"SLOW OFF"` for the second.
+
+Then add a conditional inside the slow loop: if the loop counter is even, also print `"  (even blink)"`.
+
+### Part C — Reach ahead (for students with programming experience)
+
+Look ahead at §3 (Functions) — that is tomorrow's content, but the concept may be familiar. Write a function `blink(label, count)` that prints `[label] ON` and `[label] OFF` the given number of times. Then rewrite your two-phase script to call `blink("FAST", 3)` and `blink("SLOW", 3)` instead of using two separate loops.
+
+---
+
+**— Day 2 / Day 3 boundary —**
+
+> §2 is Python fundamentals — variables, loops, conditionals. From here: how GPIO scripts are actually structured, and how to write one from scratch.
+
+---
+
+<br>
+
+## 3. Functions
 
 A **function** is a named block of code you can call by name. In Python, you define one with `def`:
 
@@ -193,24 +232,14 @@ You call it like this:
 blink(LED_PIN, 3)       # blinks LED_PIN three times
 ```
 
-Functions let you name a procedure and reuse it. Your GPIO scripts will naturally group into: setup, main loop, and cleanup — putting each in a function keeps the code readable.
+Functions let you name a procedure and reuse it. Your GPIO scripts will naturally group into: setup, main loop, and cleanup — putting each in a function keeps the code readable. This is covered in Part D of the §8 Practice section.
 
 > [!NOTE]
 > **Java comparison:** Same concept; Python uses `def` instead of a return-type keyword. Python does not require a return type declaration. The function body is indented, not in curly braces.
 
 <br>
 
----
-
-**— Day 2 / Day 3 boundary —**
-
-> Everything above is Python fundamentals. From here: how GPIO scripts are actually structured. If you are comfortable with §2, you are ready for this part.
-
----
-
-<br>
-
-## 3. Modules and Imports
+## 4. Modules and Imports
 
 Python code is organized into **modules** — files of reusable code. You bring a module into your script with `import`.
 
@@ -255,7 +284,7 @@ These two lines load the GPIO library and the timing library. Nothing else works
 
 <br>
 
-## 4. Handling Interruptions: `try` / `finally`
+## 5. Handling Interruptions: `try` / `finally`
 
 GPIO scripts run in an infinite loop. The only normal way to stop one is to press **Ctrl+C**, which causes Python to raise a `KeyboardInterrupt` exception.
 
@@ -289,7 +318,7 @@ finally:
 
 <br>
 
-## 5. A Complete GPIO Script
+## 6. A Complete GPIO Script
 
 Here is the full structure of a GPIO script that blinks an LED. Every line is annotated.
 
@@ -325,7 +354,7 @@ finally:
 
 <br>
 
-### 5.1 BCM vs BOARD Pin Numbering
+### 6.1 BCM vs BOARD Pin Numbering
 
 The Raspberry Pi has two ways to refer to GPIO pins:
 
@@ -338,7 +367,7 @@ BCM and BOARD refer to the same physical pins, just with different numbers. **Al
 
 <br>
 
-### 5.2 GPIO Vocabulary
+### 6.2 GPIO Vocabulary
 
 | Call | What it does |
 |------|-------------|
@@ -359,7 +388,7 @@ GPIO.output(LED_PIN, True)        # equivalent
 
 <br>
 
-## 6. Running on a Laptop (Without a Pi)
+## 7. Running on a Laptop (Without a Pi)
 
 You do not need a Raspberry Pi to write and test GPIO scripts. For Days 2 and 3, you will run your scripts on a laptop using a **simulator module** that mimics the GPIO library.
 
@@ -412,42 +441,45 @@ That is all. No additional installs required.
 
 <br>
 
-## 7. Practice
+## 8. Practice
 
-### Part A — Read and trace (everyone)
+### Part A — Read and trace (Day 3, everyone)
 
-Read this script without running it. On paper, trace through what happens:
+Read this script without running it. Trace through what happens step by step.
 
 ```python
 import gpio_sim as GPIO
 import time
 
-MOTOR_FWD = 17
-MOTOR_REV = 27
-DELAY = 1.0
+LED_PIN = 18
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(MOTOR_FWD, GPIO.OUT)
-GPIO.setup(MOTOR_REV, GPIO.OUT)
+GPIO.setup(LED_PIN, GPIO.OUT)
 
 try:
     for i in range(3):
-        GPIO.output(MOTOR_FWD, GPIO.HIGH)
-        GPIO.output(MOTOR_REV, GPIO.LOW)
-        time.sleep(DELAY)
-        GPIO.output(MOTOR_FWD, GPIO.LOW)
-        GPIO.output(MOTOR_REV, GPIO.LOW)
-        time.sleep(0.5)
+        GPIO.output(LED_PIN, GPIO.HIGH)
+        time.sleep(0.2)
+        GPIO.output(LED_PIN, GPIO.LOW)
+        time.sleep(0.2)
+
+    while True:
+        GPIO.output(LED_PIN, GPIO.HIGH)
+        time.sleep(1.0)
+        GPIO.output(LED_PIN, GPIO.LOW)
+        time.sleep(1.0)
 
 finally:
     GPIO.cleanup()
+    print("Done.")
 ```
 
-1. How many times does the main loop run?
-2. What pin states are active during the delay? What is happening to the motor?
-3. What does the 0.5-second pause between loop iterations do?
-4. What happens if you remove the `finally` block and press Ctrl+C?
-5. What happens if you change `range(3)` to `while True:`?
+1. What does the LED do in the first second after the script starts?
+2. How long does the `for` loop take to complete?
+3. What happens immediately after the `for` loop finishes?
+4. If you press Ctrl+C during the `for` loop, what lines print to the terminal?
+5. If you press Ctrl+C during the `while True` loop, what lines print?
+6. What is the difference in the LED's behaviour between the two loops?
 
 <br>
 

@@ -163,7 +163,7 @@ Mixed RPi 3B/4/5 is fine — BCM GPIO pin numbering is identical across all thre
 
 ### Student-facing (in `unit-4-rpi/`)
 - [ ] `01-analog-digital.md` — AC/DC, analog vs digital, ADC/DAC, sample rate, bit depth, practice problems
-- [ ] `02-python-for-gpio.md` — variables, loops, conditionals, imports, `try/finally`, full GPIO script walkthrough
+- [x] `02-python-for-gpio.md` — variables, loops, conditionals, imports, `try/finally`, full GPIO script walkthrough
 - [ ] `03-rpi-setup.md` — SSH workflow, filesystem orientation, running a `.py` script, BCM pin reference
 - [ ] `lab-01-led.md` — LED circuit, GPIO output code, wiring diagram
 - [ ] `lab-02-button.md` — button circuit, GPIO input code, debounce

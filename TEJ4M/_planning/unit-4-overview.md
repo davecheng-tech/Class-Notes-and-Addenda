@@ -1,7 +1,7 @@
 # Unit 4: Physical Computing — Raspberry Pi — Overview
 
 **Course:** TEJ4M — Computer Engineering Technology (Grade 12)\
-**Duration:** 20 periods × 60 minutes\
+**Duration:** 20 periods × 70 minutes\
 **Dates:** May 15 – June 12, 2026 (exam review fallback: June 15–16)\
 **Prerequisites:** Unit 3 (Digital Logic) — students understand binary, logic gates, transistors as switches, CPU architecture. Unit 2 (Linux) — students can SSH, navigate the terminal, run scripts.
 

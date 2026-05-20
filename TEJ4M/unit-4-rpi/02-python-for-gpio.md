@@ -316,6 +316,27 @@ finally:
 > [!TIP]
 > Forgetting `GPIO.cleanup()` is the single most common beginner mistake in GPIO programming. A script that exits without cleanup leaves pins in their last state. If you run the script again, it may fail because a pin is already configured. Always wrap your main loop in `try / finally`.
 
+**You may also see `except KeyboardInterrupt` in tutorials.** This is a related but slightly different pattern:
+
+```python
+try:
+    while True:
+        GPIO.output(LED_PIN, True)
+        time.sleep(0.5)
+        GPIO.output(LED_PIN, False)
+        time.sleep(0.5)
+
+except KeyboardInterrupt:
+    print("Stopped by user.")
+
+finally:
+    GPIO.cleanup()
+```
+
+`except KeyboardInterrupt` catches Ctrl+C specifically, letting you print a custom message before cleanup runs. The `finally` block still executes afterward — that part is unchanged.
+
+The reason this course uses bare `try / finally` (without `except`) is that `finally` catches *everything*: Ctrl+C, errors, and normal exits. `except KeyboardInterrupt` only catches Ctrl+C — if your script crashes for another reason, the `except` block is skipped but `finally` still runs. Both patterns are valid; `try / finally` is the more defensive choice.
+
 <br>
 
 ## 6. A Complete GPIO Script

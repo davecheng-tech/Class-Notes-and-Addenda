@@ -365,6 +365,8 @@ The Raspberry Pi has two ways to refer to GPIO pins:
 
 BCM and BOARD refer to the same physical pins, just with different numbers. **Always use BCM** — it is the standard for GPIO scripts and matches all reference diagrams. `GPIO.setmode(GPIO.BCM)` must be the first GPIO call in every script.
 
+Bookmark [pinout.xyz](https://pinout.xyz/) as your GPIO reference — it shows every pin's BCM number, alternate functions, and voltage rails for all 40-pin Raspberry Pi models. You can also run `pinout` directly in the terminal over SSH to get the same diagram in ASCII.
+
 <br>
 
 ### 6.2 GPIO Vocabulary

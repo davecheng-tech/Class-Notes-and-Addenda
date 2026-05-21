@@ -76,11 +76,107 @@ The LED blinks. Press **Ctrl+C** to stop — the LED should go off (cleanup ran)
 
 ---
 
-## Extension: Second LED, Alternating Blink
+## Extensions
 
-Wire a second LED on **BCM 25** (check pinout for physical pin). Same circuit: cobbler pin → 220Ω → LED anode → cathode → blue rail.
+### A — Second LED, Alternating Blink
+
+Wire a second LED on **BCM 23** (check pinout for physical pin). Same circuit: cobbler pin → 220Ω → LED anode → cathode → blue rail.
 
 Modify your script to alternate — LED A on while LED B is off, then swap. Your Day 3 Part B script already does this with `gpio_sim`; the only change is the import.
+
+---
+
+### B — Modular Blink Function
+
+Refactor your script so that blinking is a reusable function:
+
+```python
+def blink(pin, times, delay=0.1):
+    for _ in range(times):
+        GPIO.output(pin, GPIO.HIGH)
+        time.sleep(delay)
+        GPIO.output(pin, GPIO.LOW)
+        time.sleep(delay)
+```
+
+`delay` has a default value — `blink(LED_A, 3)` uses 0.1s; `blink(LED_A, 3, 0.5)` uses 0.5s.
+
+Use this function in your main loop instead of writing out the HIGH/sleep/LOW sequence each time. Then add a startup sequence in your setup code — call `blink(LED_A, 2, 0.05)` before entering the main loop as a "ready" flash.
+
+---
+
+### C — Metronome: 4/4 Time (2 LEDs)
+
+Wire a red LED on **BCM 18** and a green LED on **BCM 23**. Write a metronome: red flashes on beat 1, green flashes on beats 2, 3, and 4.
+
+```python
+BPM = 120
+BEAT = 60 / BPM   # seconds per beat
+FLASH = 0.05      # LED on-time per flash
+
+RED = 18
+GREEN = 23
+
+def beat(pin):
+    GPIO.output(pin, GPIO.HIGH)
+    time.sleep(FLASH)
+    GPIO.output(pin, GPIO.LOW)
+    time.sleep(BEAT - FLASH)
+
+try:
+    while True:
+        beat(RED)
+        beat(GREEN)
+        beat(GREEN)
+        beat(GREEN)
+
+except KeyboardInterrupt:
+    pass
+
+finally:
+    GPIO.cleanup()
+    print("Done.")
+```
+
+Try changing `BPM` — 60 is slow, 180 is fast. What happens if `BPM` is high enough that `BEAT - FLASH` goes negative?
+
+---
+
+### D — Metronome: 4/4 Time (4 LEDs)
+
+Wire four LEDs — one per beat — on **BCM 18, 23, 24, 25**. Each LED flashes on its assigned beat.
+
+```python
+BPM = 120
+BEAT = 60 / BPM
+FLASH = 0.05
+
+LEDS = [18, 23, 24, 25]
+
+# setup
+for pin in LEDS:
+    GPIO.setup(pin, GPIO.OUT)
+
+def beat(pin):
+    GPIO.output(pin, GPIO.HIGH)
+    time.sleep(FLASH)
+    GPIO.output(pin, GPIO.LOW)
+    time.sleep(BEAT - FLASH)
+
+try:
+    while True:
+        for pin in LEDS:
+            beat(pin)
+
+except KeyboardInterrupt:
+    pass
+
+finally:
+    GPIO.cleanup()
+    print("Done.")
+```
+
+The `for pin in LEDS` loop replaces four separate `beat()` calls — adding a 5th beat means adding one pin to the list. Try changing the list order, or replacing one pin with `None` and skipping it with a conditional to create a rest on a particular beat.
 
 ---
 
@@ -115,4 +211,4 @@ Walk around check before the bell:
 1. LED blinks in sync with the script ✓
 2. Ctrl+C → LED goes off (`GPIO.cleanup()` ran) ✓
 
-Extension credit: two LEDs alternating correctly.
+Extension credit: demonstrate any of A–D that you completed.

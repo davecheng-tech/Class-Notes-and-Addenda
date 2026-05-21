@@ -8,7 +8,7 @@
 
 ## Circuit
 
-<!-- Fritzing diagram goes here -->
+![LED circuit diagram — GPIO 18 through 220Ω resistor to LED, cathode to 3V3 GND rail](./images/lab-01-led-circuit.png)
 
 ```
 BCM 18 (cobbler pin)  →  220Ω resistor  →  LED anode (longer leg)

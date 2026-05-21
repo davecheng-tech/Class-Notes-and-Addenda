@@ -82,7 +82,7 @@ lynx --version
 lynx http://connectme.ycdsb.ca
 ```
 
-lynx opens in the terminal. Use arrow keys to navigate, Enter to follow links, and fill in your credentials when prompted. Press `Q` then `Y` to quit when done.
+lynx opens in the terminal. Use arrow keys to navigate, Enter to follow links, and fill in your credentials when prompted. If it asks to accept cookies, press `A` for always. If credentials are accepted, Google's homepage should load. Press `Q` then `Y` to quit when done.
 
 Once authenticated, the Pi has outbound internet access for the rest of the session. You only need to do this once per boot.
 
@@ -93,7 +93,7 @@ Once authenticated, the Pi has outbound internet access for the rest of the sess
 
 ## 3. Get Your Script onto the Pi
 
-You need to transfer `blink.py` from your laptop to the Pi. Three options:
+You need to transfer `blink.py` from your laptop to the Pi. Two options:
 
 ### Option A — `scp` (if the file exists on your laptop)
 
@@ -120,18 +120,6 @@ nano ~/gpio/blink.py
 Type the script from your Day 3 notes. Save with **Ctrl+X → Y → Enter**.
 
 This option is useful if your Day 3 script isn't complete — retyping it is good practice before you wire anything.
-
-### Option C — paste into nano
-
-Copy the script from your Day 3 file or the course note, open `nano ~/gpio/blink.py`, and paste. Watch for indentation errors — paste can break Python's whitespace structure.
-
-Check for syntax errors quickly:
-
-```
-python3 -c "import ast; ast.parse(open('blink.py').read())"
-```
-
-No output means the file is syntactically valid. An `IndentationError` means paste corrupted the structure — use Option B instead.
 
 <br>
 

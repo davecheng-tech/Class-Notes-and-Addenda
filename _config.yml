@@ -3,8 +3,4 @@ title: ""
 show_downloads: false
 plugins:
   - jekyll-gfm-admonitions
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
+  - jekyll-optional-front-matter

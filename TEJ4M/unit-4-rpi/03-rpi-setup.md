@@ -24,7 +24,16 @@ The first time you connect, you'll see a fingerprint warning — type `yes` and 
 You should see the Pi's welcome banner and a prompt like `pi@rpi-01:~ $`. Every command you type from here runs on the Pi, not your laptop.
 
 > [!NOTE]
-> Both partners should SSH into the Pi simultaneously — same IP, same credentials. Run `who` to confirm you can see each other's sessions. This is the same multi-user Linux behaviour from Unit 2, now visible on a physical machine on your desk.
+> Both partners should SSH into the Pi simultaneously — same IP, same credentials. This is the same multi-user Linux behaviour from Unit 2, now visible on a physical machine on your desk.
+
+Once both partners are connected, run:
+
+```
+who     # lists all logged-in users and their terminals
+w       # same, plus what each session is currently running
+```
+
+You should see two entries — `pi pts/0` and `pi pts/1` — one for each of you on the same machine.
 
 **Basic orientation:**
 

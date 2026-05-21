@@ -255,7 +255,7 @@ Students see the service count drop and a small but real RAM savings. Brief but 
 
 ### Preview Day 5 + Shutdown (4 min)
 
-> "Tomorrow you wire an LED to the Pi. BCM pin 18 → 330 ohm resistor → LED → ground. The script you ran today doesn't change — the only new thing is the physical component. For the first time, code you wrote produces something you can see and touch."
+> "Tomorrow you wire an LED to the Pi. BCM pin 18 → 220 ohm resistor → LED → ground. The script you ran today doesn't change — the only new thing is the physical component. For the first time, code you wrote produces something you can see and touch."
 
 **Shutdown — do this every class:**
 ```

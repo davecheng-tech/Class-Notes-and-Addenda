@@ -1,6 +1,6 @@
 # Lab 1: LED Digital Output
 
-**Day 5** — Wire a real LED circuit and run your blink script. This is the first time code you wrote produces something you can see and touch.
+Wire a real LED circuit and run your blink script from Day 3 on actual hardware.
 
 **Hardware:** RPi + CanaKit cobbler, breadboard, 1–2 LEDs, 220Ω resistor(s), M-F jumpers
 
@@ -24,7 +24,7 @@ BCM 18 (cobbler pin)  →  220Ω resistor  →  LED anode (longer leg)
 
 ## Wiring Steps
 
-Pi should be running with no script active, or powered off. GPIO pins in their default (LOW) state before wiring is good practice.
+Make sure no script is running on the Pi before you start wiring. GPIO pins should be in their default (LOW) state.
 
 1. Locate **BCM 18** on the cobbler. Run a jumper from that pin to a free row on the breadboard.
 2. Place a **220Ω resistor**: one leg in the same row as the jumper, other leg in a new row.
@@ -154,9 +154,9 @@ Exit now prints only `Done.` — no traceback. `finally` still runs guaranteed.
 
 ## Lab Completion
 
-Walk around check before the bell:
+Show your teacher before you pack up:
 
-1. LED blinks in sync with the script ✓
-2. Ctrl+C → LED goes off (`GPIO.cleanup()` ran) ✓
+1. LED blinks in sync with the running script
+2. Ctrl+C stops the script and the LED goes off (`GPIO.cleanup()` ran)
 
-Extension credit: demonstrate any of A–D that you completed.
+If you completed any extensions, show those too.

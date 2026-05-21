@@ -12,7 +12,7 @@ Consider the Processing program below. When run, it randomly selects one of thre
 - Ukraine (two horizontal bars, blue over yellow)
 - Canada(-ish) (vertical red bars, simplified maple leaf)
 
-![flags](/.media/image-method_decomposition-01.png)
+![flags](./images/image-method_decomposition-01.png)
 
 And the code:
 
@@ -345,7 +345,7 @@ Because the earlier refactor separated concerns so cleanly, it becomes very easy
 
 Here is the final version with a proper maple leaf design using coordinates traced off an existing flag photo. The method can place the flag anywhere on the canvas and uses a scale factor to adjust size:
 
-![flags](/.media/image-method_decomposition-02.png)
+![flags](./images/image-method_decomposition-02.png)
 
 The code uses a new `drawMapleLeaf()` method (defined at the end) and only one other change on L57, calling the new `drawMapleLeaf()` method with parameters:
 

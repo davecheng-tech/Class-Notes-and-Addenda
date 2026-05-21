@@ -316,7 +316,7 @@ finally:
 > [!TIP]
 > Forgetting `GPIO.cleanup()` is the single most common beginner mistake in GPIO programming. A script that exits without cleanup leaves pins in their last state. If you run the script again, it may fail because a pin is already configured. Always wrap your main loop in `try / finally`.
 
-**You may also see `except KeyboardInterrupt` in tutorials.** This is a related but slightly different pattern:
+**The three-block pattern — recommended for real hardware:**
 
 ```python
 try:
@@ -327,15 +327,19 @@ try:
         time.sleep(0.5)
 
 except KeyboardInterrupt:
-    print("Stopped by user.")
+    pass
 
 finally:
     GPIO.cleanup()
+    print("Done.")
 ```
 
-`except KeyboardInterrupt` catches Ctrl+C specifically, letting you print a custom message before cleanup runs. The `finally` block still executes afterward — that part is unchanged.
+`except KeyboardInterrupt: pass` catches Ctrl+C and silently absorbs it. `finally` still runs unconditionally — cleanup happens regardless. The result is a clean exit with no traceback printed.
 
-The reason this course uses bare `try / finally` (without `except`) is that `finally` catches *everything*: Ctrl+C, errors, and normal exits. `except KeyboardInterrupt` only catches Ctrl+C — if your script crashes for another reason, the `except` block is skipped but `finally` still runs. Both patterns are valid; `try / finally` is the more defensive choice.
+Without `except KeyboardInterrupt`, a bare `try / finally` still cleans up correctly, but Python prints the full `KeyboardInterrupt` traceback after `finally` runs — noisy but not harmful. On a laptop with the simulator this is rarely noticed; on real hardware running in a tight loop it appears every time you stop the script.
+
+> [!NOTE]
+> `except KeyboardInterrupt` only catches Ctrl+C. If your script crashes for a different reason, the `except` block is skipped and `finally` still runs — cleanup is still guaranteed. This is the pattern to use in all GPIO scripts going forward.
 
 <br>
 

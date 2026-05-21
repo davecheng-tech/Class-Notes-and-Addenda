@@ -32,7 +32,7 @@ These plans assume:
 - [ ] Run network scan to build the IP list (see below), post to Google Classroom before students arrive
 
 **Finding Pi IPs on YCBYOD (run from your Lubuntu Chromebook):**
-```bash
+```
 # Find your subnet first:
 ip route | grep proto
 # Then scan (replace 192.168.x with your actual subnet):
@@ -85,7 +85,7 @@ Do this on the projector with one Pi assigned to you. Students watch first, then
 
 **SSH in:**
 
-```bash
+```
 ssh pi@<IP address>
 ```
 
@@ -95,7 +95,7 @@ Explain: "We're now at a terminal prompt running on the Pi itself — not on our
 
 **Quick orientation — run these with commentary:**
 
-```bash
+```
 pwd          # where are we? → /home/pi
 ls           # what's here? → empty home dir
 uname -a     # what machine? → Linux, ARM processor — not the laptop
@@ -106,7 +106,7 @@ Ask: "What does `uname -a` tell us that `pwd` doesn't?" → Which machine the co
 
 Create a working folder:
 
-```bash
+```
 mkdir gpio
 cd gpio
 ls
@@ -121,7 +121,7 @@ Say: "This is where you'll keep your GPIO scripts for the rest of the unit. All 
 Post or display the IP list. Each pair uses the IP assigned to their Pi.
 
 **First partner** SSHes in from their laptop:
-```bash
+```
 ssh pi@<their IP>
 ```
 
@@ -137,7 +137,7 @@ Password: `raspberry` (nothing echoes — normal).
 Once the first partner is in: **second partner opens their own terminal and SSHes into the same Pi simultaneously.** Same credentials, same IP.
 
 Then both partners run:
-```bash
+```
 who     # lists all logged-in users with terminal and login time
 w       # same, plus what each session is currently running
 ```
@@ -145,7 +145,7 @@ w       # same, plus what each session is currently running
 They see each other's sessions: `pi pts/0` and `pi pts/1`. Ask: "What does this remind you of from Unit 2?" → Linux is a multi-user OS. This was abstract in Unit 2 — now there are two real humans on one physical machine on the desk.
 
 Have one partner run the blink script (`python3 ~/gpio/blink.py` — if the file doesn't exist yet, do file transfer first). Have the other run:
-```bash
+```
 ps aux | grep python3
 ```
 They see the running script listed as a process. Both sessions, one shared system.
@@ -161,7 +161,7 @@ Students need to get their `blink.py` (or `day3.py`) from their laptop to the Pi
 #### Option A — `scp` (recommended if the file exists on the laptop)
 
 From the laptop (not the Pi), open a second terminal window:
-```bash
+```
 scp ~/gpio/blink.py pi@<IP>:~/gpio/blink.py
 ```
 
@@ -170,7 +170,7 @@ Students who understand networking can explain to their pair what this does. Con
 #### Option B — `nano` (type it directly)
 
 From the Pi:
-```bash
+```
 nano ~/gpio/blink.py
 ```
 
@@ -199,7 +199,7 @@ import RPi.GPIO as GPIO
 ```
 
 Save. Run:
-```bash
+```
 python3 blink.py
 ```
 
@@ -223,7 +223,7 @@ Confirm `cleanup` ran: students should see their `"Done."` print after Ctrl+C.
 This is a direct callback to Unit 2 (systemctl, processes, services) and has genuine practical value — the Pi runs leaner for the CPT. Do this as a class together, not independently, so you control what gets disabled.
 
 **Run as a class:**
-```bash
+```
 systemctl list-units --type=service --state=running
 ps aux | wc -l     # total process count
 free -h            # RAM: how much is the OS using on a headless machine?
@@ -234,15 +234,15 @@ Ask students to identify services they recognise from Unit 2. Then present three
 | Service | What it does | Safe to disable? |
 |---------|-------------|-----------------|
 | `bluetooth.service` | Bluetooth stack | Yes — no BT needed for GPIO labs |
-| `hciuart.service` | Bluetooth UART serial | Yes — same reason |
-| `triggerhappy.service` | Keyboard hotkey daemon | Yes — headless, no keyboard ever attached |
+| `serial-getty@ttyS0.service` | Serial console on UART GPIO pins | Yes — headless, no serial console needed |
+| `avahi-daemon.service` | mDNS / `.local` hostname resolution | **No** — keep; enables `rpi-01.local` SSH |
 
-```bash
-sudo systemctl disable --now bluetooth hciuart triggerhappy
+```
+sudo systemctl disable --now bluetooth serial-getty@ttyS0
 ```
 
 Rerun:
-```bash
+```
 systemctl list-units --type=service --state=running
 free -h
 ```
@@ -258,7 +258,7 @@ Students see the service count drop and a small but real RAM savings. Brief but 
 > "Tomorrow you wire an LED to the Pi. BCM pin 18 → 330 ohm resistor → LED → ground. The script you ran today doesn't change — the only new thing is the physical component. For the first time, code you wrote produces something you can see and touch."
 
 **Shutdown — do this every class:**
-```bash
+```
 sudo shutdown -h now
 ```
 
@@ -284,9 +284,9 @@ Store Pis on the shelf. SD cards stay inserted.
 
 ## Before Day 5 — Setup Checklist
 
-- [ ] LED lab kits sorted into bags/trays, one per pair: breadboard, GPIO-to-breadboard ribbon cable + cobbler (or M-F jumpers), 2× LED (red or green), 2× 330Ω resistor
+- [ ] LED lab kits sorted into bags/trays, one per pair: breadboard, GPIO-to-breadboard ribbon cable + cobbler (or M-F jumpers), 2× LED (any colour), 2× 220Ω resistor
 - [ ] Print or post the BCM pinout reference — `pinout.xyz` is excellent, or use the RPi GPIO pinout poster if you have one
-- [ ] Confirm your own demo circuit works at home first: BCM 18 → 330Ω → LED → GND, `python3` blink script
+- [ ] Confirm your own demo circuit works at home first: BCM 18 → 220Ω → LED → GND, `python3` blink script
 - [ ] `lab-01-led.md` posted and accessible
 
 ---
@@ -295,7 +295,7 @@ Store Pis on the shelf. SD cards stay inserted.
 
 **Goal:** Students wire a real LED circuit and run their blink script. The LED physically blinks. This is the first moment code produces visible physical behaviour.
 
-**Hardware per pair:** RPi (mains-powered), breadboard, 1–2 LEDs, 330Ω resistor, 3× M-F jumpers
+**Hardware per pair:** RPi (mains-powered), breadboard, 1–2 LEDs, 220Ω resistor, 3× M-F jumpers
 
 ### Timing
 
@@ -355,7 +355,7 @@ Wire on the projector with a real breadboard and Pi. Narrate as you go.
 **Circuit:**
 
 ```
-BCM 18 (physical pin 12)  →  [330Ω resistor]  →  LED anode (+, longer leg)
+BCM 18 (physical pin 12)  →  [220Ω resistor]  →  LED anode (+, longer leg)
 LED cathode (−, shorter leg)  →  GND (physical pin 6)
 ```
 
@@ -363,16 +363,16 @@ LED cathode (−, shorter leg)  →  GND (physical pin 6)
 
 1. Pi is OFF or script stopped — always wire with GPIO pins at LOW (run `GPIO.cleanup()` or just stop the script)
 2. M-F jumper from physical pin 12 (BCM 18) to a row on the breadboard
-3. Place 330Ω resistor: one leg in the same row, other leg in a new row
+3. Place 220Ω resistor: one leg in the same row, other leg in a new row
 4. Place LED: anode (longer leg) in the same row as the resistor's second leg, cathode in a new row
 5. M-F jumper from cathode row to GND (physical pin 6)
 
-Ask after wiring: "What does the resistor do?" → Limits current. 3.3V GPIO pin − 2.0V LED forward voltage = 1.3V across the resistor. 1.3V ÷ 330Ω ≈ 4mA. GPIO pins are rated max 16mA — 4mA is safe. Without the resistor, the LED draws too much current and may damage the GPIO pin.
+Ask after wiring: "What does the resistor do?" → Limits current. 3.3V GPIO pin − 2.0V LED forward voltage = 1.3V across the resistor. 1.3V ÷ 220Ω ≈ 6mA. GPIO pins are rated max 16mA — 6mA is safe. Without the resistor, the LED draws too much current and may damage the GPIO pin.
 
 Ask: "What happens if we wire the LED backwards?" → Current can't flow through a diode in reverse. LED doesn't light. Not damaging — just silent. We'll test this.
 
 Run the blink script:
-```bash
+```
 python3 ~/gpio/blink.py
 ```
 
@@ -407,7 +407,7 @@ Circulate. Key checks:
 | Script crashes with `RuntimeError: No access to /dev/gpiomem` | Not running as `pi` user, or missing `RPi.GPIO` install. Confirm: `whoami` → `pi` |
 | LED always on, doesn't blink | LED wired to 3.3V pin (always-on power) instead of GPIO 18 |
 | Script gives `ImportError: No module named 'RPi'` | Forgot to swap the import from `gpio_sim`. Open with nano, fix. |
-| LED lights but very dim | Resistor value too high, or GPIO current limit hit. 330Ω should be fine — check for double-resistor accident. |
+| LED lights but very dim | Resistor value too high, or GPIO current limit hit. 220Ω should be fine — check for double-resistor accident. |
 
 **First blink moment:** When a pair gets their LED blinking for the first time — acknowledge it. This is the payoff for three days of terminal work.
 

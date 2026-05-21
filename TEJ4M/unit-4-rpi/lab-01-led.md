@@ -88,95 +88,43 @@ Modify your script to alternate — LED A on while LED B is off, then swap. Your
 
 ### B — Modular Blink Function
 
-Refactor your script so that blinking is a reusable function:
+Right now, your blink logic is written out inline wherever you need it. Refactor it into a reusable function that takes a pin, a number of blinks, and a delay as parameters.
 
-```python
-def blink(pin, times, delay=0.1):
-    for _ in range(times):
-        GPIO.output(pin, GPIO.HIGH)
-        time.sleep(delay)
-        GPIO.output(pin, GPIO.LOW)
-        time.sleep(delay)
-```
+Your function should work so that the main loop calls it cleanly — no GPIO calls visible at the top level. Once it works, add a startup sequence: a fast double-flash on both LEDs before the main loop begins, using the same function.
 
-`delay` has a default value — `blink(LED_A, 3)` uses 0.1s; `blink(LED_A, 3, 0.5)` uses 0.5s.
-
-Use this function in your main loop instead of writing out the HIGH/sleep/LOW sequence each time. Then add a startup sequence in your setup code — call `blink(LED_A, 2, 0.05)` before entering the main loop as a "ready" flash.
+Think about: what should the default delay be if the caller doesn't specify one?
 
 ---
 
 ### C — Metronome: 4/4 Time (2 LEDs)
 
-Wire a red LED on **BCM 18** and a green LED on **BCM 23**. Write a metronome: red flashes on beat 1, green flashes on beats 2, 3, and 4.
+**Music background:** *Tempo* is the speed of music, measured in **BPM** (beats per minute). At 120 BPM, there are 2 beats every second. Most pop and rock music sits between 80–140 BPM.
+
+**4/4 time** means there are 4 beats per bar. Beat 1 is the *downbeat* — the strong beat that feels like the beginning of the bar. Beats 2, 3, and 4 are the weaker beats. A drummer's kick drum usually lands on beat 1; the snare on beats 2 and 4.
+
+---
+
+Wire a red LED on **BCM 18** and a green LED on **BCM 23**. Write a metronome: red flashes on beat 1, green flashes on beats 2, 3, and 4. Each flash should be brief — the LED is off for most of each beat.
+
+The key relationship to figure out: if you know the BPM, how long is one beat in seconds?
 
 ```python
 BPM = 120
-BEAT = 60 / BPM   # seconds per beat
-FLASH = 0.05      # LED on-time per flash
-
-RED = 18
-GREEN = 23
-
-def beat(pin):
-    GPIO.output(pin, GPIO.HIGH)
-    time.sleep(FLASH)
-    GPIO.output(pin, GPIO.LOW)
-    time.sleep(BEAT - FLASH)
-
-try:
-    while True:
-        beat(RED)
-        beat(GREEN)
-        beat(GREEN)
-        beat(GREEN)
-
-except KeyboardInterrupt:
-    pass
-
-finally:
-    GPIO.cleanup()
-    print("Done.")
+BEAT = ...   # derive this from BPM
+FLASH = 0.05
 ```
 
-Try changing `BPM` — 60 is slow, 180 is fast. What happens if `BPM` is high enough that `BEAT - FLASH` goes negative?
+Start at 120 BPM. Once it works, try 60 (slow) and 180 (fast). What goes wrong if BPM is high enough that `BEAT - FLASH` goes negative?
 
 ---
 
 ### D — Metronome: 4/4 Time (4 LEDs)
 
-Wire four LEDs — one per beat — on **BCM 18, 23, 24, 25**. Each LED flashes on its assigned beat.
+Wire four LEDs on **BCM 18, 23, 24, 25** — one per beat. Each LED flashes only on its assigned beat, in sequence.
 
-```python
-BPM = 120
-BEAT = 60 / BPM
-FLASH = 0.05
+The challenge: write this so that adding a 5th or 6th beat requires changing one line, not rewriting the loop. A list and a `for` loop are your tools.
 
-LEDS = [18, 23, 24, 25]
-
-# setup
-for pin in LEDS:
-    GPIO.setup(pin, GPIO.OUT)
-
-def beat(pin):
-    GPIO.output(pin, GPIO.HIGH)
-    time.sleep(FLASH)
-    GPIO.output(pin, GPIO.LOW)
-    time.sleep(BEAT - FLASH)
-
-try:
-    while True:
-        for pin in LEDS:
-            beat(pin)
-
-except KeyboardInterrupt:
-    pass
-
-finally:
-    GPIO.cleanup()
-    print("Done.")
-```
-
-The `for pin in LEDS` loop replaces four separate `beat()` calls — adding a 5th beat means adding one pin to the list. Try changing the list order, or replacing one pin with `None` and skipping it with a conditional to create a rest on a particular beat.
+Further challenge: make beat 1 flash twice as long as beats 2–4 to emphasise the downbeat. Then try introducing a rest — beat 3 goes dark entirely. How do you represent "no LED" in your list?
 
 ---
 

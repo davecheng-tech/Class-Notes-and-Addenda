@@ -53,6 +53,8 @@ One press changes the pin from 0V to 3.3V. Release returns it to 0V. Clean, reli
 
 Leave your Lab 01 LED circuit intact. You will add the button alongside it.
 
+![Button circuit diagram — tactile button with 10kΩ pull-down resistor on GPIO25, LED circuit from Lab 01 still present on GPIO18](./images/lab-02-button-circuit.png)
+
 **Pins used today:**
 
 | Function | Cobbler label | BCM |
@@ -154,12 +156,7 @@ Once confirmed working, press Ctrl+C. Confirm `"Done."` prints — cleanup ran.
 
 When you press a physical button, the metal contacts do not make a single clean connection. They **bounce** — the contacts make and break contact several times in the first few milliseconds before settling. Your finger feels one press; the Pi can poll a pin thousands of times per second and sees multiple transitions.
 
-```
-You press once:     ___________
-Actual signal:   __|‾|_|‾‾‾‾‾‾‾
-                      ↑
-                  bounce: 5–50ms of rapid HIGH/LOW before it settles
-```
+![Oscilloscope capture of switch bounce — signal bounces rapidly for ~1ms before settling HIGH. Photo: Limor Fried (Ladyada) / Adafruit, CC BY-SA](./images/switch-bounce-oscilloscope.jpg)
 
 **When does this matter?**
 

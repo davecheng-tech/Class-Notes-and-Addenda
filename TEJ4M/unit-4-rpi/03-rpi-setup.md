@@ -54,44 +54,7 @@ All your lab scripts live here for the rest of the unit.
 
 <br>
 
-## 2. Authenticate to YCBYOD
-
-YCBYOD uses a **captive portal** — a login page that blocks internet traffic until you authenticate. On a Pi with no graphical browser, you authenticate using **lynx**, a text-based web browser.
-
-### 2.1 Install lynx
-
-lynx is not installed by default. Get it from the class file server (IP given in class):
-
-```
-mkdir -p ~/lynx-pkg && cd ~/lynx-pkg
-curl -O http://<server-ip>:8080/lynx-common_2.9.2-1_all.deb
-curl -O http://<server-ip>:8080/mailcap_3.74_all.deb
-curl -O http://<server-ip>:8080/lynx_2.9.2-1+b1_arm64.deb
-sudo dpkg -i lynx-common_2.9.2-1_all.deb mailcap_3.74_all.deb lynx_2.9.2-1+b1_arm64.deb
-```
-
-Verify the install:
-
-```
-lynx --version
-```
-
-### 2.2 Authenticate
-
-```
-lynx http://connectme.ycdsb.ca
-```
-
-lynx opens in the terminal. Use arrow keys to navigate, Enter to follow links, and fill in your credentials when prompted. If it asks to accept cookies, press `A` for always. If credentials are accepted, Google's homepage should load. Press `Q` then `Y` to quit when done.
-
-Once authenticated, the Pi has outbound internet access for the rest of the session. You only need to do this once per boot.
-
-> [!TIP]
-> If the captive portal page doesn't load, try any plain HTTP address — the portal will intercept and redirect. `http://example.com` works. HTTPS addresses won't trigger the redirect.
-
-<br>
-
-## 3. Get Your Script onto the Pi
+## 2. Get Your Script onto the Pi
 
 You need to transfer `blink.py` from your laptop to the Pi. Two options:
 
@@ -123,7 +86,7 @@ This option is useful if your Day 3 script isn't complete — retyping it is goo
 
 <br>
 
-## 4. Swap the Import and Run
+## 3. Swap the Import and Run
 
 On the Pi, `gpio_sim` is not available — use the real GPIO library. Open the script:
 
@@ -156,7 +119,7 @@ No LED is wired yet — there's nothing to see. Day 5 adds the physical circuit.
 
 <br>
 
-## 5. Shutdown
+## 4. Shutdown
 
 **Always shut down cleanly before unplugging power.** Pulling power mid-write corrupts the SD card.
 
@@ -176,8 +139,5 @@ SD cards stay inserted in the Pis. Store your Pi on the shelf.
 |------|-----------|
 | **SSH** | Secure Shell — a protocol for running a terminal on a remote machine over a network |
 | **headless** | Running without a monitor, keyboard, or mouse — terminal access only |
-| **captive portal** | A web page that intercepts network traffic until you authenticate — used by YCBYOD |
-| **lynx** | A text-based web browser — used to authenticate to YCBYOD from the terminal |
 | **`scp`** | Secure Copy — transfers files between machines over SSH |
-| **`dpkg -i`** | Installs a `.deb` package file directly, without using `apt` |
 | **`GPIO.cleanup()`** | Resets all GPIO pins — runs in `finally` when the script ends |

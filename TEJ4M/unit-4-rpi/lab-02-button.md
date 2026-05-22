@@ -262,6 +262,32 @@ Ask yourself: what's the difference between the two approaches? Under what condi
 
 ---
 
+## Extension — State Machine
+
+Wire a second LED on **BCM 23** (physical pin 16) with a 220Ω resistor to GND — same circuit as the Lab 01 extension.
+
+Each button press cycles through three states:
+
+| State | LED A (BCM 18) | LED B (BCM 23) |
+|-------|---------------|---------------|
+| 0 | ON | OFF |
+| 1 | OFF | ON |
+| 2 | OFF | OFF |
+
+The key idea: instead of a boolean `led_state`, track an integer `state` that increments on each press. Use the **modulo operator** (`%`) to wrap it back to 0 after the last state:
+
+```python
+state = (state + 1) % 3     # cycles 0 → 1 → 2 → 0 → 1 → 2 …
+```
+
+Then use an `if / elif / else` block to set both LEDs based on the current `state`. Use the wait-for-release debounce from above.
+
+**Once it works:** add a fourth state where both LEDs are on. What's the only line you need to change to make room for it?
+
+**CPT connection:** this is exactly how an autonomous robot manages behaviour — a state variable determines what the robot is doing right now (searching, reversing, turning), and sensor inputs or timers trigger transitions between states. The button here is standing in for a sensor reading.
+
+---
+
 ## Tap Tempo Challenges
 
 These challenges are for students who have finished everything above and want to go further. They build on each other — complete them in order. The goal is a LED that blinks at a tempo you set by tapping the button, like a musical metronome you control in real time.

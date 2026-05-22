@@ -262,6 +262,121 @@ Ask yourself: what's the difference between the two approaches? Under what condi
 
 ---
 
+## Tap Tempo Challenges
+
+These challenges are for students who have finished everything above and want to go further. They build on each other — complete them in order. The goal is a LED that blinks at a tempo you set by tapping the button, like a musical metronome you control in real time.
+
+### Challenge 1 — Measure the tap interval
+
+Every time the button is pressed, print the time since the last press. Use the wait-for-release debounce from above.
+
+`time.time()` returns the current time as a float (seconds since 1970 — the exact epoch doesn't matter, only the difference between two calls).
+
+```python
+last_press = None     # None = no press recorded yet
+
+# inside your loop, on each detected press:
+now = time.time()
+if last_press is not None:
+    interval = now - last_press
+    print(f"interval: {interval:.3f}s")
+last_press = now
+```
+
+**Add BPM to the output.** If you know the interval in seconds between beats, how do you get beats per minute? Tap along to a song and check whether your printed BPM matches.
+
+---
+
+### Challenge 2 — Blink the LED at tap rate
+
+Take the interval from Challenge 1 and use it to drive the LED blink rate. Here's the problem: you can't write this:
+
+```python
+GPIO.output(LED_PIN, GPIO.HIGH)
+time.sleep(beat)                 # blocks for the whole interval
+GPIO.output(LED_PIN, GPIO.LOW)
+time.sleep(beat)                 # blocks again
+```
+
+If the loop is sleeping, it can't read the button. One tap and the loop is frozen for a full beat.
+
+The fix is **non-blocking timing**: instead of sleeping, check whether enough time has passed.
+
+```python
+last_blink = time.time()
+led_state = False
+beat = 0.5          # start with a default; tapping updates this
+
+# inside your main loop (running every 1ms):
+now = time.time()
+
+if now - last_blink >= beat:
+    led_state = not led_state
+    GPIO.output(LED_PIN, led_state)
+    last_blink = now
+```
+
+The loop never sleeps for long — it just checks a condition on every pass. Button reading and LED blinking happen in the same loop without interfering.
+
+Combine this with your Challenge 1 tap detection. When a tap is detected, update `beat`. The LED blink rate changes immediately.
+
+> [!TIP]
+> Set the main loop sleep to `time.sleep(0.001)` (1ms). That's fast enough that the LED timing is accurate and button bounce can be caught, but not so tight that you're burning CPU unnecessarily.
+
+---
+
+### Challenge 3 — Smooth it out
+
+Right now one mistimed tap makes the LED jump. Fix this by averaging the last several intervals instead of using only the most recent one.
+
+Store intervals in a list with a fixed maximum length. Each new tap appends an interval and drops the oldest.
+
+```python
+from collections import deque
+
+WINDOW = 4
+intervals = deque(maxlen=WINDOW)   # holds the last 4 intervals; auto-drops oldest
+
+# on each tap:
+intervals.append(now - last_press)
+if intervals:
+    beat = sum(intervals) / len(intervals)
+```
+
+`deque(maxlen=N)` is a list that automatically drops the oldest entry when it reaches `N` items. You don't need to manage the size yourself.
+
+Try different values of `WINDOW`. A larger window is more stable but responds more slowly to tempo changes. What feels right?
+
+---
+
+### Challenge 4 — Weight the recent taps
+
+A plain average treats a tap from four presses ago equally with the last tap. If you speed up your tapping, the LED takes several taps to catch up because old slow intervals drag the average down.
+
+Fix this by giving more weight to recent intervals. The most recent tap should matter most.
+
+One approach — explicit weights:
+
+```python
+weights = list(range(1, len(intervals) + 1))   # [1, 2, 3, 4] for 4 intervals
+beat = sum(i * w for i, w in zip(intervals, weights)) / sum(weights)
+```
+
+`zip(intervals, weights)` pairs each interval with its weight. The oldest interval gets weight 1, the newest gets weight 4. The weighted average divides by the sum of weights, not the count.
+
+Try it. Tap slowly, then speed up — does the LED respond faster than it did in Challenge 3?
+
+**Further challenge:** look up **exponential moving average (EMA)**. It's a one-line update that achieves the same bias with no list at all:
+
+```python
+ALPHA = 0.4     # 0 = ignore new taps, 1 = ignore history
+beat = ALPHA * new_interval + (1 - ALPHA) * beat
+```
+
+What does `ALPHA = 0.9` feel like? What about `ALPHA = 0.1`?
+
+---
+
 ## Key Terms
 
 | Term | Definition |

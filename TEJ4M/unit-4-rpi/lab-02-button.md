@@ -63,10 +63,10 @@ Confirm BCM 25 on your pinout reference before wiring.
 **Step-by-step:**
 
 1. Place the tactile button spanning the breadboard's **centre channel** — it has four legs, two on each side. The button connects its two sides when pressed; legs on the same side are always connected internally.
-2. Jumper: **3V3 on the cobbler** → row on one side of the button.
+2. Jumper: **3V3 +VE rail on the cobbler** → row on one side of the button.
 3. Jumper: row on the other side of the button → **GPIO25 on the cobbler**.
 4. 10kΩ resistor: one leg in the **same row as the GPIO25 jumper**, other leg in a new row.
-5. Jumper: that new row → **blue rail (GND)**.
+5. Jumper: that new row → **3V3 -VE rail (GND)**.
 
 > [!TIP]
 > Identify the 10kΩ resistor by its colour bands: **brown – black – orange** (1 – 0 – ×1000 = 10,000Ω). The 220Ω resistors from Lab 01 are red – red – brown. They look similar in a bin — check the bands before wiring.

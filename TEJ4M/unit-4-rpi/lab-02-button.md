@@ -24,13 +24,7 @@ The fix is a **pull-down resistor**.
 
 A pull-down resistor connects the input pin to GND through a high-resistance path:
 
-```
-3.3V (pin 1)  ──── [button] ──── BCM 25 (pin 22)
-                                       │
-                                    10 kΩ
-                                       │
-                                     GND (pin 20)
-```
+![Pull-down resistor circuit — left: button open, GPIO reads LOW; right: button pressed, 3.3V connected, GPIO reads HIGH](./images/pull-down-button.png)
 
 **Button open (not pressed):** The only connection from pin 25 is the 10kΩ resistor to GND. The resistor "pulls" the pin to 0V. GPIO reads `False`.
 

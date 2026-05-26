@@ -2,13 +2,13 @@
 
 In Labs 01 and 02 you used GPIO pins to control an LED (output) and read a button (input). Today you add a motor — a fundamentally different kind of output that requires a driver chip between the Pi and the physical world.
 
-**By the end of Day 7** you will have one motor wired through an L293D and running forward and reverse under Python control.
+**By the end of Part 1** you will have one motor wired through an L293D and running forward and reverse under Python control.
 
-**By the end of Day 8** you will have two motors under PWM speed control — the direct foundation of the CPT robot drive system.
+**By the end of Part 2** you will have two motors under PWM speed control — the direct foundation of the CPT robot drive system.
 
-**Hardware (Day 7):** RPi + cobbler + breadboard, 1× L293D (DIP-16), 1× TT gearbox motor, jumper wires
+**Hardware (Part 1):** RPi + cobbler + breadboard, 1× L293D (DIP-16), 1× TT gearbox motor, jumper wires
 
-**Hardware (Day 8):** Same + 1× additional TT gearbox motor
+**Hardware (Part 2):** Same + 1× additional TT gearbox motor
 
 ---
 
@@ -94,7 +94,7 @@ Motor 2 (EN2, IN3, IN4, OUT3, OUT4) works identically.
 
 ---
 
-## 4. Wiring — One Motor (Day 7)
+## 4. Wiring — One Motor (Part 1)
 
 Place the L293D spanning the breadboard centre channel. Pin 1 is marked with a notch or dot on one end of the chip.
 
@@ -194,9 +194,9 @@ The shaft should spin in one direction, pause, then spin the other way.
 
 ---
 
-## 5. Wiring — Two Motors (Day 8)
+## 5. Wiring — Two Motors (Part 2)
 
-Add the second motor using the other half of the L293D (pins 9–15). GND pins 12 and 13 should already be in the breadboard if you wired them on Day 7 — if not, add them now.
+Add the second motor using the other half of the L293D (pins 9–15). GND pins 12 and 13 should already be in the breadboard from Part 1 — if not, add them now.
 
 ![L293D two-motor wiring diagram — both motor channels wired, GPIO 23/24 for motor A, GPIO 27/17 for motor B](./images/lab-03-two-motor-circuit.png)
 

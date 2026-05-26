@@ -306,9 +306,11 @@ That's the completion mark. Part A (print-state) is a step toward Part B, not a 
 ## Connector: Day 6 → Day 7
 
 Day 7: GPIO Lab 3 — H-Bridge + Motors. Adds:
-- New hardware: L298N or L9110S H-bridge module, TT motors, wheels
-- New pins: direction and enable pins wired to H-bridge inputs
-- New concept: H-bridge motor driver — why you can't drive a motor directly from a GPIO pin
-- The software pattern (GPIO.output, conditional, loop) is exactly what they wrote today — the pins just drive a motor driver instead of an LED
+- New hardware: L293D (DIP-16 chip), 1× TT gearbox motor (loose on desktop — no chassis yet)
+- New pins: direction (IN1/IN2) and enable (EN1) pins wired to the L293D
+- New concept: H-bridge motor driver — why you can't drive a motor directly from a GPIO pin (current limits, back-EMF)
+- The software pattern (GPIO.output, conditional) is exactly what they wrote today — the pins just drive a motor driver instead of an LED
 
-Keep button circuits intact if space allows on the breadboard — students may want to test a "button triggers motor" sequence in extension. If breadboards are full, the button circuit can be removed; the skills are established.
+Day 8: Lab 3 continues with a second motor and PWM speed control (`GPIO.PWM`, duty cycle). Both motors loose on the desktop — rolling chassis arrives at CPT time.
+
+Keep button circuits intact if space allows on the breadboard — Extension B in Lab 3 connects the Lab 2 button to motor control. If breadboards are full, the button circuit can be removed; the skills are established.

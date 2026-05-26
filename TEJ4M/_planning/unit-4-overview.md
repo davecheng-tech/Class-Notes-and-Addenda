@@ -28,9 +28,9 @@ The unit has three phases:
 | 4 | May 21 (Thu) | RPi setup — SSH in, filesystem orientation, run first `.py` | Guided demo + independent | — | RPi, imaged SD cards, network |
 | 5 | May 22 (Fri) | **GPIO Lab 1: LED** — digital output, BCM pin numbering, `GPIO.output` | Lab | Completion | RPi, LED, 330Ω, breadboard, M-F jumpers |
 | 6 | May 25 (Mon) | **GPIO Lab 2: Button** — digital input, polling loop, debounce | Lab | Completion | + tactile button, 10kΩ resistor |
-| 7 | May 26 (Tue) | **GPIO Lab 3: H-Bridge + Motors** — H-bridge wiring, forward/reverse | Lab | Completion | + L298N or L9110S, TT motors, wheels |
-| 8 | May 27 (Wed) | GPIO Lab 3 continued — turn logic, combined movement sequences | Lab | Completion | Same |
-| 9 | May 28 (Thu) | **GPIO Lab 4: PWM** — duty cycle, `GPIO.PWM`, motor speed control | Lab | Completion | Same |
+| 7 | May 26 (Tue) | **GPIO Lab 3: H-Bridge + Motors** — H-bridge wiring, one motor forward/reverse | Lab | Completion | + L293D (DIP-16), 1× TT motor (loose, on desktop), jumpers |
+| 8 | May 27 (Wed) | GPIO Lab 3 continued — two motors, PWM speed control, duty cycle | Lab | Completion | + 1× additional TT motor |
+| 9 | May 28 (Thu) | **GPIO Lab 4: TBD** — flex day, sensor intro, or CPT integration practice | Lab/flex | Completion | TBD |
 | **10** | **May 29 (Fri)** | **Unit test** | Closed-note written | **Summative /20** | None |
 | 11 | Jun 1 (Mon) | CPT launch — spec + constraints; distribute laser-cut chassis; begin assembly | Guided | — | Chassis kits |
 | 12 | Jun 2 (Tue) | Guided: mount TT motors + wheels, test rolling chassis | Guided build | — | + TT motors, caster/skid |
@@ -117,7 +117,8 @@ Single flat sheet, fold-up sides, tabs and slots for assembly. No glue required 
 | May 20 (Wed) | RPis imaged + SSH confirmed on school network | Medium — mixed 3B/4/5, may need SD card reflash |
 | May 21 (Thu) | LED lab kits sorted: breadboard, LEDs, 330Ω, M-F jumpers per group | Low |
 | May 24 (Sun) | Tactile buttons confirmed in bins | Low |
-| **May 25 (Mon)** | **H-bridge modules + TT motors + wheels, one set per group, tested** | **High — order by May 18 if not found** |
+| **May 25 (Mon)** | **L293D chips + TT motors (2× per group) confirmed in bins** | **High — order by May 18 if not found** |
+| May 31 (Sun) | Wheels + chassis hardware ready for CPT guided build (Day 12) — wheels not needed for Lab 3 | Medium |
 | May 31 (Sun) | Photoresistors + comparator OR IR line sensor modules ready | Medium |
 | **May 31 (Sun)** | **Laser-cut chassis kits ready to hand out** | Low (laser cutter on-site) |
 | May 31 (Sun) | Power banks tested: RPi stays on under load for 5+ min, no auto-shutoff | Medium |
@@ -167,8 +168,8 @@ Mixed RPi 3B/4/5 is fine — BCM GPIO pin numbering is identical across all thre
 - [ ] `03-rpi-setup.md` — SSH workflow, filesystem orientation, running a `.py` script, BCM pin reference
 - [ ] `lab-01-led.md` — LED circuit, GPIO output code, wiring diagram
 - [ ] `lab-02-button.md` — button circuit, GPIO input code, debounce
-- [ ] `lab-03-motors.md` — H-bridge wiring, direction control, turn sequences
-- [ ] `lab-04-pwm.md` — PWM concept, `GPIO.PWM`, duty cycle, speed control
+- [x] `lab-03-motors.md` — L293D H-bridge wiring, one motor (Day 7): forward/reverse/stop; two motors + PWM speed control (Day 8): duty cycle, `GPIO.PWM`, ramped speed
+- [ ] `lab-04-pwm.md` — TBD: PWM absorbed into Lab 3 Day 8; Day 9 content needs decision (sensor intro? CPT integration practice?)
 - [ ] `cpt-sumo-robot.md` — CPT spec, minimum requirements, extension tiers, rubric, demo expectations, academic integrity
 
 ### Teacher-facing (in `_planning/`)

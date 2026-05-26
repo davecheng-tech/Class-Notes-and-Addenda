@@ -4,7 +4,7 @@ In Labs 01 and 02 you used GPIO pins to control an LED (output) and read a butto
 
 **By the end of Day 7** you will have one motor wired through an L293D and running forward and reverse under Python control.
 
-**By the end of Day 8** you will have two motors running coordinated movement sequences — the direct foundation of the CPT robot drive system.
+**By the end of Day 8** you will have two motors under PWM speed control — the direct foundation of the CPT robot drive system.
 
 **Hardware (Day 7):** RPi + cobbler + breadboard, 1× L293D (DIP-16), 1× TT gearbox motor, jumper wires
 
@@ -29,26 +29,10 @@ The solution is a **motor driver chip** that sits between the Pi and the motor:
 
 To run a motor forward and reverse, you need to reverse the direction of current through it. An **H-bridge** does this using four switches arranged in a pattern that looks like the letter H:
 
-```
-       +V
-        │
-   ┌────┤────┐
-   │    │    │
-  [S1]  │  [S2]
-   │    │    │
-   ├────┤────┤
-   │  MOTOR  │
-   ├────┤────┤
-   │    │    │
-  [S3]  │  [S4]
-   │    │    │
-   └────┤────┘
-        │
-       GND
-```
+![H-bridge circuit diagram — four switches S1–S4 around a DC motor with Vm at top and ground at bottom](./images/h-bridge-diagram.png)
 
-- **S1 + S4 closed:** current flows left-to-right through the motor → forward
-- **S2 + S3 closed:** current flows right-to-left → reverse
+- **S1 + S4 closed:** current flows left-to-right through the motor → shaft spins one way
+- **S2 + S3 closed:** current flows right-to-left → shaft spins the other way
 - **S1 + S3, or S2 + S4:** both motor terminals at the same voltage → stop (brake)
 - **All open:** motor coasts to a stop
 
@@ -100,8 +84,8 @@ The L293D is a **dual H-bridge** chip in a DIP-16 package — it fits directly a
 
 | EN1 | IN1 | IN2 | Motor |
 |-----|-----|-----|-------|
-| HIGH | HIGH | LOW | Forward |
-| HIGH | LOW | HIGH | Reverse |
+| HIGH | HIGH | LOW | Forward (shaft spins one way) |
+| HIGH | LOW | HIGH | Reverse (shaft spins the other way) |
 | HIGH | LOW | LOW | Stop (coast) |
 | HIGH | HIGH | HIGH | Stop (brake) |
 | LOW | × | × | Disabled |
@@ -136,7 +120,7 @@ Place the L293D spanning the breadboard centre channel. Pin 1 is marked with a n
 - Confirm GND is on pins 4 and 5, not 4 and 16
 
 > [!TIP]
-> The motor terminals are not polarised — OUT1 and OUT2 just determine which direction is "forward" and which is "reverse". If the motor spins the wrong way for your robot, swap the two motor wires rather than changing the code.
+> The motor terminals are not polarised — OUT1 and OUT2 just determine which shaft rotation you call "forward" and which you call "reverse". If you want to swap them, swap the two motor wires rather than changing the code.
 
 ---
 
@@ -198,11 +182,11 @@ Run it:
 python3 ~/gpio/motors.py
 ```
 
-The motor should spin in one direction, pause, then spin the other way.
+The shaft should spin in one direction, pause, then spin the other way.
 
 **If the motor does nothing:** confirm EN1 (pin 1) is connected to 5V — if it's floating or at GND, the chip is disabled and no signal on IN1/IN2 will do anything.
 
-**If the motor runs but doesn't reverse:** IN1 and IN2 may be swapped, or both connected to the same pin. Check the wiring against the table above.
+**If the motor runs but doesn't reverse:** IN1 and IN2 may be swapped, or both connected to the same GPIO pin. Check the wiring against the table above.
 
 **If the Pi resets when the motor starts:** the USB power bank can't supply enough current. Try a different power bank, or reduce other loads.
 
@@ -214,7 +198,7 @@ The motor should spin in one direction, pause, then spin the other way.
 
 Add the second motor using the other half of the L293D (pins 9–15). GND pins 12 and 13 should already be in the breadboard if you wired them on Day 7 — if not, add them now.
 
-![L293D two-motor wiring diagram — both motor channels wired, GPIO 23/24 for motor 1, GPIO 27/17 for motor 2](./images/lab-03-two-motor-circuit.png)
+![L293D two-motor wiring diagram — both motor channels wired, GPIO 23/24 for motor A, GPIO 27/17 for motor B](./images/lab-03-two-motor-circuit.png)
 
 **Additional connections:**
 
@@ -223,78 +207,70 @@ Add the second motor using the other half of the L293D (pins 9–15). GND pins 1
 | Cobbler GND | L293D pin 12 | |
 | Cobbler GND | L293D pin 13 | |
 | Cobbler 5V | L293D pin 9 (EN2) | Tied HIGH |
-| GPIO 27 | L293D pin 10 (IN3) | Motor 2 direction A |
-| GPIO 17 | L293D pin 15 (IN4) | Motor 2 direction B |
-| L293D pin 11 (OUT3) | Motor 2 terminal (either) | |
-| L293D pin 14 (OUT4) | Motor 2 terminal (other) | |
+| GPIO 27 | L293D pin 10 (IN3) | Motor B direction A |
+| GPIO 17 | L293D pin 15 (IN4) | Motor B direction B |
+| L293D pin 11 (OUT3) | Motor B terminal (either) | |
+| L293D pin 14 (OUT4) | Motor B terminal (other) | |
 
 **GPIO pins used across both motors:**
 
 | Signal | BCM | Physical |
 |--------|-----|----------|
-| IN1 (motor left) | 23 | 16 |
-| IN2 (motor left) | 24 | 18 |
-| IN3 (motor right) | 27 | 13 |
-| IN4 (motor right) | 17 | 11 |
-
-> [!NOTE]
-> "Left" and "right" depend on which motor you wire to which channel and how they're mounted on the chassis. For now, just label them — you can swap the physical motor wires on the chassis if the directions are wrong.
+| IN1 (motor A) | 23 | 16 |
+| IN2 (motor A) | 24 | 18 |
+| IN3 (motor B) | 27 | 13 |
+| IN4 (motor B) | 17 | 11 |
 
 ---
 
-## Part B — Two Motors: Movement Functions
+## Part B — Two Motors: Simultaneous Control
 
-Extend `motors.py` with the second motor's pins and a set of movement functions.
+Rewrite `motors.py` with both motors' pins and functions for each.
 
 ```python
 import RPi.GPIO as GPIO
 import time
 
-IN1 = 23    # left motor
+IN1 = 23    # motor A
 IN2 = 24
-IN3 = 27    # right motor
+IN3 = 27    # motor B
 IN4 = 17
 
 GPIO.setmode(GPIO.BCM)
 for pin in [IN1, IN2, IN3, IN4]:
     GPIO.setup(pin, GPIO.OUT)
 
-def motor_left(direction):
+def motor_a(direction):
     GPIO.output(IN1, direction == "forward")
     GPIO.output(IN2, direction == "reverse")
 
-def motor_right(direction):
+def motor_b(direction):
     GPIO.output(IN3, direction == "forward")
     GPIO.output(IN4, direction == "reverse")
-
-def drive(direction, duration):
-    motor_left(direction)
-    motor_right(direction)
-    time.sleep(duration)
-
-def turn(direction, duration):
-    if direction == "left":
-        motor_left("reverse")
-        motor_right("forward")
-    else:
-        motor_left("forward")
-        motor_right("reverse")
-    time.sleep(duration)
 
 def stop():
     for pin in [IN1, IN2, IN3, IN4]:
         GPIO.output(pin, GPIO.LOW)
 
 try:
-    drive("forward", 2)
+    print("Both forward 2s")
+    motor_a("forward")
+    motor_b("forward")
+    time.sleep(2)
     stop()
-    time.sleep(0.3)
+    time.sleep(0.5)
 
-    turn("right", 0.5)
+    print("Both reverse 2s")
+    motor_a("reverse")
+    motor_b("reverse")
+    time.sleep(2)
     stop()
-    time.sleep(0.3)
+    time.sleep(0.5)
 
-    drive("forward", 2)
+    print("Differential: A forward, B reverse 2s")
+    motor_a("forward")
+    motor_b("reverse")
+    time.sleep(2)
     stop()
 
 finally:
@@ -302,38 +278,165 @@ finally:
     print("Done.")
 ```
 
-Run it. Both motors should drive forward, pause, execute a right turn (one motor forward, the other reverse), then drive forward again.
+Run it. Both shafts should spin together in the same direction, then together in the other direction, then in opposite directions simultaneously.
 
-**Tuning the turn duration:** 0.5 seconds is a starting point. The actual angle turned depends on motor speed, surface friction, and chassis weight. On a desktop with no wheels and no load, the shaft just spins — tune turn duration on the actual chassis.
+> [!NOTE]
+> Both motors running in the same direction is what drives a robot straight. Motors running in opposite directions is what spins a robot in place (differential steering). On a desktop you're confirming the wiring is correct — the exact behaviour on a robot depends on how the motors are mounted.
 
-**If one motor runs and the other doesn't:** confirm EN2 (pin 9) is connected to 5V and that pins 12 and 13 are both grounded.
+**If one motor doesn't run:** confirm EN2 (pin 9) is connected to 5V and that pins 12 and 13 are both grounded.
 
-**If both motors run in the same direction for `drive()` but turn instead of driving straight:** the motors are mounted facing opposite directions on the chassis (standard for differential drive) and the wiring accounts for this by reversing one channel — or it doesn't yet, and you need to swap one motor's terminals.
+---
+
+## 6. PWM Speed Control
+
+So far EN1 is tied permanently to 5V, which means the motor is always either fully on or fully off. To control **speed**, you need to vary how much power reaches the motor.
+
+**Pulse-width modulation (PWM)** does this by switching the enable pin on and off very rapidly — typically hundreds of times per second. The motor's inertia smooths out the switching, and the shaft spins as if it were receiving a fraction of full power.
+
+The fraction of time the pin spends HIGH is called the **duty cycle**, expressed as a percentage:
+
+```
+Duty cycle 100%:  ████████████████  (full speed)
+Duty cycle  50%:  ████░░░░████░░░░  (half speed)
+Duty cycle  25%:  ██░░░░░░██░░░░░░  (quarter speed)
+Duty cycle   0%:  ░░░░░░░░░░░░░░░░  (stopped)
+```
+
+### Rewiring EN1 and EN2
+
+Remove the 5V jumper from EN1 (pin 1) and EN2 (pin 9). Replace each with a GPIO connection:
+
+| From | To | Notes |
+|------|----|-------|
+| GPIO 12 | L293D pin 1 (EN1) | PWM speed control for motor A |
+| GPIO 13 | L293D pin 9 (EN2) | PWM speed control for motor B |
+
+> [!TIP]
+> GPIO 12 and 13 (BCM numbering) are hardware PWM pins on the Raspberry Pi — the Pi's hardware generates the pulses without CPU involvement. `GPIO.PWM` works on any pin in software, but hardware PWM pins are smoother and more precise at the same speed.
+
+**Updated GPIO pin summary:**
+
+| Signal | BCM | Physical |
+|--------|-----|----------|
+| EN1 (motor A speed) | 12 | 32 |
+| IN1 (motor A direction A) | 23 | 16 |
+| IN2 (motor A direction B) | 24 | 18 |
+| EN2 (motor B speed) | 13 | 33 |
+| IN3 (motor B direction A) | 27 | 13 |
+| IN4 (motor B direction B) | 17 | 11 |
+
+---
+
+## Part C — PWM Speed Control
+
+Rewrite `motors.py` to use `GPIO.PWM` on the enable pins.
+
+```python
+import RPi.GPIO as GPIO
+import time
+
+EN1 = 12
+IN1 = 23
+IN2 = 24
+
+EN2 = 13
+IN3 = 27
+IN4 = 17
+
+GPIO.setmode(GPIO.BCM)
+for pin in [IN1, IN2, IN3, IN4]:
+    GPIO.setup(pin, GPIO.OUT)
+
+GPIO.setup(EN1, GPIO.OUT)
+GPIO.setup(EN2, GPIO.OUT)
+
+pwm_a = GPIO.PWM(EN1, 100)   # 100 Hz
+pwm_b = GPIO.PWM(EN2, 100)
+pwm_a.start(0)
+pwm_b.start(0)
+
+def motor_a(direction):
+    GPIO.output(IN1, direction == "forward")
+    GPIO.output(IN2, direction == "reverse")
+
+def motor_b(direction):
+    GPIO.output(IN3, direction == "forward")
+    GPIO.output(IN4, direction == "reverse")
+
+def set_speed(speed_a, speed_b):
+    pwm_a.ChangeDutyCycle(speed_a)
+    pwm_b.ChangeDutyCycle(speed_b)
+
+def stop():
+    set_speed(0, 0)
+
+try:
+    motor_a("forward")
+    motor_b("forward")
+
+    print("Ramp up")
+    for speed in range(0, 101, 5):
+        set_speed(speed, speed)
+        time.sleep(0.1)
+
+    print("Full speed 2s")
+    time.sleep(2)
+
+    print("Ramp down")
+    for speed in range(100, -1, -5):
+        set_speed(speed, speed)
+        time.sleep(0.1)
+
+    stop()
+    time.sleep(0.5)
+
+    print("Motor A 30%, motor B 80%")
+    motor_a("forward")
+    motor_b("forward")
+    set_speed(30, 80)
+    time.sleep(3)
+
+    stop()
+
+finally:
+    pwm_a.stop()
+    pwm_b.stop()
+    GPIO.cleanup()
+    print("Done.")
+```
+
+Run it. Both shafts should ramp up smoothly, hold at full speed, ramp back down, then spin simultaneously at noticeably different speeds.
+
+**If the motor hums but doesn't spin during the ramp:** the duty cycle is too low to overcome static friction. Try starting the ramp at 20–30% instead of 0%.
+
+**If the speed control feels jerky:** lower PWM frequency (try 50 Hz instead of 100 Hz) or increase the sleep between ramp steps.
+
+**If one motor ignores speed changes:** confirm its EN pin is wired to the GPIO pin, not to 5V — if EN is still tied to 5V, that motor runs at full speed regardless of PWM output.
 
 ---
 
 ## Extensions
 
-### A — Sequence
+### A — Custom Sequence
 
-Write a movement sequence: forward 1.5s, right turn 0.4s, forward 1.5s, left turn 0.4s, forward 1.5s, stop. No new concepts — just `drive()`, `turn()`, and `stop()` in sequence.
+Write a timed sequence using both motors at varying speeds and directions. Try at least three distinct states — for example: both motors at 60% forward for 2 seconds, then motor A at 80% and motor B at 40% for 2 seconds, then both reverse at 50% for 2 seconds, then stop.
 
-### B — Button start
+### B — Button Start
 
-Add the button from Lab 02 on GPIO 25. The motors should do nothing until the button is pressed, then execute the sequence once. Use the wait-for-release debounce pattern.
+Add the button from Lab 02 on GPIO 25. The motors should do nothing until the button is pressed, then execute the sequence once. Use the wait-for-release debounce pattern from Lab 02.
 
-This is the CPT start button — one press launches the robot, which then runs autonomously.
+This is the CPT start button: one press launches the robot, which then runs its sequence autonomously.
 
 ### C — Refactor
 
-The `motor_left()` and `motor_right()` functions are nearly identical. Refactor them into a single `motor(in_a, in_b, direction)` function that takes pin numbers as arguments. The calling code should then read:
+The `motor_a()` and `motor_b()` functions are nearly identical. Refactor them into a single `set_direction(in_a, in_b, direction)` function that takes pin numbers as arguments. The calling code should then read:
 
 ```python
-motor(IN1, IN2, "forward")
-motor(IN3, IN4, "reverse")
+set_direction(IN1, IN2, "forward")
+set_direction(IN3, IN4, "reverse")
 ```
 
-Is this easier or harder to read than the named `motor_left`/`motor_right` approach? There's no single right answer — think about which you'd want to maintain six months later.
+Is this easier or harder to read than the named `motor_a`/`motor_b` approach? There's no single right answer — think about which you'd want to maintain on the competition day.
 
 ---
 
@@ -346,4 +449,6 @@ Is this easier or harder to read than the named `motor_left`/`motor_right` appro
 | **Vm** | Motor power supply pin on the L293D — powers the output transistors |
 | **Vss** | Logic power supply pin on the L293D — powers the control circuitry; must not exceed 7V |
 | **EN (enable)** | L293D enable pin — HIGH activates the channel; LOW disables it regardless of IN pins |
+| **PWM** | Pulse-width modulation — rapidly switching a signal on and off to simulate a fraction of full power |
+| **Duty cycle** | The percentage of time a PWM signal is HIGH; determines the effective power delivered to the motor |
 | **Differential drive** | A two-motor drive system where steering is achieved by varying the speed or direction of each motor independently |

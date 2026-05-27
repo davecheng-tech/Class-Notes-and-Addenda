@@ -331,6 +331,10 @@ Remove the 5V jumper from EN1 (pin 1) and EN2 (pin 9). Replace each with a GPIO 
 
 Rewrite `motors.py` to use `GPIO.PWM` on the enable pins.
 
+### Simple version
+
+Start here. Set a direction and a speed (0–100) for each motor, run for a few seconds, stop.
+
 ```python
 import RPi.GPIO as GPIO
 import time
@@ -344,13 +348,60 @@ IN3 = 27
 IN4 = 17
 
 GPIO.setmode(GPIO.BCM)
-for pin in [IN1, IN2, IN3, IN4]:
+for pin in [IN1, IN2, IN3, IN4, EN1, EN2]:
     GPIO.setup(pin, GPIO.OUT)
 
-GPIO.setup(EN1, GPIO.OUT)
-GPIO.setup(EN2, GPIO.OUT)
+pwm_a = GPIO.PWM(EN1, 100)
+pwm_b = GPIO.PWM(EN2, 100)
+pwm_a.start(0)
+pwm_b.start(0)
 
-pwm_a = GPIO.PWM(EN1, 100)   # 100 Hz
+try:
+    # Set direction: GPIO.HIGH = forward, GPIO.LOW = reverse
+    GPIO.output(IN1, GPIO.HIGH)
+    GPIO.output(IN2, GPIO.LOW)
+    GPIO.output(IN3, GPIO.HIGH)
+    GPIO.output(IN4, GPIO.LOW)
+
+    # Set speed 0–100 for each motor
+    pwm_a.ChangeDutyCycle(50)   # replace with your value
+    pwm_b.ChangeDutyCycle(50)   # replace with your value
+
+    time.sleep(3)
+
+finally:
+    pwm_a.stop()
+    pwm_b.stop()
+    del pwm_a, pwm_b
+    GPIO.cleanup()
+    print("Done.")
+```
+
+Try different values for each motor. Do they spin at the same speed? Does your robot go straight?
+
+---
+
+### Extended version
+
+This version adds helper functions and a ramp sequence.
+
+```python
+import RPi.GPIO as GPIO
+import time
+
+EN1 = 12
+IN1 = 23
+IN2 = 24
+
+EN2 = 13
+IN3 = 27
+IN4 = 17
+
+GPIO.setmode(GPIO.BCM)
+for pin in [IN1, IN2, IN3, IN4, EN1, EN2]:
+    GPIO.setup(pin, GPIO.OUT)
+
+pwm_a = GPIO.PWM(EN1, 100)
 pwm_b = GPIO.PWM(EN2, 100)
 pwm_a.start(0)
 pwm_b.start(0)
@@ -377,7 +428,7 @@ try:
     print("Ramp up")
     for speed in range(0, 101, 5):
         set_speed(speed, speed)
-        time.sleep(0.1)
+        time.sleep(0.2)
 
     print("Full speed 2s")
     time.sleep(2)
@@ -385,14 +436,12 @@ try:
     print("Ramp down")
     for speed in range(100, -1, -5):
         set_speed(speed, speed)
-        time.sleep(0.1)
+        time.sleep(0.2)
 
     stop()
     time.sleep(0.5)
 
     print("Motor A 30%, motor B 80%")
-    motor_a("forward")
-    motor_b("forward")
     set_speed(30, 80)
     time.sleep(3)
 
@@ -406,11 +455,7 @@ finally:
     print("Done.")
 ```
 
-Run it. Both shafts should ramp up smoothly, hold at full speed, ramp back down, then spin simultaneously at noticeably different speeds.
-
-**If the motor hums but doesn't spin during the ramp:** the duty cycle is too low to overcome static friction. Try starting the ramp at 20–30% instead of 0%.
-
-**If the speed control feels jerky:** lower PWM frequency (try 50 Hz instead of 100 Hz) or increase the sleep between ramp steps.
+**If a motor hums but doesn't spin:** the duty cycle is below the motor's stall threshold. Try starting the ramp at 20–30% instead of 0%.
 
 **If one motor ignores speed changes:** confirm its EN pin is wired to the GPIO pin, not to 5V — if EN is still tied to 5V, that motor runs at full speed regardless of PWM output.
 

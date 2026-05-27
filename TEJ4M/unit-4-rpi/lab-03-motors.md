@@ -325,6 +325,8 @@ Remove the 5V jumper from EN1 (pin 1) and EN2 (pin 9). Replace each with a GPIO 
 | IN3 (motor B direction A) | 27 | 13 |
 | IN4 (motor B direction B) | 17 | 11 |
 
+![L293D two-motor PWM wiring diagram — EN1 and EN2 connected to GPIO 12 and 13 for PWM speed control](./images/lab-03-two-motor-pwm-circuit.png)
+
 ---
 
 ## Part C — PWM Speed Control

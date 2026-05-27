@@ -401,6 +401,7 @@ try:
 finally:
     pwm_a.stop()
     pwm_b.stop()
+    del pwm_a, pwm_b
     GPIO.cleanup()
     print("Done.")
 ```

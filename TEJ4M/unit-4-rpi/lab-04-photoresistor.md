@@ -2,7 +2,7 @@
 
 Your CPT robot needs to detect the boundary of the arena — the line where the playing surface ends. The sensor that does this is a **photoresistor**: a component whose resistance changes with the amount of light hitting it. Less light (dark surface) means higher resistance; more light (bright surface) means lower resistance.
 
-The challenge: the Raspberry Pi GPIO pins are **digital only**. They read HIGH or LOW — not a voltage level, not a number. This lab shows you the trick that all three robots from last year used to get a usable light reading anyway.
+The challenge: the Raspberry Pi GPIO pins are **digital only**. They read HIGH or LOW — not a voltage level, not a number. This lab shows you the trick that past robots in this course have used to get a usable light reading anyway.
 
 **By the end of Part A** you will have a working sensor circuit printing raw light readings to the terminal.
 
@@ -59,7 +59,7 @@ The **count is proportional to resistance** — which is proportional to darknes
 You're not reading voltage. You're reading time. Every component combination will give different numbers — there are no universal thresholds. You calibrate to your own circuit.
 
 > [!NOTE]
-> This technique appears in all three robots from last year's cohort and is documented in the official Raspberry Pi sensor guides. It works reliably for distinguishing a light-coloured surface from a dark one.
+> This technique is documented in the official Raspberry Pi sensor guides. It works reliably for distinguishing a light-coloured surface from a dark one.
 
 ---
 
@@ -69,7 +69,7 @@ You're not reading voltage. You're reading time. Every component combination wil
 
 The photoresistor looks like a small disc with a wavy pattern on top and two leads. Polarity does not matter — you can place it either way.
 
-![Photoresistor — small ceramic disc with interleaved conductive traces and two wire leads](./images/lab-04-photoresistor.png)
+![Photoresistors — small ceramic discs with interleaved conductive traces and two wire leads](./images/lab-04-photoresistor.jpg)
 
 Use **Dupont F-to-M jumpers** to connect the photoresistor leads into the breadboard — clip the female end onto each lead, male end into the breadboard row.
 
@@ -157,7 +157,9 @@ Write your threshold value down — you'll use it in Part C.
 
 On your CPT robot, the photoresistor will face **downward** at the leading edge, reading reflected light off the arena surface. For reliable contrast between a black line and a white surface, you need a consistent light source — not ambient room light, which varies.
 
-Add a **white LED** pointing down alongside the photoresistor. It illuminates the surface; the photoresistor reads the reflection. A white surface reflects more light back → lower resistance → lower count. A black surface absorbs light → higher resistance → higher count.
+Add an LED pointing down alongside the photoresistor. It illuminates the surface; the photoresistor reads the reflection. A white surface reflects more light back → lower resistance → lower count. A black surface absorbs light → higher resistance → higher count.
+
+Use a **white or yellow LED** — both work well with the photoresistor's sensitivity range. Red works but is weaker. **Avoid blue or green** — they are poorly matched to typical photoresistor materials and will give weak contrast.
 
 ### Add the LED circuit
 
@@ -327,7 +329,7 @@ Then the loop becomes:
             forward()
 ```
 
-This is the pattern used in every robot from last year. The main loop reads like a description of behaviour; the low-level detail is hidden in the functions.
+This is the pattern used in typical CPT robots built for this kind of challenge. The main loop reads like a description of behaviour; the low-level detail is hidden in the functions.
 
 ### Multiple readings for stability
 
@@ -342,7 +344,7 @@ This slows the loop (three RC readings instead of one) but makes the threshold d
 
 ### Module structure
 
-The robots from last year that were easiest to develop had their code split into two files:
+Robots that are easiest to develop typically have their code split into two files:
 
 - `sensor.py` — `rc_time()`, `is_dark()`, `THRESHOLD`, LED control
 - `motor.py` — `forward()`, `reverse()`, `stop()`, PWM setup
@@ -352,7 +354,7 @@ You don't need to do this today. But when your CPT code grows past 60–70 lines
 
 ### Start delay
 
-All last year's robots used a 5-second countdown before the autonomous loop started — triggered by a button press. This gives the operator time to set the robot in the ring and step back before the robot moves:
+A common pattern for CPT robots is a 5-second countdown before the autonomous loop starts — triggered by a button press. This gives the operator time to set the robot in the ring and step back before the robot moves:
 
 ```python
 print("Press button to start...")

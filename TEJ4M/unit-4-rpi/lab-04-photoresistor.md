@@ -45,11 +45,11 @@ Voltage at GPIO pin
 
  3.3V ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ (target)
 
-                  ╭─────────────────────  bright (fast charge, low count)
+                 ╭─────────────────────  bright (fast charge, low count)
  1.6V ─ ─ ─ ─ ─ ─┼─ ─ ─ ─ ─ ─ ─ ─ ─ ─  ← pin reads HIGH
-             ╭────╯
-        ╭────╯                            dark (slow charge, high count)
-  0V ───╯
+            ╭────╯
+       ╭────╯                            dark (slow charge, high count)
+  0V ──╯
   ↑
  discharge
 ```

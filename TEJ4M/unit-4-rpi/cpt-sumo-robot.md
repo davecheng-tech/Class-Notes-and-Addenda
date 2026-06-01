@@ -129,8 +129,8 @@ groupname.zip
 
 | Category | Weight |
 |----------|--------|
-| Engineering Design & Planning | 20% |
-| Build Process & Technical Evidence | 25% |
+| Engineering Design & Planning | 15% |
+| Build Quality & Technical Evidence | 30% |
 | Software Implementation | 25% |
 | Competition Performance & Reflection | 30% |
 
@@ -150,17 +150,17 @@ groupname.zip
 
 ---
 
-### Build Process & Technical Evidence
+### Build Quality & Technical Evidence
 
-*Evidence of build process and testing: in-progress photos, calibration records, and notes on decisions made during construction.*
+*Physical build quality and evidence of the build process: clean construction, cable management, in-progress photos, calibration records, and notes on decisions made during construction. Build quality is assessed both through photos in the document and through teacher observation during open build periods.*
 
 | Level | Descriptor |
 |-------|-----------|
-| **4+** | The document tells a complete engineering story: what was planned, what was discovered, what changed and why. Calibration values are recorded with context — not just the threshold number, but what it means on that specific hardware and surface. Photos show the build at meaningful stages. A reader could reconstruct the troubleshooting arc from the document alone. |
-| **4** | Build progress is documented with in-progress photos at meaningful stages. Calibration or test results are recorded. There is evidence of at least one decision made in response to a real test result. |
-| **3** | Build evidence is present but uneven — mostly finished-robot photos with brief notes on what was done. Some testing or calibration is mentioned but not detailed. |
-| **2** | Build evidence is limited to final-state photos. Little or no documentation of testing, calibration, or construction decisions. |
-| **1** | No meaningful documentation of the build process. |
+| **4+** | The physical build meets a professional standard: no tape, minimal glue used only where structurally necessary, all wires routed and secured along the chassis, ribbon cable folded within the stack footprint, zip ties trimmed flush. The robot could be fully disassembled and all components recycled cleanly by someone who didn't build it. The document tells a complete engineering story: what was planned, what was discovered, what changed and why. Calibration values are recorded with context — not just the threshold number, but what it means on that specific hardware and surface. A reader could reconstruct the build and troubleshooting arc from the document alone. |
+| **4** | Clean build standard is mostly met — cable management is present, no floating wires, zip ties trimmed, tape absent or used minimally with clear justification. Build progress is documented with in-progress photos at meaningful stages. Calibration or test results are recorded. There is evidence of at least one decision made in response to a real test result. |
+| **3** | Some effort at cable management but inconsistent — tape used in places, some wires unsecured or floating. Build evidence is present but uneven, mostly finished-robot photos with brief notes. Some testing or calibration is mentioned but not detailed. |
+| **2** | Minimal cable management — wires tangled or floating, tape used liberally. Build evidence is limited to final-state photos with little or no documentation of testing, calibration, or construction decisions. |
+| **1** | No attention to build quality or build documentation. |
 
 ---
 

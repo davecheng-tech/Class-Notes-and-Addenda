@@ -2,7 +2,7 @@
 
 **Course:** TEJ4M — Computer Engineering Technology (Grade 12)\
 **Duration:** 20 periods × 70 minutes\
-**Dates:** May 15 – June 12, 2026 (exam review fallback: June 15–16)\
+**Dates:** May 15 – June 12, 2026 (exam review fallback: June 15)\
 **Prerequisites:** Unit 3 (Digital Logic) — students understand binary, logic gates, transistors as switches, CPU architecture. Unit 2 (Linux) — students can SSH, navigate the terminal, run scripts.
 
 ## Unit Arc
@@ -28,21 +28,32 @@ The unit has three phases:
 | 4 | May 21 (Thu) | RPi setup — SSH in, filesystem orientation, run first `.py` | Guided demo + independent | — | RPi, imaged SD cards, network |
 | 5 | May 22 (Fri) | **GPIO Lab 1: LED** — digital output, BCM pin numbering, `GPIO.output` | Lab | Completion | RPi, LED, 330Ω, breadboard, M-F jumpers |
 | 6 | May 25 (Mon) | **GPIO Lab 2: Button** — digital input, polling loop, debounce | Lab | Completion | + tactile button, 10kΩ resistor |
-| 7 | May 26 (Tue) | **GPIO Lab 3: H-Bridge + Motors** — H-bridge wiring, one motor forward/reverse | Lab | Completion | + L293D (DIP-16), 1× TT motor (loose, on desktop), jumpers |
+| 7 | May 26 (Tue) | **GPIO Lab 3: Motors** — L293D H-bridge wiring, one motor forward/reverse | Lab | Completion | + L293D (DIP-16), 1× TT motor |
 | 8 | May 27 (Wed) | GPIO Lab 3 continued — two motors, PWM speed control, duty cycle | Lab | Completion | + 1× additional TT motor |
-| 9 | May 28 (Thu) | **GPIO Lab 4: TBD** — flex day, sensor intro, or CPT integration practice | Lab/flex | Completion | TBD |
-| **10** | **May 29 (Fri)** | **Unit test** | Closed-note written | **Summative /20** | None |
-| 11 | Jun 1 (Mon) | CPT launch — spec + constraints; distribute laser-cut chassis; begin assembly | Guided | — | Chassis kits |
-| 12 | Jun 2 (Tue) | Guided: mount TT motors + wheels, test rolling chassis | Guided build | — | + TT motors, caster/skid |
-| 13 | Jun 3 (Wed) | Guided: wire RPi + power bank + H-bridge; motor test code on chassis | Guided build | — | + RPi, power bank, H-bridge |
-| 14 | Jun 4 (Thu) | Guided: sensor wiring + basic autonomous edge-detection loop | Guided build | — | + photoresistor/IR sensor + comparator |
-| 15 | Jun 5 (Fri) | Open build + troubleshooting | Independent | — | Full kit |
-| 16 | Jun 8 (Mon) | Open build + programming | Independent | — | Full kit |
-| 17 | Jun 9 (Tue) | Open build + programming | Independent | — | Full kit |
-| 18 | Jun 10 (Wed) | Open build + programming | Independent | — | Full kit |
-| 19 | Jun 11 (Thu) | Test battles — shake out bugs, refine strategy | — | — | Full kit + arena |
-| **20** | **Jun 12 (Fri)** | **Sumo tournament + demos** | Battle + demo | **Summative /16** | Full kit + arena |
-| — | Jun 15–16 | Exam review | — | Fallback buffer if CPT runs over | — |
+| 9 | May 28 (Thu) | **GPIO Lab 4: Photoresistor** — RC timing circuit, count loop, edge detection logic | Lab | Completion | + GL5528, ~1µF cap, white LED |
+| 10 | May 29 (Fri) | Flex / buffer | — | — | — |
+| 11 | Jun 1 (Mon) | **Lab 5: Chassis assembly — Day 1** | Guided build | — | Chassis kits, TT motors, zip ties |
+| 12 | Jun 2 (Tue) | **Lab 5: Chassis assembly — Day 2**; rolling chassis proof due; CPT rubric intro; groups finalized | Guided build | Rolling chassis video (completion) | Full kit |
+| 13 | Jun 3 (Wed) | Open build | Independent | — | Full kit |
+| **14** | **Jun 4 (Thu)** | **Unit test** + bot teardown / component cleanup | Written + cleanup | **Summative /20** | None |
+| 15 | Jun 5 (Fri) | Open build — floor check: edge detection running on assembled robot | Independent | — | Full kit |
+| 16 | Jun 8 (Mon) | Open build | Independent | — | Full kit |
+| 17 | Jun 9 (Tue) | Open build | Independent | — | Full kit |
+| 18 | Jun 10 (Wed) | Open build — **feature freeze end of day** | Independent | — | Full kit |
+| 19 | Jun 11 (Thu) | Test battle day — practice rounds, final ring calibration | — | — | Full kit + arena |
+| **20** | **Jun 12 (Fri)** | **Sumo tournament** | Battle | — | Full kit + arena |
+| — | Jun 13 (Sat) | — | — | **CPT submission due 11:59 PM ET** | — |
+| — | Jun 15 (Mon) | Exam review | — | — | — |
+
+### CPT Milestones (teacher reference)
+
+| Date | Milestone | Action if missed |
+|------|-----------|-----------------|
+| Jun 2 | Groups finalized, rolling chassis proof submitted | Group locked; teacher assigns if students stall |
+| Jun 5 | Edge detection running on assembled robot (teacher circulates, not submitted) | Teacher check-in each subsequent day |
+| Jun 10 | Feature freeze — no new hardware or code after today | Hard stop; document what exists |
+| Jun 11 | Final ring calibration | Last chance before scored rounds |
+| Jun 13 23:59 | Final document submission | Late = 0 on CPT |
 
 <br>
 
@@ -50,9 +61,9 @@ The unit has three phases:
 
 ### Lab completion marks (Days 5–9)
 
-Low-stakes, graded for completion. Purpose: build GPIO fluency before the test and CPT. One mark per lab (4 labs = 4 completion marks). No formal rubric — working circuit + functioning script = credit.
+Low-stakes, graded for completion. Purpose: build GPIO fluency before the test and CPT. One mark per lab (4 labs = 4 completion marks, plus the rolling chassis proof on Day 12). No formal rubric — working circuit + functioning script = credit.
 
-### Unit test (Day 10 — May 29)
+### Unit test (Day 14 — Jun 4)
 
 Closed-note written assessment. Covers: analog vs digital, AC/DC, ADC/DAC concepts (sample rate, bit depth), Python essentials (variables, loops, conditionals, imports), RPi GPIO concepts (SSH, pin modes, `GPIO.setup`, `GPIO.output/input`).
 
@@ -70,62 +81,30 @@ Closed-note written assessment. Covers: analog vs digital, AC/DC, ADC/DAC concep
 
 The Python script in the APP section is a simple GPIO loop — close to what students wrote in lab. Reading and interpreting, not writing from scratch.
 
-### CPT — Sumo Robot (Days 11–20, /16, 15% of course mark)
+### CPT — Sumo Robot (Days 11–20, 15% of course mark)
 
-Minimum viable robot: moves, detects edge, operates autonomously. Extension is open-ended.
+Groups of 2–3. Deliverable: `README.md` + `images/` + `src/` folder, submitted as a `.zip` archive by Jun 13 at 11:59 PM ET. See `unit-4-rpi/cpt-sumo-robot.md` for full spec and student-facing rubric.
 
-**Arena:** 2×2 m "donut" — robots are eliminated by falling into the centre hole or being pushed off the outer edge.
+| Category | Weight |
+|----------|--------|
+| Engineering Design & Planning | 20% |
+| Build Process & Technical Evidence | 25% |
+| Software Implementation | 25% |
+| Competition Performance & Reflection | 30% |
 
-**Autonomous operation:** Script runs without live SSH during battle. Students may use a GPIO start button to trigger the script; the robot then operates independently.
+**Competition format:** 4-robot battle royale on a donut-shaped ring (white foamcore base, black mat interior, black outer boundary line). Multiple rounds in a round-robin rotation. Points for placement order; bonus points for causing eliminations. Robots must keep moving — idle robots are eliminated. Autonomous only; no SSH during a match.
 
-| Category | Criteria | Marks |
-|----------|----------|-------|
-| APP | Motor control: forward, reverse, and turn all functional | /3 |
-| APP | Edge detection: sensor reading correctly triggers automated response | /3 |
-| APP | Autonomous operation: runs without live SSH during battle | /2 |
-| KU | Demo: student explains circuit (GPIO pins, motor driver wiring, sensor wiring) in ~2 minutes | /3 |
-| COMM | Code is readable: variable names, structure, and logic are followable by another person | /2 |
-| TIPS | Extension beyond minimum spec (examples: start button, opponent detection via HC-SR04, PWM speed strategy, LED indicators, custom chassis modification) | /3 |
-| **Total** | | **/16** |
+**Minimum viable robot:** button start with 5-second delay, wander state, photoresistor edge detection triggers reversal. This is achievable with the guided-build codebase.
+
+**L4+ path:** thorough documentation, in-progress photos, calibration log with context, annotated code snippets, `try/finally` GPIO cleanup, and a technically specific post-mortem. Competition performance contributes but does not gate L4+.
 
 <br>
 
 ## Chassis — Laser-Cut Corrugated Cardboard
 
-Single flat sheet, fold-up sides, tabs and slots for assembly. No glue required (or minimal). Teacher has ready laser cutter access — design anytime, cut before June 1.
+Pre-cut two-layer chassis provided to all groups. See `lab-05-chassis.md` for assembly instructions. OnShape reference: [Chassis CAD](https://cad.onshape.com/documents/5348ff0bd57b3a2cea242434/w/6562db79663996135ecdf5b8/e/768ff86290f46d6c1236f710)
 
-**Design requirements:**
-- Platform sized for: RPi (85×56 mm footprint, same for 3B/4/5), power bank lying flat, half-breadboard, H-bridge module
-- Rear motor mounts: D-shaft slots for TT motors
-- Front caster mount or low HDPE skid for third contact point
-- Wiring notches along edges
-- Motor mounts doubled/reinforced (two layers of cardboard, glued) — sumo impacts are hard
-- Optional: front bumper lip or plow zone for students to customize
-- RPi mounted via standoffs through the cardboard (M2.5 hardware or zip ties)
-
-**Design tools:** Inkscape (SVG → laser), or any laser cutter CAD tool. Standard fold-and-tab box construction. Corrugated cuts fast (~30 s/sheet).
-
-**Test cut deadline:** May 25 (before any student touches cardboard)\
-**Production cut deadline:** May 31 (ready to hand out June 1)
-
-<br>
-
-## Equipment Procurement Checkpoints
-
-| Deadline | What | Risk |
-|----------|------|------|
-| May 20 (Wed) | RPis imaged + SSH confirmed on school network | Medium — mixed 3B/4/5, may need SD card reflash |
-| May 21 (Thu) | LED lab kits sorted: breadboard, LEDs, 330Ω, M-F jumpers per group | Low |
-| May 24 (Sun) | Tactile buttons confirmed in bins | Low |
-| **May 25 (Mon)** | **L293D chips + TT motors (2× per group) confirmed in bins** | **High — order by May 18 if not found** |
-| May 31 (Sun) | Wheels + chassis hardware ready for CPT guided build (Day 12) — wheels not needed for Lab 3 | Medium |
-| May 31 (Sun) | Photoresistors + comparator OR IR line sensor modules ready | Medium |
-| **May 31 (Sun)** | **Laser-cut chassis kits ready to hand out** | Low (laser cutter on-site) |
-| May 31 (Sun) | Power banks tested: RPi stays on under load for 5+ min, no auto-shutoff | Medium |
-
-**Power bank test:** plug in RPi, let it run 5 min idle, confirm it doesn't cut out. Flag any that fail — not all cheap power banks sustain low-current loads.
-
-**Sensor note:** RPi has no native ADC, so bare photoresistors need a comparator circuit (LM393 + resistors) to produce a clean digital GPIO signal. IR line sensor modules (small PCBs with trim pot) do this internally and are plug-and-play. Check bins for IR modules from Grade 9 robotics kits — use those if available.
+Custom chassis work is available for CPT: must fit within 11 × 17 inch sheet of corrugated cardboard. Laser cutter on-site — speak to teacher. Groups modifying the chassis should document the design intent in their CPT document.
 
 <br>
 
@@ -137,9 +116,9 @@ Wide skill range expected: some students have FIRST Robotics (FTC) provincial ex
 
 **Extension tiers:**
 - *Intermediate:* GPIO start/stop button; variable-speed turns using PWM
-- *Advanced:* HC-SR04 ultrasonic for opponent detection; LED state indicators; strategy state machine (aggressive vs defensive modes); PID-ish speed control
+- *Advanced:* HC-SR04 ultrasonic for opponent detection; LED state indicators; strategy state machine (aggressive vs defensive modes); threading for concurrent sensor/motor control; custom chassis
 
-Group strategic pairing — one stronger student per group. Extension spec gives FIRST Robotics students somewhere to go so they're not done by Day 14.
+Group pairing — one stronger student per group. Extension spec gives FTC-level students somewhere to go.
 
 <br>
 
@@ -153,36 +132,32 @@ Mixed RPi 3B/4/5 is fine — BCM GPIO pin numbering is identical across all thre
 
 ## Key Decisions
 
-- Photoresistor lab (originally Day 10) absorbed into CPT guided build (Day 14) — students learn the sensor while wiring their actual robot; more authentic, clears Day 10 for the test
-- CodeHS Python curriculum used as self-paced reference, not as class instruction — Python taught in GPIO context directly (reading real scripts, not abstract drills)
-- Test moved to end of Week 2 (after all GPIO labs) so students have applied the concepts before being assessed — mirrors the Unit 3 decision to test after the guided build
-- CPT demo component (KU /3) is oral, ~2 min, on tournament day — no separate written document required
+- Lab 4 (photoresistor + RC timing) runs as a standalone guided lab on Day 9 — students learn the sensor on the bench before mounting it on the chassis, which reduces CPT build complexity
+- CodeHS Python curriculum used as self-paced reference, not as class instruction — Python taught in GPIO context directly
+- Unit test moved to Jun 4 (Day 14) — after chassis build days — so students have seen sensor and motor integration in a physical context before the written assessment
+- CPT deliverable is a written document (README.md + images/ + src/) submitted after tournament day, not an oral demo — enables more rigorous assessment and works well with subagent-assisted grading
 
 <br>
 
 ## Files to Produce
 
 ### Student-facing (in `unit-4-rpi/`)
-- [ ] `01-analog-digital.md` — AC/DC, analog vs digital, ADC/DAC, sample rate, bit depth, practice problems
+- [x] `01-analog-digital.md` — AC/DC, analog vs digital, ADC/DAC, sample rate, bit depth
 - [x] `02-python-for-gpio.md` — variables, loops, conditionals, imports, `try/finally`, full GPIO script walkthrough
-- [ ] `03-rpi-setup.md` — SSH workflow, filesystem orientation, running a `.py` script, BCM pin reference
-- [ ] `lab-01-led.md` — LED circuit, GPIO output code, wiring diagram
-- [ ] `lab-02-button.md` — button circuit, GPIO input code, debounce
-- [x] `lab-03-motors.md` — L293D H-bridge wiring, one motor (Day 7): forward/reverse/stop; two motors + PWM speed control (Day 8): duty cycle, `GPIO.PWM`, ramped speed
-- [ ] `lab-04-pwm.md` — TBD: PWM absorbed into Lab 3 Day 8; Day 9 content needs decision (sensor intro? CPT integration practice?)
-- [ ] `cpt-sumo-robot.md` — CPT spec, minimum requirements, extension tiers, rubric, demo expectations, academic integrity
+- [x] `03-rpi-setup.md` — SSH workflow, filesystem orientation, running a `.py` script, BCM pin reference
+- [x] `lab-01-led.md` — LED circuit, GPIO output code, wiring diagram
+- [x] `lab-02-button.md` — button circuit, GPIO input code, debounce, extensions
+- [x] `lab-03-motors.md` — L293D H-bridge, one motor (Day 7), two motors + PWM (Day 8)
+- [x] `lab-04-photoresistor.md` — RC timing circuit, count loop, threshold calibration, edge detection
+- [x] `lab-05-chassis.md` — guided chassis assembly, electronics stack, wiring, boot test
+- [x] `cpt-sumo-robot.md` — CPT spec, milestones, deliverable format, rubric
 
 ### Teacher-facing (in `_planning/`)
 - [x] `unit-4-overview.md` — this file
+- [ ] Unit test question paper (Jun 4)
 
 <br>
 
 ## Open Items
 
-- Confirm H-bridge module model in bins (L298N vs L9110S vs L293D chip) — affects lab wiring diagrams
-- Confirm sensor solution: IR line sensor modules vs bare photoresistor + LM393 — affects Day 14 guided build instructions
-- Confirm RPi OS versions across the 3B/4/5 fleet — Bookworm is current; older images may need reflash before Day 4
-- Confirm school network allows mDNS (`raspberrypi.local`) or whether students need static IP assignment for SSH
-- Chassis design: finalize before May 25 test cut
-- Decide group size (pairs recommended given hardware count and wide skill range)
-- Decide whether CPT is individual or group mark (group recommended given shared chassis; could split: circuit/code = group, demo explanation = individual)
+- Unit test question paper not yet written — needed before Jun 4

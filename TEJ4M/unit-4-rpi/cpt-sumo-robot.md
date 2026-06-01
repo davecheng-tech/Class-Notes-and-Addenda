@@ -16,16 +16,39 @@ The arena is a donut-shaped ring on a white foamcore base. The interior surface 
 
 **4-robot battle royale.** All four robots compete in the ring at the same time. Last robot remaining wins the round.
 
-Groups of four robots rotate through multiple rounds. Points accumulate across the full session:
+Groups of four robots rotate through multiple rounds in a round-robin schedule. Points accumulate across all rounds.
 
-- Points for placement — order of elimination (last standing earns the most)
-- Bonus points for causing another robot to leave the ring
+### Scoring
+
+| Event | Points |
+|-------|--------|
+| Last robot standing | 3 |
+| Eliminated 3rd (2nd-to-last) | 2 |
+| Eliminated 2nd | 1 |
+| Eliminated 1st | 0 |
+| Causing an elimination (pushout or flip) | +2 per robot |
+
+Pushout attribution is determined by the referee. In ambiguous cases — chain contacts, a robot driving itself out — no bonus is awarded.
 
 ### Rules
 
-- **Autonomous only.** Your robot must run without SSH or remote control during a match. Any robot receiving commands during a round is disqualified from that round.
-- **Keep moving.** A robot that stops is eliminated. Your code must have a wander or patrol state — idling is not legal.
-- **Start signal.** Robots start on a button press with a 5-second delay before autonomous behaviour begins.
+**Start mechanism.** The robot must be started by a physical input on the robot itself — button, switch, or equivalent. SSH-initiated starts are not permitted during competition rounds. The referee will confirm each robot's start method before each round.
+
+The start sequence is: referee counts down from 10. At the "3" call, handlers press their robot's start button and step back. Robots begin moving at "0"— the 3-second delay in your code must match this window.
+
+**Autonomous only.** Once started, your robot must run without SSH or any remote control for the duration of the round. Any robot receiving commands during a round is disqualified from that round.
+
+**Keep moving.** A robot that stops moving is eliminated at referee discretion.
+
+**Engagement requirement.** The robot must demonstrate reactive behaviour during the round — its movement must respond to sensor input (ring edges, opponent contact, or other inputs). A robot running a fixed, non-reactive pattern that ignores the environment is subject to a referee warning.
+
+- A warning is issued during the round and logged against the group.
+- The group may SSH and modify their code freely between rounds.
+- If the same non-engaging behaviour appears in the group's next played round, the robot is eliminated from the remainder of the tournament.
+
+A robot that only has edge detection and uses it to actively stay in the ring is considered engaged. The referee's concern is a robot that is clearly running a fixed open-loop pattern with no sensor response — circling in place, oscillating on a timer, or otherwise ignoring the environment.
+
+**Permitted contact.** Pushing and body-to-body contact are the only permitted means of eliminating opponents. Flipping or upending a robot through pushing is permitted. Spinning weapons, cutting implements, extending arms, and mechanisms designed to damage rather than push are not permitted. This is sumo, not Battlebots. Any robot found to have intentionally damaged another robot is disqualified from the tournament.
 
 ---
 
@@ -35,10 +58,11 @@ Groups of four robots rotate through multiple rounds. Points accumulate across t
 
 The guided build (Labs 03–05) gives you a working platform. To compete, your robot must:
 
-1. Start autonomously on a button press with a 5-second delay
-2. Drive forward under autonomous control (wander state)
-3. Detect the boundary line and respond — reverse and turn, or equivalent
-4. Run the entire match without SSH control
+1. Start autonomously via a physical button press on the robot — no SSH
+2. Wait 3 seconds after the button press before moving
+3. Drive forward under autonomous control (wander state)
+4. Detect the boundary line and respond — reverse and turn, or equivalent
+5. Run the entire match without SSH control
 
 This is achievable with what you built in the guided labs. The photoresistor circuit, motor control, and start button are already in your codebase.
 

@@ -100,15 +100,22 @@ Place the L293D spanning the breadboard centre channel. Pin 1 is marked with a n
 
 ![L293D one-motor wiring diagram — L293D on breadboard with one TT motor, 5V to Vm and Vss, GPIO 23 and 24 to IN1 and IN2](./images/lab-03-one-motor-circuit.png)
 
+> [!NOTE]
+> The diagram above uses all four GND pins (4, 5, 12, 13). They are all internally connected inside the chip, so fewer wires work equally well on a breadboard. The figure below shows your options.
+>
+> ![Three breadboard diagrams showing 4 GND pins, one GND per motor channel, and a single GND for the entire circuit](./images/lab-03-gnd-options.png)
+
+> [!IMPORTANT]
+> **Wire in this order:** GND → EN → Vss/Vm → GPIO → motor leads. EN1 and EN2 must be connected before power is applied — an unconnected EN pin can cause the chip to overheat and fail the moment power is connected.
+
 **Connections:**
 
 | From | To | Notes |
 |------|----|-------|
+| Cobbler GND | L293D pin 4 (GND) | Left-side ground — connect first |
+| Cobbler 5V | L293D pin 1 (EN1) | Enable — connect before power rails |
 | Cobbler 5V | L293D pin 16 (Vss) | Logic power |
 | Cobbler 5V | L293D pin 8 (Vm) | Motor power |
-| Cobbler GND | L293D pin 4 | |
-| Cobbler GND | L293D pin 5 | |
-| Cobbler 5V | L293D pin 1 (EN1) | Tied HIGH — motor always enabled |
 | GPIO 23 | L293D pin 2 (IN1) | Direction A |
 | GPIO 24 | L293D pin 7 (IN2) | Direction B |
 | L293D pin 3 (OUT1) | Motor terminal (either) | |
@@ -116,8 +123,9 @@ Place the L293D spanning the breadboard centre channel. Pin 1 is marked with a n
 
 **Before powering on:**
 - Confirm pin 1 orientation (notch or dot)
+- Confirm EN1 (pin 1) is connected — never leave it floating
 - Confirm Vss (pin 16) and Vm (pin 8) are both connected to 5V — not to each other, not to GND
-- Confirm GND is on pins 4 and 5, not 4 and 16
+- Confirm GND is on pin 4 (left side) — not pin 16
 
 > [!TIP]
 > The motor terminals are not polarised — OUT1 and OUT2 just determine which shaft rotation you call "forward" and which you call "reverse". If you want to swap them, swap the two motor wires rather than changing the code.
@@ -196,7 +204,7 @@ The shaft should spin in one direction, pause, then spin the other way.
 
 ## 5. Wiring — Two Motors (Part 2)
 
-Add the second motor using the other half of the L293D (pins 9–15). GND pins 12 and 13 should already be in the breadboard from Part 1 — if not, add them now.
+Add the second motor using the other half of the L293D (pins 9–15). Pin 4 (GND) from Part 1 covers the left side. Add one GND wire for the right side now.
 
 ![L293D two-motor wiring diagram — both motor channels wired, GPIO 23/24 for motor A, GPIO 27/17 for motor B](./images/lab-03-two-motor-circuit.png)
 
@@ -204,9 +212,8 @@ Add the second motor using the other half of the L293D (pins 9–15). GND pins 1
 
 | From | To | Notes |
 |------|----|-------|
-| Cobbler GND | L293D pin 12 | |
-| Cobbler GND | L293D pin 13 | |
-| Cobbler 5V | L293D pin 9 (EN2) | Tied HIGH |
+| Cobbler GND | L293D pin 13 (GND) | Right-side ground |
+| Cobbler 5V | L293D pin 9 (EN2) | Enable — connect before power if rewiring |
 | GPIO 27 | L293D pin 10 (IN3) | Motor B direction A |
 | GPIO 17 | L293D pin 15 (IN4) | Motor B direction B |
 | L293D pin 11 (OUT3) | Motor B terminal (either) | |
@@ -283,7 +290,7 @@ Run it. Both shafts should spin together in the same direction, then together in
 > [!NOTE]
 > Both motors running in the same direction is what drives a robot straight. Motors running in opposite directions is what spins a robot in place (differential steering). On a desktop you're confirming the wiring is correct — the exact behaviour on a robot depends on how the motors are mounted.
 
-**If one motor doesn't run:** confirm EN2 (pin 9) is connected to 5V and that pins 12 and 13 are both grounded.
+**If one motor doesn't run:** confirm EN2 (pin 9) is connected to 5V — if EN2 is floating, the second motor channel is disabled regardless of IN3/IN4.
 
 ---
 

@@ -100,11 +100,6 @@ Place the L293D spanning the breadboard centre channel. Pin 1 is marked with a n
 
 ![L293D one-motor wiring diagram — L293D on breadboard with one TT motor, 5V to Vm and Vss, GPIO 23 and 24 to IN1 and IN2](./images/lab-03-one-motor-circuit.png)
 
-> [!NOTE]
-> The diagram above uses all four GND pins (4, 5, 12, 13). They are all internally connected inside the chip, so fewer wires work equally well on a breadboard. The figure below shows your options.
->
-> ![Three breadboard diagrams showing 4 GND pins, one GND per motor channel, and a single GND for the entire circuit](./images/lab-03-gnd-options.png)
-
 > [!IMPORTANT]
 > **Wire in this order:** GND → EN → Vss/Vm → GPIO → motor leads. EN1 and EN2 must be connected before power is applied — an unconnected EN pin can cause the chip to overheat and fail the moment power is connected.
 
@@ -207,6 +202,11 @@ The shaft should spin in one direction, pause, then spin the other way.
 Add the second motor using the other half of the L293D (pins 9–15). Pin 4 (GND) from Part 1 covers the left side. Add one GND wire for the right side now.
 
 ![L293D two-motor wiring diagram — both motor channels wired, GPIO 23/24 for motor A, GPIO 27/17 for motor B](./images/lab-03-two-motor-circuit.png)
+
+> [!NOTE]
+> The diagram above uses all four GND pins (4, 5, 12, 13). They are all internally connected inside the chip — fewer wires work equally well on a breadboard.
+>
+> ![Three breadboard diagrams showing 4 GND pins, one GND per motor channel, and a single GND for the entire circuit](./images/lab-03-gnd-options.png)
 
 **Additional connections:**
 

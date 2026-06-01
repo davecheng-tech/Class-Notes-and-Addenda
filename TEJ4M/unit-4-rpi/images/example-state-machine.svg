@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7"
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#37474f"/>
+    </marker>
+    <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7"
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#78909c"/>
+    </marker>
+  </defs>
+
+  <rect width="760" height="390" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="380" y="28" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="14" font-weight="bold" fill="#1a1a2e">State Machine Diagram: Autonomous Sumo Robot</text>
+  <text x="380" y="46" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="10" fill="#666">Each oval is a state. Arrows show transitions — label them with the condition that triggers the change.</text>
+
+  <!-- ======================== -->
+  <!--   INITIAL PSEUDO-STATE   -->
+  <!-- ======================== -->
+
+  <!-- Filled circle (UML initial state) -->
+  <circle cx="58" cy="185" r="14" fill="#37474f"/>
+  <!-- Arrow to WANDER -->
+  <line x1="72" y1="185" x2="150" y2="185"
+        stroke="#37474f" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Label above arrow -->
+  <text x="110" y="172" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" fill="#37474f">button pressed</text>
+  <text x="110" y="183" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" fill="#37474f">/ wait 3 s</text>
+
+  <!-- ======================== -->
+  <!--   WANDER STATE           -->
+  <!-- ======================== -->
+  <ellipse cx="260" cy="185" rx="110" ry="48" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
+  <text x="260" y="181" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="15" font-weight="bold" fill="#1b5e20">WANDER</text>
+  <text x="260" y="199" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" fill="#388e3c">move forward (slow arc)</text>
+
+  <!-- ======================== -->
+  <!--   EVADE STATE            -->
+  <!-- ======================== -->
+  <ellipse cx="620" cy="185" rx="110" ry="48" fill="#fce4ec" stroke="#c62828" stroke-width="2.5"/>
+  <text x="620" y="181" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="15" font-weight="bold" fill="#b71c1c">EVADE</text>
+  <text x="620" y="199" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" fill="#c62828">reverse, then turn</text>
+
+  <!-- ======================== -->
+  <!--   WANDER → EVADE         -->
+  <!-- ======================== -->
+  <!-- Arrow along top from WANDER to EVADE -->
+  <path d="M 368,165 Q 440,100 510,165"
+        fill="none" stroke="#37474f" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Guard label -->
+  <text x="440" y="110" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="10" font-weight="bold" fill="#37474f">edge detected</text>
+  <text x="440" y="124" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" fill="#555">RC time &lt; EDGE_THRESHOLD</text>
+
+  <!-- ======================== -->
+  <!--   EVADE → WANDER         -->
+  <!-- ======================== -->
+  <!-- Arrow along bottom from EVADE back to WANDER -->
+  <path d="M 510,205 Q 440,270 368,205"
+        fill="none" stroke="#37474f" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <!-- Guard label -->
+  <text x="440" y="278" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="10" font-weight="bold" fill="#37474f">turn complete</text>
+  <text x="440" y="292" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" fill="#555">(TURN_TIME elapsed)</text>
+
+  <!-- ======================== -->
+  <!--   EXTENSION: CHARGE      -->
+  <!-- ======================== -->
+
+  <!-- Dashed box indicating this is an optional extension -->
+  <rect x="200" y="318" width="360" height="58" rx="6"
+        fill="#f9f9f9" stroke="#90a4ae" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="234" y="308" font-family="'Courier New', monospace" font-size="9"
+        fill="#78909c">extension (HC-SR04)</text>
+
+  <!-- CHARGE state inside dashed box -->
+  <ellipse cx="380" cy="347" rx="85" ry="25" fill="#fff3e0" stroke="#78909c" stroke-width="1.5"/>
+  <text x="380" y="344" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="13" font-weight="bold" fill="#e65100">CHARGE</text>
+  <text x="380" y="358" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="8" fill="#e65100">full-speed forward</text>
+
+  <!-- WANDER → CHARGE (dashed arrow, going down) -->
+  <line x1="285" y1="233" x2="335" y2="322"
+        fill="none" stroke="#90a4ae" stroke-width="1.5"
+        stroke-dasharray="5,3" marker-end="url(#arrowhead-dashed)"/>
+  <text x="270" y="283" font-family="'Courier New', monospace" font-size="8"
+        fill="#78909c" text-anchor="middle">opponent</text>
+  <text x="270" y="294" font-family="'Courier New', monospace" font-size="8"
+        fill="#78909c" text-anchor="middle">&lt; 25 cm</text>
+
+  <!-- CHARGE → WANDER (dashed arrow, going back up) -->
+  <line x1="427" y1="322" x2="380" y2="233"
+        fill="none" stroke="#90a4ae" stroke-width="1.5"
+        stroke-dasharray="5,3" marker-end="url(#arrowhead-dashed)"/>
+  <text x="450" y="283" font-family="'Courier New', monospace" font-size="8"
+        fill="#78909c" text-anchor="middle">target</text>
+  <text x="450" y="294" font-family="'Courier New', monospace" font-size="8"
+        fill="#78909c" text-anchor="middle">lost</text>
+
+  <!-- Legend -->
+  <line x1="22" y1="355" x2="50" y2="355" stroke="#37474f" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="56" y="359" font-family="'Courier New', monospace" font-size="9" fill="#37474f">minimum viable</text>
+  <line x1="22" y1="374" x2="50" y2="374" stroke="#90a4ae" stroke-width="1.5"
+        stroke-dasharray="5,3" marker-end="url(#arrowhead-dashed)"/>
+  <text x="56" y="378" font-family="'Courier New', monospace" font-size="9" fill="#78909c">extension only</text>
+</svg>

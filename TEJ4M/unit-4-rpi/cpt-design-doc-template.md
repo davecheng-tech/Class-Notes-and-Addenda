@@ -26,14 +26,26 @@
 
 > *A diagram showing your robot's states and what causes each transition. Hand-drawn is fine. Label the states and label the arrows with whatever sensor condition or threshold triggers the change.*
 
-![State machine or behaviour diagram](images/state-diagram.jpg)
+> [!NOTE]
+> **Example:** The diagram below shows what a state machine looks like for a minimum-viable sumo robot, with the HC-SR04 charge state shown as an extension. Your diagram will show your robot's actual states.
+>
+> ![Example state machine diagram](images/example-state-machine.svg)
+
+![Your state machine or behaviour diagram](images/state-diagram.jpg)
 *[Caption: Name each state and note what triggers each transition.]*
 
 ### Circuit Design
 
 > *A schematic of your full circuit with every component labeled: resistor values, capacitor value, GPIO pin numbers, power and ground rails. A photo of your breadboard is not a schematic. Hand-drawn is fine.*
 
-![Circuit schematic, fully labeled](images/circuit-schematic.jpg)
+> [!NOTE]
+> **Example:** The diagrams below show your Lab 01/02 and Lab 03 circuits drawn as schematics — the same hardware you already built, translated from Fritzing breadboard view into schematic form. Your schematic will cover your full robot circuit on a single diagram.
+>
+> ![Example schematic: LED and button circuit (Labs 01 and 02)](images/example-schematic-led-button.svg)
+>
+> ![Example schematic: one motor via L293D H-bridge (Lab 03)](images/example-schematic-motor-l293d.svg)
+
+![Your circuit schematic, fully labeled](images/circuit-schematic.jpg)
 *[Caption: If you made a specific component choice that required a decision, note what you chose and why.]*
 
 ### Physical Layout

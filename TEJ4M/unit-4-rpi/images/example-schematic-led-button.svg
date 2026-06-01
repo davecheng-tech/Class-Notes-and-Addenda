@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500">
+  <rect width="780" height="500" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="390" y="30" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="14" font-weight="bold" fill="#1a1a2e">Circuit Schematic: LED + Button</text>
+  <text x="390" y="48" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="10" fill="#666">All components labeled with designator and value. GPIO pin numbers marked at the Pi.</text>
+
+  <!-- ======================== -->
+  <!--   RASPBERRY PI BLOCK     -->
+  <!-- ======================== -->
+  <rect x="25" y="85" width="130" height="295" rx="5"
+        fill="#ecf0f1" stroke="#2c3e50" stroke-width="2"/>
+  <text x="90" y="112" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="13" font-weight="bold" fill="#2c3e50">Raspberry</text>
+  <text x="90" y="129" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="13" font-weight="bold" fill="#2c3e50">Pi</text>
+  <text x="90" y="147" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" fill="#7f8c8d">(BCM pin numbers)</text>
+
+  <!-- GPIO 18 pin -->
+  <text x="148" y="202" text-anchor="end" font-family="'Courier New', monospace"
+        font-size="11" fill="#1565c0">GPIO 18</text>
+  <line x1="155" y1="198" x2="230" y2="198" stroke="#1565c0" stroke-width="2"/>
+
+  <!-- GPIO 25 pin -->
+  <text x="148" y="302" text-anchor="end" font-family="'Courier New', monospace"
+        font-size="11" fill="#6a1b9a">GPIO 25</text>
+  <line x1="155" y1="298" x2="230" y2="298" stroke="#6a1b9a" stroke-width="2"/>
+
+  <!-- GND pin -->
+  <text x="148" y="362" text-anchor="end" font-family="'Courier New', monospace"
+        font-size="11" fill="#333">GND</text>
+  <line x1="155" y1="358" x2="230" y2="358" stroke="#333" stroke-width="2"/>
+
+  <!-- ======================== -->
+  <!--   LED CIRCUIT            -->
+  <!-- ======================== -->
+
+  <!-- Section label -->
+  <rect x="248" y="65" width="88" height="18" rx="2" fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+  <text x="292" y="78" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" font-weight="bold" fill="#1565c0">LED circuit</text>
+
+  <!-- GPIO 18 wire right to x=292, then turns down -->
+  <line x1="230" y1="198" x2="292" y2="198" stroke="#1565c0" stroke-width="2"/>
+  <line x1="292" y1="198" x2="292" y2="218" stroke="#1565c0" stroke-width="2"/>
+
+  <!-- R1: 220 Ω (IEC rectangle, vertical) -->
+  <rect x="278" y="218" width="28" height="58" rx="2" fill="white" stroke="#1565c0" stroke-width="2"/>
+  <text x="313" y="240" font-family="'Courier New', monospace" font-size="10" fill="#1565c0">R1</text>
+  <text x="313" y="255" font-family="'Courier New', monospace" font-size="10" fill="#1565c0">220 Ω</text>
+
+  <!-- Wire from R1 bottom to LED anode -->
+  <line x1="292" y1="276" x2="292" y2="296" stroke="#1565c0" stroke-width="2"/>
+
+  <!-- D1: LED symbol (triangle, anode top, cathode bottom) -->
+  <!-- Anode line at y=296 -->
+  <line x1="274" y1="296" x2="310" y2="296" stroke="#1565c0" stroke-width="2"/>
+  <!-- Triangle body: base y=296 to apex y=334 -->
+  <polygon points="274,296 310,296 292,334" fill="#bbdefb" stroke="#1565c0" stroke-width="2"/>
+  <!-- Cathode bar at y=334 -->
+  <line x1="274" y1="334" x2="310" y2="334" stroke="#1565c0" stroke-width="2.5"/>
+  <!-- Light emission arrows (upper-right, pointing away from LED) -->
+  <line x1="313" y1="311" x2="329" y2="296" stroke="#1565c0" stroke-width="1.5"/>
+  <polygon points="329,296 321,300 324,307" fill="#1565c0"/>
+  <line x1="313" y1="323" x2="331" y2="310" stroke="#1565c0" stroke-width="1.5"/>
+  <polygon points="331,310 323,315 326,321" fill="#1565c0"/>
+  <!-- D1 label -->
+  <text x="338" y="313" font-family="'Courier New', monospace" font-size="10" fill="#1565c0">D1</text>
+  <text x="338" y="327" font-family="'Courier New', monospace" font-size="10" fill="#1565c0">LED (red)</text>
+
+  <!-- Wire below LED to GND bus -->
+  <line x1="292" y1="334" x2="292" y2="428" stroke="#1565c0" stroke-width="2"/>
+
+  <!-- ======================== -->
+  <!--   BUTTON CIRCUIT         -->
+  <!-- ======================== -->
+
+  <!-- Section label -->
+  <rect x="488" y="65" width="112" height="18" rx="2" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="1"/>
+  <text x="544" y="78" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="9" font-weight="bold" fill="#6a1b9a">button circuit</text>
+
+  <!-- Pull-up annotation above GPIO 25 wire -->
+  <text x="290" y="284" font-family="'Courier New', monospace" font-size="9"
+        fill="#6a1b9a" font-style="italic">internal pull-up (GPIO.PUD_UP in code)</text>
+
+  <!-- GPIO 25 wire right to switch left contact -->
+  <line x1="230" y1="298" x2="488" y2="298" stroke="#6a1b9a" stroke-width="2"/>
+
+  <!-- SW1: SPST normally-open switch -->
+  <!-- Left contact -->
+  <circle cx="491" cy="298" r="4" fill="white" stroke="#6a1b9a" stroke-width="2"/>
+  <!-- Open lever (does NOT reach right contact) -->
+  <line x1="495" y1="297" x2="549" y2="274" stroke="#6a1b9a" stroke-width="2"/>
+  <!-- Right contact -->
+  <circle cx="556" cy="298" r="4" fill="white" stroke="#6a1b9a" stroke-width="2"/>
+  <!-- SW1 label above the switch -->
+  <text x="498" y="263" font-family="'Courier New', monospace" font-size="10" fill="#6a1b9a">SW1</text>
+  <text x="496" y="253" font-family="'Courier New', monospace" font-size="9" fill="#6a1b9a">pushbutton</text>
+
+  <!-- Wire from switch right contact to vertical drop -->
+  <line x1="560" y1="298" x2="618" y2="298" stroke="#6a1b9a" stroke-width="2"/>
+  <line x1="618" y1="298" x2="618" y2="428" stroke="#6a1b9a" stroke-width="2"/>
+
+  <!-- ======================== -->
+  <!--   COMMON GND BUS         -->
+  <!-- ======================== -->
+
+  <!-- GND drop from Pi pin -->
+  <line x1="230" y1="358" x2="230" y2="428" stroke="#333" stroke-width="2"/>
+
+  <!-- GND bus (horizontal) -->
+  <line x1="200" y1="428" x2="648" y2="428" stroke="#333" stroke-width="2"/>
+
+  <!-- Junction dots -->
+  <circle cx="230" cy="428" r="3.5" fill="#333"/>
+  <circle cx="292" cy="428" r="3.5" fill="#1565c0"/>
+  <circle cx="618" cy="428" r="3.5" fill="#6a1b9a"/>
+
+  <!-- GND symbol below bus -->
+  <line x1="408" y1="428" x2="408" y2="443" stroke="#333" stroke-width="2"/>
+  <line x1="392" y1="443" x2="424" y2="443" stroke="#333" stroke-width="2.5"/>
+  <line x1="398" y1="451" x2="418" y2="451" stroke="#333" stroke-width="2"/>
+  <line x1="404" y1="459" x2="412" y2="459" stroke="#333" stroke-width="1.5"/>
+  <text x="428" y="456" font-family="'Courier New', monospace" font-size="10"
+        fill="#333" font-weight="bold">GND (common)</text>
+</svg>

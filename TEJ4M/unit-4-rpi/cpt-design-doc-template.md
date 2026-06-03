@@ -24,7 +24,7 @@
 
 ### System Architecture
 
-> *A diagram showing your robot's states and what causes each transition. Hand-drawn is fine. Label the states and label the arrows with whatever sensor condition or threshold triggers the change. See [UML State Machine Diagrams](https://www.lucidchart.com/pages/tutorial/uml-state-machine-diagram) for conventions.*
+> *A diagram showing your robot's states and what causes each transition. Hand-drawn is fine. If you prefer a digital tool, [draw.io](https://app.diagrams.net/) is free and browser-based. Label the states and label the arrows with whatever sensor condition or threshold triggers the change. See [UML State Machine Diagrams](https://www.lucidchart.com/pages/tutorial/uml-state-machine-diagram) for conventions.*
 
 > [!NOTE]
 > **Example:** The diagram below shows what a state machine looks like for a minimum-viable sumo robot, with the HC-SR04 charge state shown as an extension. Your diagram will show your robot's actual states.

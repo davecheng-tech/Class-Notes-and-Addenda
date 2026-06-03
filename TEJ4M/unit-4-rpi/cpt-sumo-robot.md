@@ -10,7 +10,7 @@ Groups of 2–3. Groups must be finalized by end of class on **June 2**.
 
 ### Ring
 
-The arena is a donut-shaped ring on a white foamcore base. The interior surface is a black mat. A black boundary line runs along the outer edge. Your robot's photoresistor detects this boundary — the same sensor and circuit from Labs 04 and 05.
+The arena is a donut-shaped ring on a white surface with a black border around the outer and inner edges of the ring. Your robot should be able to detect these boundary lines to remain in the ring.
 
 ### Format
 
@@ -37,6 +37,8 @@ Pushout attribution is determined by the referee. In ambiguous cases — chain c
 The start sequence is: referee counts down from 10. At the "3" call, handlers press their robot's start button and step back. Robots begin moving at "0"— the 3-second delay in your code must match this window.
 
 **Autonomous only.** Once started, your robot must run without SSH or any remote control for the duration of the round. Any robot receiving commands during a round is disqualified from that round.
+
+**Out of bounds.** A robot is eliminated when no part of its chassis remains on the ring surface. Any contact counts — a single wheel or the tip of a slider is enough to remain in play. The referee makes the final call.
 
 **Keep moving.** A robot that stops moving is eliminated at referee discretion.
 

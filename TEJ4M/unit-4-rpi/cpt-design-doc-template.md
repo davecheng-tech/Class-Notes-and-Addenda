@@ -24,7 +24,7 @@
 
 ### System Architecture
 
-> *A diagram showing your robot's states and what causes each transition. Hand-drawn is fine. Label the states and label the arrows with whatever sensor condition or threshold triggers the change.*
+> *A diagram showing your robot's states and what causes each transition. Hand-drawn is fine. Label the states and label the arrows with whatever sensor condition or threshold triggers the change. See [UML State Machine Diagrams](https://www.lucidchart.com/pages/tutorial/uml-state-machine-diagram) for conventions.*
 
 > [!NOTE]
 > **Example:** The diagram below shows what a state machine looks like for a minimum-viable sumo robot, with the HC-SR04 charge state shown as an extension. Your diagram will show your robot's actual states.
@@ -36,14 +36,12 @@
 
 ### Circuit Design
 
-> *A schematic of your full circuit with every component labeled: resistor values, capacitor value, GPIO pin numbers, power and ground rails. A photo of your breadboard is not a schematic. Hand-drawn is fine.*
+> *A schematic of your full circuit with every component labeled: resistor values, capacitor value, GPIO pin numbers, power and ground rails. A photo of your breadboard is not a schematic. Hand-drawn is fine. If you prefer a digital tool, [circuit-diagram.org/editor](https://www.circuit-diagram.org/editor/) is free and browser-based.*
 
 > [!NOTE]
-> **Example:** The diagrams below show your Lab 01/02 and Lab 03 circuits drawn as schematics — the same hardware you already built, translated from Fritzing breadboard view into schematic form. Your schematic will cover your full robot circuit on a single diagram.
+> **Example:** The diagram below shows the button and single-motor circuits from Labs 01–03 drawn as a schematic. Your schematic will cover your full robot circuit on a single diagram: two motors, photoresistor RC circuit, and any extensions.
 >
-> ![Example schematic: LED and button circuit (Labs 01 and 02)](images/example-schematic-led-button.svg)
->
-> ![Example schematic: one motor via L293D H-bridge (Lab 03)](images/example-schematic-motor-l293d.svg)
+> ![Example schematic: button circuit and single motor via L293D (Labs 01–03)](images/example-schematic.svg)
 
 ![Your circuit schematic, fully labeled](images/circuit-schematic.jpg)
 *[Caption: If you made a specific component choice that required a decision, note what you chose and why.]*

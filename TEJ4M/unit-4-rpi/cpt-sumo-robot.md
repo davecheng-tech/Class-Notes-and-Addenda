@@ -50,7 +50,7 @@ The start sequence is: referee counts down from 10. At the "3" call, handlers pr
 
 A robot that only has edge detection and uses it to actively stay in the ring is considered engaged. The referee's concern is a robot that is clearly running a fixed open-loop pattern with no sensor response — circling in place, oscillating on a timer, or otherwise ignoring the environment.
 
-**Permitted contact.** Pushing and body-to-body contact are the only permitted means of eliminating opponents. Flipping or upending a robot through pushing is permitted. Spinning weapons, servo-actuated lifters, cutting implements, extending arms, and mechanisms designed to damage rather than push are not permitted. This is sumo — actually, more like bubble suit sumo — and not Battlebots. Any robot found to have intentionally damaged another robot is disqualified from the tournament.
+**Permitted contact.** Any mechanism that moves, lifts, topples, or displaces an opponent is permitted — bulldozer scoops, lifter arms, lateral pushers, and servo-actuated flippers all qualify. The governing principle is displacement: if the mechanism moves robots, it's sumo. Mechanisms designed to snag, pierce, or damage components rather than displace the robot are not permitted, regardless of whether they are motorized or passive. The referee has final authority on novel mechanisms and may require modification before a round. Any robot found to have damaged another robot is disqualified from the tournament.
 
 **Maximum size.** The complete robot must fit within the footprint of a sheet of U.S. Letter paper — 8.5 × 11 inches (215.9 × 279.4 mm) — measured at its widest and longest points. Height is not restricted. The referee will check each robot before its first round.
 

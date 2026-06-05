@@ -32,29 +32,41 @@ Pushout attribution is determined by the referee. In ambiguous cases — chain c
 
 ### Rules
 
-**Start mechanism.** The robot must be started by a physical input on the robot itself — button, switch, or equivalent. SSH-initiated starts are not permitted during competition rounds. The referee will confirm each robot's start method before each round.
+**Start mechanism**
+- Started by a physical input on the robot — button, switch, or equivalent. No SSH starts during rounds.
+- Referee confirms each robot's start method before the round.
+- Countdown: ref counts from 10 → handlers press start at "3" and step back → robots move at "0". Your 3-second code delay must match this window.
 
-The start sequence is: referee counts down from 10. At the "3" call, handlers press their robot's start button and step back. Robots begin moving at "0"— the 3-second delay in your code must match this window.
+**Autonomous only**
+- No SSH or remote control once the round starts.
+- Any robot receiving commands mid-round is disqualified from that round.
 
-**Autonomous only.** Once started, your robot must run without SSH or any remote control for the duration of the round. Any robot receiving commands during a round is disqualified from that round.
+**Out of bounds (elimination)**
+- Eliminated when no part of the chassis remains on the ring surface.
+- Any contact counts — a single wheel or slider tip keeps you in play.
+- Referee makes the final call.
 
-**Out of bounds.** A robot is eliminated when no part of its chassis remains on the ring surface. Any contact counts — a single wheel or the tip of a slider is enough to remain in play. The referee makes the final call.
+**Keep moving**
+- A robot that stops moving is eliminated at referee discretion.
 
-**Keep moving.** A robot that stops moving is eliminated at referee discretion.
+**Engagement requirement** — the robot must respond to its environment.
+- *What's required:* movement that reacts to sensor input (ring edges, opponent contact, or other inputs). Edge detection used to actively stay in the ring counts as engaged.
+- *What gets a warning:* a fixed open-loop pattern with no sensor response — circling in place, oscillating on a timer, repeating arc.
+- *The test is the wander pattern itself*, not whether reactive code exists or fires:
+  - Wander with positional variety (changes direction, covers different areas) → fine, even if reactive code never triggers because conditions never arise.
+  - Tight fixed path (small circle, back-and-forth, repeating arc) → warning, regardless of what other sensor code is present. The movement itself is indistinguishable from open-loop.
+- *Process:* warning logged against the group → free to SSH and modify code between rounds → same behaviour in your next round = eliminated from the remainder of the tournament.
 
-**Engagement requirement.** The robot must demonstrate reactive behaviour during the round — its movement must respond to sensor input (ring edges, opponent contact, or other inputs). A robot running a fixed, non-reactive pattern that ignores the environment is subject to a referee warning.
+**Permitted contact** — governing principle: *displacement, not damage.*
+- Allowed: any mechanism that moves, lifts, topples, or displaces — scoops, lifter arms, lateral pushers, servo-actuated flippers.
+- Not allowed: mechanisms designed to snag, pierce, or damage components, whether motorized or passive.
+- Referee has final authority on novel mechanisms and may require modification before a round.
+- Damaging another robot = disqualified from the tournament.
 
-- A warning is issued during the round and logged against the group.
-- The group may SSH and modify their code freely between rounds.
-- If the same non-engaging behaviour appears in the group's next played round, the robot is eliminated from the remainder of the tournament.
-
-A robot that only has edge detection and uses it to actively stay in the ring is considered engaged. The referee's concern is a robot that is clearly running a fixed open-loop pattern with no sensor response — circling in place, oscillating on a timer, or otherwise ignoring the environment.
-
-The engagement check is based on the **wander pattern itself**, not on whether reactive code exists or fires during the round. A robot whose wander covers the ring with positional variety — changing direction, reaching different areas of the ring — is behaving non-deterministically. No warning is issued if that robot's reactive code (whether offensive, defensive, or both) simply never triggered because the right conditions never arose. A robot whose wander traces a tight fixed path (a small circle, a back-and-forth, a repeating arc) is subject to a warning regardless of what other sensor code it carries, because the movement itself is indistinguishable from a fixed open-loop pattern. The wander must look like a wander.
-
-**Permitted contact.** Any mechanism that moves, lifts, topples, or displaces an opponent is permitted — bulldozer scoops, lifter arms, lateral pushers, and servo-actuated flippers all qualify. The governing principle is displacement: if the mechanism moves robots, it's sumo. Mechanisms designed to snag, pierce, or damage components rather than displace the robot are not permitted, regardless of whether they are motorized or passive. The referee has final authority on novel mechanisms and may require modification before a round. Any robot found to have damaged another robot is disqualified from the tournament.
-
-**Maximum size.** The complete robot must fit within the footprint of a sheet of U.S. Letter paper — 8.5 × 11 inches (215.9 × 279.4 mm) — measured at its widest and longest points. Height is not restricted. The referee will check each robot before its first round.
+**Maximum size**
+- Footprint ≤ U.S. Letter (8.5 × 11 in / 215.9 × 279.4 mm), measured at widest and longest points.
+- Height is not restricted.
+- Checked before the first round.
 
 ---
 

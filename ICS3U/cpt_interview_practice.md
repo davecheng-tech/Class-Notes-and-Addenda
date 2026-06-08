@@ -135,6 +135,11 @@ Use these when the author can already answer basic “what does this do?” ques
   - "If you had to simplify this feature by 50% but keep the core idea, what would you remove first and why?"
   - "Describe one alternative implementation you considered (or could have used) and why you did not choose it."
 
+- **Hypothetical extensions**
+  - "Your program currently handles one [player/enemy/object]. Where is that data stored right now? If you needed five of them, what would you need to change and why?"
+  - "If you wanted to track [score history/previous positions/multiple game states], what data structure would you use and where in the code would it live?"
+  - "Suppose I asked you to add [a second player/a wave of enemies/a replay feature]. Walk me through what you would need to change and in what order."
+
 **Author:** 
 - Start with the concept (what problem it solves).
 - Then point to the code location.
@@ -154,12 +159,14 @@ Use these when the author can already answer basic “what does this do?” ques
 - Identify specific concepts or structures that need review.
 - Avoid vague answers.
 
+> **Note on live coding:** The actual interview may include a component where you are asked to write, modify, or reconstruct part of your code without looking at the original. You do not need to memorize syntax, but you should understand your program's logic well enough to explain or rebuild any part of it from first principles. If there are sections you cannot explain without reading them line by line, that is your signal — review them before the interview.
+
 
 ## Part 5 – Design Reflection (5 minutes)
 
 **Author:**
 - Identify one design choice you are satisfied with.
-- Identify one area that is overly complex.
+- Identify one limitation of your current design — something that would become a problem if the program were extended or the scope grew.
 - Describe one refactor you would make if changes were allowed.
 
 **Reviewer:**

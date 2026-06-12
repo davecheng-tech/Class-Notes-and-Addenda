@@ -532,7 +532,7 @@ finally:
 
 ---
 
-### Second Design Challenge
+### Design Challenge
 
 **Q10.** You are designing a **Fan Speed Controller** using a Raspberry Pi. The system works as follows:
 
@@ -598,7 +598,7 @@ on exit:
 
 ---
 
-### Design Challenge
+### Second Design Challenge
 
 **Q11.** You are designing a **Parking Sensor Alert** using a Raspberry Pi. The system works as follows:
 

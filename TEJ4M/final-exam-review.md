@@ -116,7 +116,7 @@ This comes up when simplifying difference outputs.
 
 Since there was no separate test for this unit, it receives significant coverage on the final. Use the practice questions at the end of this guide to prepare for the specific question formats.
 
-**Analog and Digital Signals** (`01-analog-digital.md`)
+**[Analog and Digital Signals](https://davecheng-tech.github.io/Class-Notes-and-Addenda/TEJ4M/unit-4-rpi/01-analog-digital)**
 
 - What makes a signal analog vs. digital
 - **ADC (Analog-to-Digital Converter)** — how it samples a continuously varying signal and encodes it as binary
@@ -127,7 +127,7 @@ Since there was no separate test for this unit, it receives significant coverage
 - **PWM (Pulse Width Modulation)** — simulating analog output with a digital signal; duty cycle; why it is used for motor speed control and LED dimming
 - Trade-offs in ADC design: storage cost, processing cost, energy, and diminishing returns at very high specifications
 
-**Python for GPIO** (`02-python-for-gpio.md`)
+**[Python for GPIO](https://davecheng-tech.github.io/Class-Notes-and-Addenda/TEJ4M/unit-4-rpi/02-python-for-gpio)**
 
 - What a Raspberry Pi is — single-board computer; 40-pin GPIO header
 - **GPIO** = General Purpose Input/Output
@@ -153,7 +153,7 @@ Since there was no separate test for this unit, it receives significant coverage
 | `GPIO.input(pin)` | Reads an input pin — returns `True` (HIGH) or `False` (LOW) |
 | `GPIO.cleanup()` | Resets all GPIO pins — always call this when the script ends |
 
-**Physical circuits** (Labs 01–04)
+**Physical circuits** ([Lab 01 — LED](https://davecheng-tech.github.io/Class-Notes-and-Addenda/TEJ4M/unit-4-rpi/lab-01-led), [Lab 02 — Button](https://davecheng-tech.github.io/Class-Notes-and-Addenda/TEJ4M/unit-4-rpi/lab-02-button), [Lab 03 — Motors](https://davecheng-tech.github.io/Class-Notes-and-Addenda/TEJ4M/unit-4-rpi/lab-03-motors), [Lab 04 — Photoresistor](https://davecheng-tech.github.io/Class-Notes-and-Addenda/TEJ4M/unit-4-rpi/lab-04-photoresistor))
 
 - **LED circuit** — output pin, current-limiting resistor; why the resistor is needed
 - **Pull-down resistor** — why a floating input pin is unreliable; how a pull-down fixes it (holds the pin LOW when the button is open; button press overrides it with 3.3V)
@@ -183,7 +183,7 @@ Try each question before opening the solution. The question formats match what a
 
 **Q1.** An ADC uses **6-bit depth**. How many discrete voltage levels can it represent per sample?
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 **64 levels.**
@@ -196,7 +196,7 @@ With *n* bits, there are 2ⁿ possible levels. 2⁶ = 64.
 
 **Q2.** An audio ADC samples at 44,100 Hz with 16-bit depth. A digital thermometer samples at 2 Hz with 10-bit depth. Explain why these two systems use such different specifications.
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 Human hearing extends up to about 20,000 Hz. To faithfully capture a signal at that frequency, the sample rate must be more than twice as fast: 44,100 Hz provides that margin. 16-bit depth gives 65,536 levels, fine enough to represent amplitude detail below the threshold of human hearing.
@@ -211,7 +211,7 @@ The right specifications depend on what the signal actually requires.
 
 **Q3.** What is **quantization error**, and when is it larger — with a 4-bit ADC or a 16-bit ADC?
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 Quantization error is the difference between the true analog voltage and the nearest representable digital level after sampling. Because digital levels are discrete, the measured voltage must be rounded to the closest available step; that rounding is the error.
@@ -232,7 +232,7 @@ GPIO.setup(SENSOR_PIN, GPIO.OUT)
 
 `SENSOR_PIN` is connected to a button. What is wrong, and what should the line say?
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 A button is an **input** device: it sends a signal to the Pi. `GPIO.OUT` configures the pin to send a signal outward, which is backwards. Calling `GPIO.input()` on an output pin will behave incorrectly or fail.
@@ -249,7 +249,7 @@ GPIO.setup(SENSOR_PIN, GPIO.IN)
 
 **Q5.** What does `GPIO.setmode(GPIO.BCM)` do, and why must it come before any other GPIO call?
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 It selects the **Broadcom chip (BCM) pin numbering scheme**. Under BCM, the numbers in your script match the GPIO numbers printed on reference cards and pinout diagrams (e.g., BCM 18, BCM 27). The alternative, `GPIO.BOARD`, numbers pins by their physical position on the 40-pin header.
@@ -305,7 +305,7 @@ finally:
 
 **(d)** Which pin(s) are configured as inputs?
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 **(a)** The buzzer beeps 4 times: 0.1 seconds on and 0.1 seconds off each time, 0.8 seconds total.
@@ -347,7 +347,7 @@ finally:
     GPIO.cleanup()
 ```
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 **Error 1 — `GPIO.setup(LED, GPIO.IN)` (line 6)**
@@ -419,7 +419,7 @@ finally:
     GPIO.cleanup()
 ```
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 When the device starts, the green LED turns on and holds steady.
@@ -513,7 +513,7 @@ finally:
 - C) Pins are referenced by their Broadcom chip number, matching GPIO reference cards and pinout diagrams
 - D) Pin numbers are auto-detected from the hardware at runtime
 
-<details>
+<details markdown="1">
 <summary>Solutions</summary>
 
 **(i) C** — The for loop runs 5 times; each iteration turns YELLOW on for 0.2 s then off for 0.2 s. Total duration: 2 seconds.
@@ -548,7 +548,7 @@ Design this system.
 
 **(b)** Outline the logic your code will follow. Plain English, arrows, or rough Python are all acceptable.
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 **(a) Hardware:**
@@ -614,7 +614,7 @@ Design this system.
 
 **(b)** Outline the logic your code will follow. Plain English, arrows, or rough Python are all acceptable.
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 **(a) Hardware:**
@@ -683,7 +683,7 @@ The exam asks you to simplify an expression step by step, **naming the law at ea
 
 **Practice A:** Simplify `Z = A·B + A·B'`
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 ```
@@ -701,7 +701,7 @@ Z = A                  — Identity (A · 1 = A)
 
 **Practice B:** Simplify `Z = A + A·B`
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 ```
@@ -725,7 +725,7 @@ Z = A                  — Identity (A · 1 = A)
 
 **Practice C:** Simplify `Z = A'·B·C + A·B·C + B·C`
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 ```
@@ -744,7 +744,7 @@ Z = B·C                   — Idempotent (X + X = X)
 
 **Practice D:** Simplify `Z = (A + B)·(A + B')`
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 Using the factored Distributive form `(X + Y)·(X + Z) = X + Y·Z`:
@@ -767,7 +767,7 @@ Z = A                  — Identity (A + 0 = A)
 
 **Practice E:** Simplify `Z = A·B·C + A·B·C' + A'·B·C + A'·B·C'`
 
-<details>
+<details markdown="1">
 <summary>Solution</summary>
 
 ```

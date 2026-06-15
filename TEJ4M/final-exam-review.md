@@ -1,6 +1,6 @@
 # TEJ4M — Final Exam Review Guide
 
-**Exam date:** Monday, June 16, 2026  
+**Exam date:** Tuesday, June 16, 2026 at 8:30 a.m. 
 **Duration:** 2 hours  
 **Total marks:** 70  
 **Tools permitted:** Non-programmable calculator; Boolean Laws reference table (provided with the exam). Closed book — no other notes or materials.
@@ -828,4 +828,4 @@ Z = B                              — Identity
 - **Design challenge:** you do not need working Python. A labelled sketch, a component list, and a clear logic outline earn full marks.
 - **Networking diagnostic:** know the significance of special IP addresses — `127.0.0.1`, `169.254.x.x` — and what each tells you about the state of a connection.
 
-Good luck on June 16.
+Good luck on the final exam.

@@ -1,6 +1,6 @@
 # TEJ4M — Final Exam Review Guide
 
-**Exam date:** Tuesday, June 16, 2026 at 8:30 a.m. 
+**Exam date:** Tuesday, June 16, 2026 at 8:30 a.m.  
 **Duration:** 2 hours  
 **Total marks:** 70  
 **Tools permitted:** Non-programmable calculator; Boolean Laws reference table (provided with the exam). Closed book — no other notes or materials.

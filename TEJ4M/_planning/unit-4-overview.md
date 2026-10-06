@@ -154,10 +154,10 @@ Mixed RPi 3B/4/5 is fine — BCM GPIO pin numbering is identical across all thre
 
 ### Teacher-facing (in `_planning/`)
 - [x] `unit-4-overview.md` — this file
-- [ ] Unit test question paper (Jun 4)
+- Unit test question paper (Jun 4) — kept out of this repo; see note below
 
 <br>
 
 ## Open Items
 
-- Unit test question paper not yet written — needed before Jun 4
+- None outstanding. The actual unit test question paper is deliberately **not** stored in this repo (public repo — see `_planning/README.md`); write/keep it elsewhere.
